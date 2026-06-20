@@ -1,0 +1,23 @@
+# Secrets and environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+**/secrets/
+
+# Dependencies
+node_modules/
+
+# OS and editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs and caches
+*.log
+npm-debug.log*
+.cache/
+.cursor/runtime/**/*.cache

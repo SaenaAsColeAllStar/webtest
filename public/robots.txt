@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smkteknovo.sch.id/sitemap.xml

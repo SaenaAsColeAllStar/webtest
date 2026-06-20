@@ -1,0 +1,1359 @@
+# Teknovo Skill Registry — Central Orchestration Layer
+# Single source of truth for skill discovery, layers, priorities, activation, dependencies, conflicts.
+# Legacy backward compatibility: .cursor/registry/legacy-registry.yaml (autoload synced from here)
+# Governance: .cursor/docs/ai/skill-governance.md | Inventory: .cursor/docs/ai/skill-inventory.md
+# Validate: .cursor/runtime/load-skills.py --validate
+
+version: 1.0.0
+metadata:
+  name: Teknovo Skill Registry
+  description: Central orchestration layer for the Teknovo AI SuperStack
+  last_updated: '2026-06-20'
+  maintainer: Teknovo AI SuperStack
+  legacy_registry: .cursor/registry/legacy-registry.yaml
+  agent_registry: .cursor/registry/agent-registry.yaml
+  mcp_registry: .cursor/registry/mcp-registry.yaml
+  governance_doc: .cursor/docs/ai/skill-governance.md
+  inventory_doc: .cursor/docs/ai/skill-inventory.md
+layers:
+  execution:
+    order: 0
+    description: Execution mode, failure recovery, branch safety, deployment execution
+      (V2)
+  foundation:
+    order: 1
+    description: Master contracts, AGENTS.md, workstation bootstrap
+  memory:
+    order: 2
+    description: Long-term Claude-Mem artifacts and episodic session context
+  product:
+    order: 3
+    description: PRD, product design, domain modules, planning methodology
+  ux:
+    order: 4
+    description: UI/UX implementation, design taste, copy, landing pages
+  architecture:
+    order: 5
+    description: Chief architect gate, database, API, DDD, monorepo governance
+  engineering:
+    order: 6
+    description: Implementation, TDD, backend, migrations, performance
+  security:
+    order: 7
+    description: Security principles, RBAC security, security review gate
+  assurance:
+    order: 8
+    description: Trail-of-Bits-inspired verification, context, differential review
+  deployment:
+    order: 9
+    description: DevOps, Cloudflare, ship, observability, incidents
+  automation:
+    order: 10
+    description: Subagents, parallel dispatch, git worktrees
+  review:
+    order: 11
+    description: Quality gates, taste review, eng-review, QA, code review
+  mcp:
+    order: 12
+    description: Model Context Protocol integrations and agent tool boundaries
+priority_levels:
+  critical: Mandatory every session or gate-blocking
+  high: Autoload or phase-gate recommended
+  medium: Trigger-based on-demand loading
+  optional: Specialist, domain, or experimental use
+conflict_resolution:
+  precedence_chain: AGENTS.md > ADR > PRD > Teknovo Skills > Security > Assurance
+    > Impeccable > Taste > External
+  document_priority:
+  - AGENTS.md and docs/adr/**
+  - Master PRD (docs/prd/master/master-prd.md)
+  - Teknovo standards (database, API, RBAC, design system, coding)
+  - .cursor/registry/skill-registry.yaml
+  - Sub-registries (taste, quality, security, assurance, memory)
+  - .cursor/registry/legacy-registry.yaml
+  - External guidance
+  skill_conflicts:
+  - id: taste-vs-expansion
+    when: Taste recommends removal vs feature expansion
+    winner: taste
+    rule: Taste wins â€” simplify or cut scope before polishing
+  - id: security-vs-convenience
+    when: Security requirement vs developer convenience
+    winner: security
+    rule: Security wins â€” no bypass for speed
+  - id: agents-vs-external
+    when: AGENTS.md vs external blog or tool defaults
+    winner: agents-md
+    rule: AGENTS.md wins â€” Teknovo contracts override external patterns
+  - id: assurance-vs-assumption
+    when: Assurance gate vs assumed requirements
+    winner: assurance
+    rule: Assurance wins â€” clarify before implement
+  - id: rbac-vs-ui-only-auth
+    when: UI-only permission check vs server RBAC
+    winner: security
+    rule: Server RBAC mandatory â€” UI checks are supplemental only
+  review_order:
+  - requirement-clarifier
+  - context-builder
+  - taste-reviewer
+  - security-reviewer
+  - impeccable-reviewer
+  - differential-reviewer
+  - second-opinion-reviewer
+sub_registries:
+  taste:
+    path: .cursor/gates/taste/taste-registry.yaml
+    prefix: taste-
+  quality:
+    path: .cursor/gates/quality/quality-registry.yaml
+    prefix: quality-
+  security:
+    path: .cursor/gates/security/security-registry.yaml
+    prefix: security-
+  memory:
+    path: .cursor/docs/memory/memory-registry.yaml
+    prefix: memory-
+  assurance:
+    path: .cursor/gates/assurance/assurance-registry.yaml
+    prefix: assurance-
+autoload:
+- agents-md
+- memory-project-context
+- memory-repository-map
+- memory-product-context
+- memory-domain-knowledge
+- memory-architecture-decisions
+- memory-coding-standards
+- memory-ui-ux-rules
+- memory-lessons-learned
+- superpowers-brainstorming
+- superpowers-writing-plans
+- superpowers-executing-plans
+- superpowers-verification-before-completion
+- superpowers-test-driven-development
+- quality-self-critique
+- gstack-eng-review
+- gstack-qa
+- teknovo-rbac-architect
+- teknovo-database-architect
+- teknovo-feature-implementation
+- teknovo-repository-governance
+- teknovo-testing-architect
+- teknovo-api-architect
+- teknovo-security-review
+- teknovo-ui-ux
+- teknovo-backend-development
+- teknovo-domain-management
+- teknovo-landing-page
+- taste-reviewer
+- teknovo-auto-orchestrator
+bundles:
+  session-bootstrap:
+    description: Default session â€” foundation, memory core, methodology autoload
+    skills:
+    - agents-md
+    - memory-project-context
+    - memory-repository-map
+    - superpowers-brainstorming
+    - superpowers-writing-plans
+  pre-feature:
+    description: Before feature scoping — taste + assurance + brand + product design
+    skills:
+    - taste-gates
+    - taste-reviewer
+    - requirement-clarifier
+    - teknovo-brand-dna
+    - teknovo-product-designer
+    - teknovo-chief-product-designer
+    - taste-product-principles
+  pre-ui:
+    description: Before UI code — creative governance + UX taste + quality + native
+      Cursor skills
+    skills:
+    - teknovo-brand-dna
+    - teknovo-creative-director
+    - teknovo-product-designer
+    - taste-ux-principles
+    - taste-design-principles
+    - quality-ux-principles
+    - quality-design-taste
+    - teknovo-design-system
+    - teknovo-ux-architecture
+    - teknovo-ui-ux
+  pre-creative-review:
+    description: After UI build — AI-ish enforcement before ship
+    skills:
+    - teknovo-ai-ish-review
+    - teknovo-brand-dna
+    - teknovo-creative-director
+  pre-implementation:
+    description: Before code — architecture + security + context assurance
+    skills:
+    - teknovo-auto-orchestrator
+    - teknovo-chief-architect
+    - context-builder
+    - teknovo-security
+    - teknovo-security-review
+    - security-reviewer
+    - security-gates
+    - assurance-principles
+  pre-rbac:
+    description: Before RBAC changes
+    skills:
+    - teknovo-security
+    - teknovo-security-domain
+    - teknovo-security-review
+    - security-rbac-security
+  pre-api:
+    description: Before API endpoints
+    skills:
+    - teknovo-security
+    - teknovo-security-domain
+    - teknovo-security-review
+    - security-api-security
+  pre-db:
+    description: Before database migrations
+    skills:
+    - teknovo-security
+    - teknovo-security-domain
+    - teknovo-security-review
+    - security-database-security
+  pre-deploy-security:
+    description: Before deploy
+    skills:
+    - teknovo-security
+    - teknovo-security-infra
+    - teknovo-security-review
+    - security-cloudflare-security
+  pre-ship:
+    description: Before merge/deploy
+    skills:
+    - quality-gates
+    - quality-self-critique
+    - teknovo-security
+    - teknovo-security-review
+    - gstack-qa
+    - gstack-eng-review
+    - teknovo-ai-ish-review
+  pre-implementation-execution:
+    description: Branch safety before coding
+    skills:
+    - execution-bootstrap
+    - execution-branch-policy
+    - execution-failure-recovery
+  pre-deploy-execution:
+    description: Deployment execution
+    skills:
+    - execution-bootstrap
+    - execution-deployment-mode
+    - execution-failure-recovery
+skills:
+  agents-contract:
+    id: agents-contract
+    layer: foundation
+    priority: critical
+    source: foundation
+    path: .cursor/docs/AGENTS.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - V2 paths
+    conflicts: []
+    description: Extended agent contract
+    autoload: false
+  agents-md:
+    id: agents-md
+    layer: foundation
+    priority: critical
+    source: foundation
+    path: AGENTS.md
+    depends_on: []
+    activate_when:
+    - session start
+    - bootstrap
+    conflicts: []
+    description: Master agent contract
+    autoload: true
+  assurance-principles:
+    id: assurance-principles
+    layer: assurance
+    priority: high
+    source: assurance
+    path: .cursor/gates/assurance/assurance-principles.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - assurance-principles
+    conflicts: []
+    description: assurance-principles
+    autoload: false
+  assurance-review-workflow:
+    id: assurance-review-workflow
+    layer: assurance
+    priority: high
+    source: assurance
+    path: .cursor/gates/assurance/review-workflow.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - assurance-review-workflow
+    conflicts: []
+    description: assurance-review-workflow
+    autoload: false
+  context-builder:
+    id: context-builder
+    layer: assurance
+    priority: high
+    source: assurance
+    path: .cursor/docs/agents/context-builder.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - context-builder
+    conflicts: []
+    description: Agent context-builder
+    autoload: false
+  differential-reviewer:
+    id: differential-reviewer
+    layer: assurance
+    priority: high
+    source: review
+    path: .cursor/docs/agents/differential-reviewer.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - differential-reviewer
+    conflicts: []
+    description: Agent differential-reviewer
+    autoload: false
+  execution-bootstrap:
+    id: execution-bootstrap
+    layer: execution
+    priority: critical
+    source: execution
+    path: .cursor/docs/EXECUTION.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - execution-bootstrap
+    conflicts: []
+    description: execution-bootstrap
+    autoload: false
+  execution-branch-policy:
+    id: execution-branch-policy
+    layer: execution
+    priority: critical
+    source: execution
+    path: .cursor/gates/execution/branch-policy.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - execution-branch-policy
+    conflicts: []
+    description: execution-branch-policy
+    autoload: false
+  execution-deployment-mode:
+    id: execution-deployment-mode
+    layer: execution
+    priority: high
+    source: execution
+    path: .cursor/gates/execution/deployment-mode.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - execution-deployment-mode
+    conflicts: []
+    description: execution-deployment-mode
+    autoload: false
+  execution-failure-recovery:
+    id: execution-failure-recovery
+    layer: execution
+    priority: critical
+    source: execution
+    path: .cursor/gates/execution/failure-recovery.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - execution-failure-recovery
+    conflicts: []
+    description: execution-failure-recovery
+    autoload: false
+  gstack-browser-testing:
+    id: gstack-browser-testing
+    layer: review
+    priority: high
+    source: gstack
+    path: .cursor/skills/gstack/browser-testing/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - gstack browser testing
+    conflicts: []
+    description: Skill gstack-browser-testing
+    autoload: false
+  gstack-cso:
+    id: gstack-cso
+    layer: product
+    priority: high
+    source: gstack
+    path: .cursor/skills/gstack/cso/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - gstack cso
+    conflicts: []
+    description: Skill gstack-cso
+    autoload: false
+  gstack-eng-review:
+    id: gstack-eng-review
+    layer: review
+    priority: high
+    source: gstack
+    path: .cursor/skills/gstack/eng-review/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - gstack eng review
+    conflicts: []
+    description: Skill gstack-eng-review
+    autoload: true
+  gstack-investigate:
+    id: gstack-investigate
+    layer: deployment
+    priority: high
+    source: gstack
+    path: .cursor/skills/gstack/investigate/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - gstack investigate
+    conflicts: []
+    description: Skill gstack-investigate
+    autoload: false
+  gstack-office-hours:
+    id: gstack-office-hours
+    layer: product
+    priority: high
+    source: gstack
+    path: .cursor/skills/gstack/office-hours/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - gstack office hours
+    conflicts: []
+    description: Skill gstack-office-hours
+    autoload: false
+  gstack-qa:
+    id: gstack-qa
+    layer: review
+    priority: high
+    source: gstack
+    path: .cursor/skills/gstack/qa/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - gstack qa
+    conflicts: []
+    description: Skill gstack-qa
+    autoload: true
+  gstack-retro:
+    id: gstack-retro
+    layer: review
+    priority: high
+    source: gstack
+    path: .cursor/skills/gstack/retro/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - gstack retro
+    conflicts: []
+    description: Skill gstack-retro
+    autoload: false
+  gstack-ship:
+    id: gstack-ship
+    layer: deployment
+    priority: high
+    source: gstack
+    path: .cursor/skills/gstack/ship/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - gstack ship
+    conflicts: []
+    description: Skill gstack-ship
+    autoload: false
+  impeccable-reviewer:
+    id: impeccable-reviewer
+    layer: review
+    priority: high
+    source: review
+    path: .cursor/docs/agents/impeccable-reviewer.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - impeccable-reviewer
+    conflicts: []
+    description: Agent impeccable-reviewer
+    autoload: false
+  memory-architecture-decisions:
+    id: memory-architecture-decisions
+    layer: memory
+    priority: high
+    source: memory
+    path: .cursor/docs/memory/architecture-decisions.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - session start
+    conflicts: []
+    description: Memory artifact memory-architecture-decisions
+    autoload: true
+  memory-coding-standards:
+    id: memory-coding-standards
+    layer: memory
+    priority: high
+    source: memory
+    path: .cursor/docs/memory/coding-standards.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - session start
+    conflicts: []
+    description: Memory artifact memory-coding-standards
+    autoload: true
+  memory-domain-knowledge:
+    id: memory-domain-knowledge
+    layer: memory
+    priority: high
+    source: memory
+    path: .cursor/docs/memory/domain-knowledge.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - session start
+    conflicts: []
+    description: Memory artifact memory-domain-knowledge
+    autoload: true
+  memory-lessons-learned:
+    id: memory-lessons-learned
+    layer: memory
+    priority: medium
+    source: memory
+    path: .cursor/docs/memory/lessons-learned.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - session start
+    conflicts: []
+    description: Memory artifact memory-lessons-learned
+    autoload: false
+  memory-product-context:
+    id: memory-product-context
+    layer: memory
+    priority: high
+    source: memory
+    path: .cursor/docs/memory/product-context.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - session start
+    conflicts: []
+    description: Memory artifact memory-product-context
+    autoload: true
+  memory-project-context:
+    id: memory-project-context
+    layer: memory
+    priority: high
+    source: memory
+    path: .cursor/docs/memory/project-context.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - session start
+    conflicts: []
+    description: Memory artifact memory-project-context
+    autoload: true
+  memory-repository-map:
+    id: memory-repository-map
+    layer: memory
+    priority: high
+    source: memory
+    path: .cursor/docs/memory/repository-map.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - session start
+    conflicts: []
+    description: Memory artifact memory-repository-map
+    autoload: true
+  memory-ui-ux-rules:
+    id: memory-ui-ux-rules
+    layer: memory
+    priority: high
+    source: memory
+    path: .cursor/docs/memory/ui-ux-rules.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - session start
+    conflicts: []
+    description: Memory artifact memory-ui-ux-rules
+    autoload: true
+  quality-self-critique:
+    id: quality-self-critique
+    layer: review
+    priority: critical
+    source: quality
+    path: .cursor/gates/quality/self-critique.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - done
+    - verify
+    conflicts: []
+    description: Mandatory self-critique
+    autoload: true
+  requirement-clarifier:
+    id: requirement-clarifier
+    layer: assurance
+    priority: high
+    source: assurance
+    path: .cursor/docs/agents/requirement-clarifier.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - requirement-clarifier
+    conflicts: []
+    description: Agent requirement-clarifier
+    autoload: false
+  second-opinion-reviewer:
+    id: second-opinion-reviewer
+    layer: assurance
+    priority: high
+    source: review
+    path: .cursor/docs/agents/second-opinion-reviewer.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - second-opinion-reviewer
+    conflicts: []
+    description: Agent second-opinion-reviewer
+    autoload: false
+  security-reviewer:
+    id: security-reviewer
+    layer: security
+    priority: high
+    source: review
+    path: .cursor/docs/agents/security-reviewer.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - security-reviewer
+    conflicts: []
+    description: Agent security-reviewer
+    autoload: false
+  superpowers-brainstorming:
+    id: superpowers-brainstorming
+    layer: product
+    priority: high
+    source: superpowers
+    path: .cursor/skills/superpowers/brainstorming/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - superpowers brainstorming
+    conflicts: []
+    description: Skill superpowers-brainstorming
+    autoload: true
+  superpowers-dispatching-parallel-agents:
+    id: superpowers-dispatching-parallel-agents
+    layer: automation
+    priority: high
+    source: superpowers
+    path: .cursor/skills/superpowers/dispatching-parallel-agents/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - superpowers dispatching parallel agents
+    conflicts: []
+    description: Skill superpowers-dispatching-parallel-agents
+    autoload: false
+  superpowers-executing-plans:
+    id: superpowers-executing-plans
+    layer: engineering
+    priority: high
+    source: superpowers
+    path: .cursor/skills/superpowers/executing-plans/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - superpowers executing plans
+    conflicts: []
+    description: Skill superpowers-executing-plans
+    autoload: true
+  superpowers-finishing-development-branch:
+    id: superpowers-finishing-development-branch
+    layer: review
+    priority: high
+    source: superpowers
+    path: .cursor/skills/superpowers/finishing-development-branch/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - superpowers finishing development branch
+    conflicts: []
+    description: Skill superpowers-finishing-development-branch
+    autoload: false
+  superpowers-receiving-code-review:
+    id: superpowers-receiving-code-review
+    layer: review
+    priority: high
+    source: superpowers
+    path: .cursor/skills/superpowers/receiving-code-review/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - superpowers receiving code review
+    conflicts: []
+    description: Skill superpowers-receiving-code-review
+    autoload: false
+  superpowers-requesting-code-review:
+    id: superpowers-requesting-code-review
+    layer: review
+    priority: high
+    source: superpowers
+    path: .cursor/skills/superpowers/requesting-code-review/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - superpowers requesting code review
+    conflicts: []
+    description: Skill superpowers-requesting-code-review
+    autoload: false
+  superpowers-subagent-driven-development:
+    id: superpowers-subagent-driven-development
+    layer: automation
+    priority: high
+    source: superpowers
+    path: .cursor/skills/superpowers/subagent-driven-development/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - superpowers subagent driven development
+    conflicts: []
+    description: Skill superpowers-subagent-driven-development
+    autoload: false
+  superpowers-systematic-debugging:
+    id: superpowers-systematic-debugging
+    layer: engineering
+    priority: high
+    source: superpowers
+    path: .cursor/skills/superpowers/systematic-debugging/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - superpowers systematic debugging
+    conflicts: []
+    description: Skill superpowers-systematic-debugging
+    autoload: false
+  superpowers-test-driven-development:
+    id: superpowers-test-driven-development
+    layer: engineering
+    priority: high
+    source: superpowers
+    path: .cursor/skills/superpowers/test-driven-development/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - superpowers test driven development
+    conflicts: []
+    description: Skill superpowers-test-driven-development
+    autoload: true
+  superpowers-using-git-worktrees:
+    id: superpowers-using-git-worktrees
+    layer: automation
+    priority: high
+    source: superpowers
+    path: .cursor/skills/superpowers/using-git-worktrees/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - superpowers using git worktrees
+    conflicts: []
+    description: Skill superpowers-using-git-worktrees
+    autoload: false
+  superpowers-verification-before-completion:
+    id: superpowers-verification-before-completion
+    layer: review
+    priority: high
+    source: superpowers
+    path: .cursor/skills/superpowers/verification-before-completion/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - superpowers verification before completion
+    conflicts: []
+    description: Skill superpowers-verification-before-completion
+    autoload: true
+  superpowers-writing-plans:
+    id: superpowers-writing-plans
+    layer: product
+    priority: high
+    source: superpowers
+    path: .cursor/skills/superpowers/writing-plans/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - superpowers writing plans
+    conflicts: []
+    description: Skill superpowers-writing-plans
+    autoload: true
+  taste-reviewer:
+    id: taste-reviewer
+    layer: review
+    priority: high
+    source: review
+    path: .cursor/docs/agents/taste-reviewer.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - taste-reviewer
+    conflicts: []
+    description: Agent taste-reviewer
+    autoload: true
+  teknovo-academic:
+    id: teknovo-academic
+    layer: product
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-academic/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo academic
+    conflicts: []
+    description: Skill teknovo-academic
+    autoload: false
+  teknovo-ai-ish-review:
+    id: teknovo-ai-ish-review
+    layer: review
+    priority: critical
+    source: teknovo
+    path: .cursor/skills/teknovo-ai-ish-review/SKILL.md
+    depends_on:
+    - agents-md
+    - teknovo-brand-dna
+    - teknovo-design-system
+    activate_when:
+    - AI-ish
+    - generic UI
+    - template detection
+    conflicts: []
+    description: AI-ish score enforcement — blocks when score exceeds 30
+    autoload: false
+  teknovo-api-architect:
+    id: teknovo-api-architect
+    layer: architecture
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-api-architect/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo api architect
+    conflicts: []
+    description: Skill teknovo-api-architect
+    autoload: true
+  teknovo-auto-orchestrator:
+    id: teknovo-auto-orchestrator
+    layer: automation
+    priority: critical
+    source: teknovo
+    path: .cursor/skills/teknovo-auto-orchestrator/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo auto orchestrator
+    conflicts: []
+    description: Skill teknovo-auto-orchestrator
+    autoload: true
+  teknovo-backend-development:
+    id: teknovo-backend-development
+    layer: engineering
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-backend-development/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo backend development
+    conflicts: []
+    description: Skill teknovo-backend-development
+    autoload: true
+  teknovo-brand-dna:
+    id: teknovo-brand-dna
+    layer: ux
+    priority: critical
+    source: teknovo
+    path: .cursor/skills/teknovo-brand-dna/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - brand
+    - brand identity
+    - before UI
+    - landing page
+    conflicts: []
+    description: Teknovo brand identity — personality, voice, visual language, forbidden
+      directions
+    autoload: false
+  teknovo-cbt:
+    id: teknovo-cbt
+    layer: product
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-cbt/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo cbt
+    conflicts: []
+    description: Skill teknovo-cbt
+    autoload: false
+  teknovo-chief-architect:
+    id: teknovo-chief-architect
+    layer: architecture
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-chief-architect/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo chief architect
+    conflicts: []
+    description: Skill teknovo-chief-architect
+    autoload: false
+  teknovo-chief-product-designer:
+    id: teknovo-chief-product-designer
+    layer: ux
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-ux-architecture/SKILL.md
+    depends_on:
+    - agents-md
+    - teknovo-brand-dna
+    - teknovo-product-designer
+    activate_when: &id001
+    - teknovo ux architecture
+    conflicts: &id002 []
+    description: Skill teknovo-ux-architecture
+    autoload: false
+    role: pillar-1
+  teknovo-cloudflare-stack:
+    id: teknovo-cloudflare-stack
+    layer: deployment
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-cloudflare-stack/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo cloudflare stack
+    conflicts: []
+    description: Skill teknovo-cloudflare-stack
+    autoload: false
+  teknovo-communication:
+    id: teknovo-communication
+    layer: product
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-communication/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo communication
+    conflicts: []
+    description: Skill teknovo-communication
+    autoload: false
+  teknovo-creative-director:
+    id: teknovo-creative-director
+    layer: ux
+    priority: critical
+    source: teknovo
+    path: .cursor/skills/teknovo-creative-director/SKILL.md
+    depends_on:
+    - agents-md
+    - teknovo-brand-dna
+    activate_when:
+    - creative direction
+    - art direction
+    - visual review
+    conflicts: []
+    description: Creative Director gate — storytelling, layout, hierarchy
+    autoload: false
+  teknovo-data-migration:
+    id: teknovo-data-migration
+    layer: engineering
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-data-migration/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo data migration
+    conflicts: []
+    description: Skill teknovo-data-migration
+    autoload: false
+  teknovo-database-architect:
+    id: teknovo-database-architect
+    layer: architecture
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-database-architect/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo database architect
+    conflicts: []
+    description: Skill teknovo-database-architect
+    autoload: true
+  teknovo-design-system:
+    id: teknovo-design-system
+    layer: ux
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-design-system/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo design system
+    conflicts: []
+    description: Skill teknovo-design-system
+    autoload: false
+  teknovo-devops-engineer:
+    id: teknovo-devops-engineer
+    layer: deployment
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-devops-engineer/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo devops engineer
+    conflicts: []
+    description: Skill teknovo-devops-engineer
+    autoload: false
+  teknovo-domain-management:
+    id: teknovo-domain-management
+    layer: architecture
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-domain-management/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo domain management
+    conflicts: []
+    description: Skill teknovo-domain-management
+    autoload: true
+  teknovo-feature-implementation:
+    id: teknovo-feature-implementation
+    layer: engineering
+    priority: critical
+    source: teknovo
+    path: .cursor/skills/teknovo-feature-implementation/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo feature implementation
+    conflicts: []
+    description: Skill teknovo-feature-implementation
+    autoload: true
+  teknovo-finance:
+    id: teknovo-finance
+    layer: product
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-finance/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo finance
+    conflicts: []
+    description: Skill teknovo-finance
+    autoload: false
+  teknovo-incident-response:
+    id: teknovo-incident-response
+    layer: deployment
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-incident-response/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo incident response
+    conflicts: []
+    description: Skill teknovo-incident-response
+    autoload: false
+  teknovo-integration-architect:
+    id: teknovo-integration-architect
+    layer: architecture
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-integration-architect/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo integration architect
+    conflicts: []
+    description: Skill teknovo-integration-architect
+    autoload: false
+  teknovo-landing-page:
+    id: teknovo-landing-page
+    layer: ux
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-landing-page/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo landing page
+    conflicts: []
+    description: Skill teknovo-landing-page
+    autoload: true
+  teknovo-mcp-stack:
+    id: teknovo-mcp-stack
+    layer: engineering
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-mcp-stack/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo mcp stack
+    conflicts: []
+    description: Skill teknovo-mcp-stack
+    autoload: false
+  teknovo-observability:
+    id: teknovo-observability
+    layer: deployment
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-observability/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo observability
+    conflicts: []
+    description: Skill teknovo-observability
+    autoload: false
+  teknovo-performance-engineer:
+    id: teknovo-performance-engineer
+    layer: engineering
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-performance-engineer/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo performance engineer
+    conflicts: []
+    description: Skill teknovo-performance-engineer
+    autoload: false
+  teknovo-ppdb:
+    id: teknovo-ppdb
+    layer: product
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-ppdb/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo ppdb
+    conflicts: []
+    description: Skill teknovo-ppdb
+    autoload: false
+  teknovo-prd-generator:
+    id: teknovo-prd-generator
+    layer: product
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-prd-generator/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo prd generator
+    conflicts: []
+    description: Skill teknovo-prd-generator
+    autoload: false
+  teknovo-product-designer:
+    id: teknovo-product-designer
+    layer: product
+    priority: critical
+    source: teknovo
+    path: .cursor/skills/teknovo-product-designer/SKILL.md
+    depends_on:
+    - agents-md
+    - teknovo-brand-dna
+    - teknovo-creative-director
+    activate_when:
+    - product design
+    - user journey
+    - information architecture
+    conflicts: []
+    description: Head of Product — journeys, IA, conversion, task flows
+    autoload: false
+  teknovo-python-development:
+    id: teknovo-python-development
+    layer: engineering
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-python-development/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo python development
+    conflicts: []
+    description: Skill teknovo-python-development
+    autoload: false
+  teknovo-rbac-architect:
+    id: teknovo-rbac-architect
+    layer: security
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-rbac-architect/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo rbac architect
+    conflicts: []
+    description: Skill teknovo-rbac-architect
+    autoload: true
+  teknovo-reporting:
+    id: teknovo-reporting
+    layer: product
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-reporting/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo reporting
+    conflicts: []
+    description: Skill teknovo-reporting
+    autoload: false
+  teknovo-repository-governance:
+    id: teknovo-repository-governance
+    layer: architecture
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-repository-governance/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo repository governance
+    conflicts: []
+    description: Skill teknovo-repository-governance
+    autoload: true
+  teknovo-security:
+    id: teknovo-security
+    layer: security
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-security/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo security
+    conflicts: []
+    description: Skill teknovo-security
+    autoload: false
+  teknovo-security-domain:
+    id: teknovo-security-domain
+    layer: security
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-security-domain/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo security domain
+    conflicts: []
+    description: Skill teknovo-security-domain
+    autoload: false
+  teknovo-security-infra:
+    id: teknovo-security-infra
+    layer: security
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-security-infra/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo security infra
+    conflicts: []
+    description: Skill teknovo-security-infra
+    autoload: false
+  teknovo-security-review:
+    id: teknovo-security-review
+    layer: security
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-security-review/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo security review
+    conflicts: []
+    description: Skill teknovo-security-review
+    autoload: true
+  teknovo-testing-architect:
+    id: teknovo-testing-architect
+    layer: engineering
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-testing-architect/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo testing architect
+    conflicts: []
+    description: Skill teknovo-testing-architect
+    autoload: true
+  teknovo-ui-ux:
+    id: teknovo-ui-ux
+    layer: ux
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-ui-ux/SKILL.md
+    depends_on:
+    - agents-md
+    activate_when:
+    - teknovo ui ux
+    conflicts: []
+    description: Skill teknovo-ui-ux
+    autoload: true
+  teknovo-ui-ux-specialist:
+    id: teknovo-ui-ux-specialist
+    layer: ux
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-ux-architecture/SKILL.md
+    depends_on: &id003
+    - agents-md
+    activate_when: *id001
+    conflicts: *id002
+    description: Skill teknovo-ux-architecture
+    autoload: false
+  teknovo-ux-architecture:
+    id: teknovo-ux-architecture
+    layer: ux
+    priority: high
+    source: teknovo
+    path: .cursor/skills/teknovo-ux-architecture/SKILL.md
+    depends_on: *id003
+    activate_when: *id001
+    conflicts: *id002
+    description: Skill teknovo-ux-architecture
+    autoload: false

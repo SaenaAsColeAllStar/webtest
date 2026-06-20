@@ -1,11 +1,14 @@
 {
   "name": "smk-teknovo-portal",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Public landing portal for SMK Teknovo",
+  "description": "SMK Teknovo public portal — immersive Phases 1–2 (R3F/GSAP) + static multi-page shell",
   "scripts": {
-    "build": "node scripts/validate.js",
-    "lint": "node scripts/validate.js",
+    "dev": "npm run dev --prefix apps/immersive-portal",
+    "build:immersive": "npm run build --prefix apps/immersive-portal",
+    "merge:immersive": "node scripts/merge-immersive-build.js",
+    "build": "npm run build:immersive && npm run merge:immersive && node scripts/validate.js",
+    "lint": "npm run build:immersive",
     "serve": "python3 -m http.server 8080 --directory public",
     "preview": "wrangler dev",
     "deploy": "wrangler deploy"

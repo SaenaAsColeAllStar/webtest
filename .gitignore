@@ -24,3 +24,11 @@ Thumbs.db
 npm-debug.log*
 .cache/
 .cursor/runtime/**/*.cache
+
+# Build outputs
+dist/
+apps/immersive-portal/dist/
+*.tsbuildinfo
+
+# Vite
+apps/immersive-portal/.vite/

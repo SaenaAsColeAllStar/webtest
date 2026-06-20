@@ -6,13 +6,10 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const PUBLIC = path.join(ROOT, 'public');
+const IMMERSIVE_SRC = path.join(ROOT, 'apps/immersive-portal/src');
 
 const requiredFiles = [
   'index.html',
-  'css/styles.css',
-  'css/pages.css',
-  'js/main.js',
-  'js/pages.js',
   'assets/logo-teknovo.png',
   'robots.txt',
   'sitemap.xml',
@@ -27,17 +24,22 @@ const requiredFiles = [
   'portal/orang-tua.html',
 ];
 
-const requiredSections = [
-  'id="beranda"',
-  'id="program"',
-  'id="keunggulan"',
-  'id="fasilitas"',
-  'id="tentang"',
-  'id="prestasi"',
-  'id="berita"',
-  'id="ppdb"',
-  'id="faq"',
-  'id="kontak"',
+const immersiveSectionIds = ['story', 'transformation', 'industry', 'student-journey', 'career-journey'];
+
+const immersiveSourceFiles = [
+  'components/scenes/StoryChapter.tsx',
+  'components/scenes/TransformationChapter.tsx',
+  'components/scenes/IndustryChapter.tsx',
+  'components/scenes/StudentJourneyChapter.tsx',
+  'components/scenes/CareerJourneyChapter.tsx',
+  'components/layout/Header.tsx',
+  'App.tsx',
+];
+
+const requiredNavLinks = [
+  { link: 'ppdb/', files: ['components/layout/Header.tsx', 'components/scenes/StoryChapter.tsx'] },
+  { link: 'portal/siswa.html', files: ['components/layout/Header.tsx'] },
+  { link: 'program/tkj.html', files: ['components/scenes/StoryChapter.tsx', 'App.tsx'] },
 ];
 
 const forbiddenPatterns = [
@@ -59,10 +61,12 @@ const indexPath = path.join(PUBLIC, 'index.html');
 if (fs.existsSync(indexPath)) {
   const html = fs.readFileSync(indexPath, 'utf8');
 
-  for (const section of requiredSections) {
-    if (!html.includes(section)) {
-      errors.push(`Missing section anchor: ${section}`);
-    }
+  if (!html.includes('id="root"')) {
+    errors.push('Immersive SPA root (#root) missing in index.html');
+  }
+
+  if (!html.includes('application/ld+json')) {
+    errors.push('JSON-LD schema missing');
   }
 
   for (const { pattern, label } of forbiddenPatterns) {
@@ -71,20 +75,51 @@ if (fs.existsSync(indexPath)) {
     }
   }
 
-  if (!html.includes('@phosphor-icons/web')) {
-    errors.push('Phosphor icons CDN not found in index.html');
+  const immersiveAssets = path.join(PUBLIC, 'assets/immersive');
+  if (!fs.existsSync(immersiveAssets)) {
+    errors.push('Immersive build assets missing: public/assets/immersive/');
+  } else {
+    const assetFiles = fs.readdirSync(immersiveAssets);
+    if (assetFiles.length === 0) {
+      errors.push('Immersive assets directory is empty');
+    }
   }
+}
 
-  if (!html.includes('application/ld+json')) {
-    errors.push('JSON-LD schema missing');
+for (const srcFile of immersiveSourceFiles) {
+  const fullPath = path.join(IMMERSIVE_SRC, srcFile);
+  if (!fs.existsSync(fullPath)) {
+    errors.push(`Missing immersive source: apps/immersive-portal/src/${srcFile}`);
   }
+}
 
-  if (!html.includes('href="portal/siswa.html"')) {
-    errors.push('Portal login links not wired on homepage');
+for (const sectionId of immersiveSectionIds) {
+  let found = false;
+  const scenesDir = path.join(IMMERSIVE_SRC, 'components/scenes');
+  if (fs.existsSync(scenesDir)) {
+    fs.readdirSync(scenesDir).forEach(function (file) {
+      const content = fs.readFileSync(path.join(scenesDir, file), 'utf8');
+      if (content.includes(`id="${sectionId}"`)) {
+        found = true;
+      }
+    });
   }
+  if (!found) {
+    errors.push(`Missing immersive chapter in source: id="${sectionId}"`);
+  }
+}
 
-  if (!html.includes('href="program/tkj.html"')) {
-    errors.push('Program detail links not wired on homepage');
+for (const { link, files } of requiredNavLinks) {
+  let found = false;
+  files.forEach(function (srcFile) {
+    const fullPath = path.join(IMMERSIVE_SRC, srcFile);
+    if (fs.existsSync(fullPath)) {
+      const content = fs.readFileSync(fullPath, 'utf8');
+      if (content.includes(link)) found = true;
+    }
+  });
+  if (!found) {
+    errors.push(`Missing nav link in immersive source: ${link}`);
   }
 }
 
@@ -109,6 +144,8 @@ if (errors.length > 0) {
 
 console.log('Build validation passed.');
 console.log('  ✓ All required files present');
-console.log('  ✓ All section anchors found');
+console.log('  ✓ Immersive SPA shell verified');
+console.log('  ✓ Story + Transformation + Industry + Journey chapters in source');
 console.log('  ✓ Multi-page structure verified');
+console.log('  ✓ Immersive assets present');
 console.log('  ✓ Design system compliance checks passed');

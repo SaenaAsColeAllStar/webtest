@@ -8,6 +8,10 @@ import { TransformationChapter } from '@/components/scenes/TransformationChapter
 import { IndustryChapter } from '@/components/scenes/IndustryChapter';
 import { StudentJourneyChapter } from '@/components/scenes/StudentJourneyChapter';
 import { CareerJourneyChapter } from '@/components/scenes/CareerJourneyChapter';
+import { ProofChapter } from '@/components/scenes/ProofChapter';
+import { ActionChapter } from '@/components/scenes/ActionChapter';
+import { FaqChapter } from '@/components/scenes/FaqChapter';
+import { KontakChapter } from '@/components/scenes/KontakChapter';
 
 function PageLoading({ visible }: { visible: boolean }) {
   return (
@@ -53,16 +57,25 @@ export default function App() {
         <IndustryChapter />
         <StudentJourneyChapter />
         <CareerJourneyChapter />
+        <ProofChapter />
+        <ActionChapter />
+        <FaqChapter />
+        <KontakChapter />
       </main>
       <footer className="footer-mini">
         <p>
           © {new Date().getFullYear()} SMK TEKNOVO ·{' '}
           <a href="#story">Beranda</a> ·{' '}
-          <a href="ppdb/">PPDB</a> ·{' '}
-          <a href="program/tkj.html">Program</a>
+          <a href="#proof">Prestasi</a> ·{' '}
+          <a href="#action">PPDB</a> ·{' '}
+          <a href="#faq">FAQ</a> ·{' '}
+          <a href="#kontak">Kontak</a>
         </p>
-        <p style={{ marginTop: '0.5rem', fontSize: '11px', opacity: 0.6 }}>
-          Phase 2 immersive rebuild — Proof, Action, FAQ chapters coming in Phase 3
+        <p style={{ marginTop: '0.5rem', fontSize: '12px', opacity: 0.7 }}>
+          <a href="ppdb/">Daftar PPDB</a> ·{' '}
+          <a href="berita/">Berita</a> ·{' '}
+          <a href="program/tkj.html">Program</a> ·{' '}
+          <a href="portal/siswa.html">Portal Siswa</a>
         </p>
       </footer>
     </>

@@ -3,12 +3,13 @@ import { CaretDown, Student, ChalkboardTeacher, UsersThree } from '@phosphor-ico
 
 const NAV_LINKS = [
   { href: '#story', label: 'Cerita' },
-  { href: '#transformation', label: 'Transformasi' },
   { href: '#industry', label: 'Industri' },
-  { href: '#student-journey', label: 'Perjalanan' },
   { href: '#career-journey', label: 'Karier' },
+  { href: '#proof', label: 'Prestasi' },
+  { href: '#action', label: 'PPDB' },
+  { href: '#faq', label: 'FAQ' },
+  { href: '#kontak', label: 'Kontak' },
   { href: 'berita/', label: 'Berita', external: true },
-  { href: 'ppdb/', label: 'PPDB', external: true },
 ];
 
 const PORTAL_LINKS = [
@@ -99,7 +100,7 @@ export function Header() {
                   </ul>
                 )}
               </div>
-              <a href="ppdb/" className="btn btn--primary btn--sm">
+              <a href="#action" className="btn btn--primary btn--sm" onClick={closeMenu}>
                 Daftar PPDB
               </a>
             </div>

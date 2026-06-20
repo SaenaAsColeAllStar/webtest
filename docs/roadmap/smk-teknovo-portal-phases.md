@@ -57,16 +57,16 @@
 
 **Goal:** Proof, Action (PPDB), FAQ, Contact; unify navigation.
 
-| # | Task | Est. |
-|---|------|------|
-| 3.1 | Proof chapter — editorial achievements | 2h |
-| 3.2 | Action chapter — PPDB dominant CTA | 1.5h |
-| 3.3 | FAQ accordion with motion | 1h |
-| 3.4 | Contact section + form (port from static) | 1.5h |
-| 3.5 | Shared nav links to static subpages | 1h |
-| 3.6 | Program pages visual refresh (static enhanced) | 4h |
+| # | Task | Est. | Status |
+|---|------|------|--------|
+| 3.1 | Proof chapter — editorial achievements | 2h | ✅ Complete |
+| 3.2 | Action chapter — PPDB dominant CTA | 1.5h | ✅ Complete |
+| 3.3 | FAQ accordion with motion | 1h | ✅ Complete |
+| 3.4 | Contact section + form (port from static) | 1.5h | ✅ Complete |
+| 3.5 | Shared nav links to static subpages | 1h | ✅ Complete |
+| 3.6 | Program pages visual refresh (static enhanced) | 4h | ⏳ Phase 4 |
 
-**Acceptance:** Full 7-beat sequence; PPDB conversion path ≤2 clicks from any chapter.
+**Acceptance:** Full 7-beat sequence; PPDB conversion path ≤2 clicks from any chapter. ✅
 
 ---
 

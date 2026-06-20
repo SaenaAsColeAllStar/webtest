@@ -24,7 +24,17 @@ const requiredFiles = [
   'portal/orang-tua.html',
 ];
 
-const immersiveSectionIds = ['story', 'transformation', 'industry', 'student-journey', 'career-journey'];
+const immersiveSectionIds = [
+  'story',
+  'transformation',
+  'industry',
+  'student-journey',
+  'career-journey',
+  'proof',
+  'action',
+  'faq',
+  'kontak',
+];
 
 const immersiveSourceFiles = [
   'components/scenes/StoryChapter.tsx',
@@ -32,12 +42,20 @@ const immersiveSourceFiles = [
   'components/scenes/IndustryChapter.tsx',
   'components/scenes/StudentJourneyChapter.tsx',
   'components/scenes/CareerJourneyChapter.tsx',
+  'components/scenes/ProofChapter.tsx',
+  'components/scenes/ActionChapter.tsx',
+  'components/scenes/FaqChapter.tsx',
+  'components/scenes/KontakChapter.tsx',
   'components/layout/Header.tsx',
   'App.tsx',
 ];
 
 const requiredNavLinks = [
-  { link: 'ppdb/', files: ['components/layout/Header.tsx', 'components/scenes/StoryChapter.tsx'] },
+  { link: 'ppdb/', files: ['components/scenes/ActionChapter.tsx', 'App.tsx'] },
+  { link: '#proof', files: ['components/layout/Header.tsx'] },
+  { link: '#action', files: ['components/layout/Header.tsx'] },
+  { link: '#faq', files: ['components/layout/Header.tsx'] },
+  { link: '#kontak', files: ['components/layout/Header.tsx'] },
   { link: 'portal/siswa.html', files: ['components/layout/Header.tsx'] },
   { link: 'program/tkj.html', files: ['components/scenes/StoryChapter.tsx', 'App.tsx'] },
 ];
@@ -145,7 +163,7 @@ if (errors.length > 0) {
 console.log('Build validation passed.');
 console.log('  ✓ All required files present');
 console.log('  ✓ Immersive SPA shell verified');
-console.log('  ✓ Story + Transformation + Industry + Journey chapters in source');
+console.log('  ✓ Story through Kontak chapters in source');
 console.log('  ✓ Multi-page structure verified');
 console.log('  ✓ Immersive assets present');
 console.log('  ✓ Design system compliance checks passed');

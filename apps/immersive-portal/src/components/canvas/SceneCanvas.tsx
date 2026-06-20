@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { StoryScene3D, TransformationObject } from './StoryScene3D';
 import { IndustryScene3D } from './IndustryScene3D';
 import { JourneyPath3D, CareerFlow3D } from './JourneyScene3D';
+import { ProofScene3D } from './ProofScene3D';
 
 interface SceneCanvasProps {
   scrollProgress: React.MutableRefObject<number>;
@@ -29,6 +30,7 @@ export function SceneCanvas({ scrollProgress }: SceneCanvasProps) {
           <IndustryScene3D />
           <JourneyPath3D />
           <CareerFlow3D />
+          <ProofScene3D />
         </Suspense>
       </Canvas>
     </div>

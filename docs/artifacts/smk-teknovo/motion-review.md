@@ -1,9 +1,9 @@
 # Motion Design Review — SMK Teknovo Portal
 
-**Date:** 2026-06-20 (Phase 2 update)  
+**Date:** 2026-06-20 (Phase 3 update)  
 **Gate:** Motion Designer  
 **Verdict:** PASS  
-**Motion Quality Score:** 84 / 100
+**Motion Quality Score:** 86 / 100
 
 ## Motion Systems Defined
 
@@ -22,56 +22,68 @@
 - Nav links: underline width 0→100%
 - CTA buttons: subtle scale 1→1.02 + glow
 - Industry objects: emissive intensity increase on scroll enter
-- Industry program lanes: border glow on hover
+- FAQ accordion icon rotate 180° on open
 
 ### 4. Section Transition Motion
 - Story → Transformation: camera pull-back + clip-path wipe
 - Transformation → Industry: 3D object stagger orbit enter (0.15s delay)
 - Industry → Student Journey: timeline progress scrub + milestone reveal
 - Student → Career: flowing river layout with scroll stagger
+- Career → Proof: editorial timeline scrub reveal + trophy 3D float
+- Proof → Action: radial glow scrub + immersive panel enter
+- Action → FAQ: centered content fade, accordion purposeful height
+- FAQ → Kontak: staggered contact cards + form slide-up
 - Cross-chapter: shared dark canvas — no white flash
 
-## Scroll Narrative Map (Phase 2 Complete)
+## Scroll Narrative Map (Phase 3 Complete)
 
 | Scroll % | Chapter | Motion Beat |
 |----------|---------|-------------|
-| 0–15% | Story | Camera close on core node |
-| 15–30% | Story | Network connections animate |
-| 30–45% | Transformation | Split reveal wipe |
-| 45–60% | Industry | TKJ/RPL/DKV objects stagger orbit |
-| 60–80% | Student Journey | Timeline progress scrub, milestone light-up |
-| 80–100% | Career Journey | Career flow stagger, data narrative reveal |
+| 0–12% | Story | Camera close on core node |
+| 12–25% | Transformation | Split reveal wipe |
+| 25–40% | Industry | TKJ/RPL/DKV objects stagger orbit |
+| 40–55% | Student Journey | Timeline progress scrub |
+| 55–68% | Career Journey | Career flow stagger |
+| 68–78% | Proof | Achievement timeline scrub, trophy 3D |
+| 78–86% | Action | Glow pulse, PPDB panel reveal |
+| 86–93% | FAQ | Accordion expand/collapse |
+| 93–100% | Kontak | Contact cards stagger, form focus |
 
-## Phase 2 Chapter Motion Specs
+## Phase 3 Chapter Motion Specs
 
-### Industry (#industry)
-- ScrollTrigger scrub: program lanes fade-up stagger (0.15s)
-- 3D objects: server rack → code brackets → pen tool sequential opacity
-- Transition from Transformation: shared canvas continuity, no flash
+### Proof (#proof)
+- GSAP scrub: `.proof-entry` stagger fade-left on scroll
+- Motion.dev: credential block delayed fade-in
+- 3D: ProofScene3D trophy float + scroll-linked rotation
 
-### Student Journey (#student-journey)
-- Vertical timeline progress bar: scaleY 0→1 scrubbed
-- Milestone items: alternating x-offset reveal on scroll
-- 3D path curve: milestone spheres light up progressively
+### Action (#action)
+- Radial gradient glow scrub via GSAP (opacity + scale)
+- Panel enter: Motion.dev y-translate 48px
+- CTA subtle pulse glow (disabled under reduced-motion)
 
-### Career Journey (#career-journey)
-- River layout: left-border flow with node dots (NOT KPI grid)
-- Career paths: stagger opacity + x translate on scroll
-- Narrative block: delayed fade-in for alumni story
+### FAQ (#faq)
+- Single-open accordion: Motion.dev height auto + opacity
+- Icon rotate transition on open state
+- No carousel — purposeful expand communicates answer hierarchy
+
+### Kontak (#kontak)
+- Contact cards: stagger x-translate whileInView
+- Form: y-translate enter, inline validation state transitions
+- Success message focus for screen readers
 
 ## Reduced Motion Fallback
 
-`prefers-reduced-motion: reduce` → disable Lenis, instant section visibility, static 3D frame, no scrub animations
+`prefers-reduced-motion: reduce` → disable Lenis, instant section visibility, static 3D frame, no scrub animations, no CTA pulse
 
-## Scoring Rubric (Phase 2)
+## Scoring Rubric (Phase 3)
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Purposeful motion | 9/10 | All motion explains hierarchy and journey |
-| Scroll narrative | 9/10 | 5-chapter continuous scroll story |
-| Continuity | 8/10 | Shared canvas, section-aware 3D visibility |
-| Rhythm | 8/10 | Stagger timing consistent across chapters |
-| Performance | 8/10 | RAF-based, section-scoped 3D activation |
-| Transitions | 9/10 | Industry→Journey→Career handoffs smooth |
+| Purposeful motion | 9/10 | Conversion motion supports PPDB urgency |
+| Scroll narrative | 9/10 | Full 9-chapter continuous scroll story |
+| Continuity | 9/10 | Career→Proof→Action handoff smooth |
+| Rhythm | 8/10 | FAQ/Kontak calmer pace after Action peak |
+| Performance | 8/10 | DOM-first Action/FAQ/Kontak; Proof 3D minimal |
+| Transitions | 9/10 | No jarring layout shifts between chapters |
 
-**Weighted Score: 84** — PASS (≥80)
+**Weighted Score: 86** — PASS (≥80)

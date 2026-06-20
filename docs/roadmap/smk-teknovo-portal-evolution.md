@@ -511,9 +511,9 @@ Phase 5:
 | Transformation chapter | ✅ Split panel + scroll motion |
 | Build pipeline | ✅ `npm run build` passes |
 | Static subpages preserved | ✅ ppdb, berita, program, portal |
-| Chapters 3–7 | ✅ Phase 2: Industry + Student + Career complete; Proof/Action/FAQ Phase 3 |
-| AI-ish formal review ≥85 | ⏳ Preliminary 81 — Phase 5 |
-| Subpage migration | ⏳ Phase 3+ |
+| Chapters 3–7 | ✅ Phase 3: Proof + Action + FAQ + Kontak complete |
+| AI-ish formal review ≥85 | ⏳ Preliminary 84 — Phase 5 |
+| Subpage migration | ⏳ Phase 4 |
 
-**Branch:** `feature/design-layer-evolution`  
-**Next session:** Proof + Action + FAQ chapters (Phase 3)
+**Branch:** `main`  
+**Next session:** PPDB funnel + Berita + Program migration (Phase 4)

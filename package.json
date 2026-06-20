@@ -1,8 +1,8 @@
 {
   "name": "smk-teknovo-portal",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
-  "description": "SMK Teknovo public portal — immersive Phases 1–3 (R3F/GSAP) + static multi-page shell",
+  "description": "SMK Teknovo public portal — immersive Phases 1–4 (V2.1 spine) (R3F/GSAP) + static multi-page shell",
   "scripts": {
     "dev": "npm run dev --prefix apps/immersive-portal",
     "build:immersive": "npm run build --prefix apps/immersive-portal",

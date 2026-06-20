@@ -1,0 +1,588 @@
+{
+  "name": "optimize",
+  "input": "/www/wwwroot/webtest/public/models/hotel-hospitality/.work/hotel-hospitality.glb",
+  "output": "/www/wwwroot/webtest/tools/teknovo-3d-pipeline/assets/optimized/hotel-hospitality/hotel-hospitality-optimized.glb",
+  "analysis": {
+    "sourcePath": "/www/wwwroot/webtest/tools/teknovo-3d-pipeline/assets/optimized/hotel-hospitality/hotel-hospitality-optimized.glb",
+    "sourceFormat": "glb",
+    "sourceBytes": 7225884,
+    "generatedAt": "2026-06-20T16:44:09.452Z",
+    "meshCount": 65,
+    "materialCount": 12,
+    "textureCount": 0,
+    "nodeCount": 99,
+    "sceneCount": 1,
+    "animationCount": 0,
+    "triangleCount": 769751,
+    "vertexCount": 686877,
+    "drawCallCount": 124,
+    "estimatedGpuBytes": 0,
+    "textures": [],
+    "meshes": [
+      {
+        "name": "ceiling",
+        "primitiveCount": 1,
+        "vertexCount": 152,
+        "indexCount": 462,
+        "materialCount": 1
+      },
+      {
+        "name": "walls",
+        "primitiveCount": 1,
+        "vertexCount": 3582,
+        "indexCount": 8358,
+        "materialCount": 1
+      },
+      {
+        "name": "floor",
+        "primitiveCount": 1,
+        "vertexCount": 12,
+        "indexCount": 30,
+        "materialCount": 1
+      },
+      {
+        "name": "floor_borders",
+        "primitiveCount": 1,
+        "vertexCount": 5399,
+        "indexCount": 17148,
+        "materialCount": 1
+      },
+      {
+        "name": "sign_exit",
+        "primitiveCount": 2,
+        "vertexCount": 3958,
+        "indexCount": 20658,
+        "materialCount": 2
+      },
+      {
+        "name": "2",
+        "primitiveCount": 1,
+        "vertexCount": 1336,
+        "indexCount": 2952,
+        "materialCount": 1
+      },
+      {
+        "name": "1",
+        "primitiveCount": 1,
+        "vertexCount": 1336,
+        "indexCount": 2952,
+        "materialCount": 1
+      },
+      {
+        "name": "lights_2",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_3",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_4",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_5",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_6",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_7",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_8",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_9",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_10",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_11",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_12",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_13",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_14",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_15",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_16",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_17",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_18",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_19",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_20",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_21",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_22",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_23",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_24",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_25",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_26",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_27",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_28",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_29",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "lights_30",
+        "primitiveCount": 2,
+        "vertexCount": 3918,
+        "indexCount": 14649,
+        "materialCount": 2
+      },
+      {
+        "name": "door_frames",
+        "primitiveCount": 2,
+        "vertexCount": 239484,
+        "indexCount": 770616,
+        "materialCount": 2
+      },
+      {
+        "name": "1_3",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "2_3",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "3_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "4_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "5_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "6_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "7_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "8_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "9_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "10_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "11_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "12_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "13_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "14_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "15_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "16_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "17_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "18_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "19_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "20_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "21_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "22_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "23_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "24_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "25_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "26_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "27_2",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      },
+      {
+        "name": "door",
+        "primitiveCount": 2,
+        "vertexCount": 11357,
+        "indexCount": 37902,
+        "materialCount": 2
+      }
+    ],
+    "warnings": [],
+    "capabilities": [
+      {
+        "tool": "gltf-transform",
+        "available": true,
+        "purpose": "Native GLTF/GLB reading, writing, optimization, Draco, Meshopt, and LOD transforms",
+        "details": "Backed by installed Node packages."
+      },
+      {
+        "tool": "obj2gltf",
+        "available": true,
+        "purpose": "OBJ to GLTF/GLB conversion",
+        "details": "Backed by installed Node package."
+      },
+      {
+        "tool": "blender",
+        "available": true,
+        "purpose": "BLEND/FBX import-export fallback via Blender CLI",
+        "details": "Required for reliable .blend conversion and an optional .fbx fallback."
+      },
+      {
+        "tool": "FBX2glTF",
+        "available": true,
+        "purpose": "FBX to GLTF/GLB conversion",
+        "details": "Optional native converter for .fbx sources."
+      },
+      {
+        "tool": "assimp",
+        "available": true,
+        "purpose": "STL and miscellaneous mesh format conversion",
+        "details": "Optional CLI fallback for .stl sources."
+      },
+      {
+        "tool": "toktx",
+        "available": false,
+        "purpose": "KTX2 texture compression",
+        "details": "Optional external encoder for KTX2 output."
+      }
+    ]
+  },
+  "validation": {
+    "passed": true,
+    "budgetTier": "standard",
+    "issues": [
+      {
+        "code": "draw-calls.high",
+        "severity": "warning",
+        "message": "Draw calls are high (124).",
+        "recommendation": "Merge primitives or materials where practical."
+      }
+    ]
+  },
+  "manifest": {
+    "id": "hotel-hospitality",
+    "source": "/www/wwwroot/webtest/public/models/hotel-hospitality/.work/hotel-hospitality.glb",
+    "optimized": "assets/optimized/hotel-hospitality/hotel-hospitality-optimized.glb",
+    "format": "glb",
+    "cloudflareReady": true,
+    "draco": true,
+    "meshopt": true,
+    "generatedAt": "2026-06-20T16:44:16.219Z",
+    "lods": [
+      {
+        "name": "lod0",
+        "ratio": 1,
+        "path": "assets/optimized/hotel-hospitality/hotel-hospitality-lod0.glb",
+        "bytes": 7287248
+      },
+      {
+        "name": "lod1",
+        "ratio": 0.6,
+        "path": "assets/optimized/hotel-hospitality/hotel-hospitality-lod1.glb",
+        "bytes": 5166008
+      },
+      {
+        "name": "lod2",
+        "ratio": 0.3,
+        "path": "assets/optimized/hotel-hospitality/hotel-hospitality-lod2.glb",
+        "bytes": 3708556
+      },
+      {
+        "name": "lod3",
+        "ratio": 0.1,
+        "path": "assets/optimized/hotel-hospitality/hotel-hospitality-lod3.glb",
+        "bytes": 3444836
+      }
+    ],
+    "textures": [],
+    "r3f": {
+      "useGLTF": {
+        "path": "assets/optimized/hotel-hospitality/hotel-hospitality-optimized.glb",
+        "draco": true,
+        "meshopt": true
+      }
+    }
+  },
+  "outputs": [
+    "/www/wwwroot/webtest/tools/teknovo-3d-pipeline/assets/optimized/hotel-hospitality/hotel-hospitality-optimized.glb",
+    "/www/wwwroot/webtest/tools/teknovo-3d-pipeline/assets/optimized/hotel-hospitality/model-manifest.json",
+    "/www/wwwroot/webtest/tools/teknovo-3d-pipeline/assets/optimized/hotel-hospitality/hotel-hospitality-lod0.glb",
+    "/www/wwwroot/webtest/tools/teknovo-3d-pipeline/assets/optimized/hotel-hospitality/hotel-hospitality-lod1.glb",
+    "/www/wwwroot/webtest/tools/teknovo-3d-pipeline/assets/optimized/hotel-hospitality/hotel-hospitality-lod2.glb",
+    "/www/wwwroot/webtest/tools/teknovo-3d-pipeline/assets/optimized/hotel-hospitality/hotel-hospitality-lod3.glb"
+  ],
+  "notes": [
+    "Applied Draco mesh compression.",
+    "Applied Meshopt compression.",
+    "AVIF generation is supported through glTF texture conversion when source textures are embedded.",
+    "KTX2 encoder not detected. Falling back to WebP/AVIF-ready texture output."
+  ]
+}

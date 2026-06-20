@@ -1,519 +1,271 @@
-# Roadmap Evolusi Portal SMK Teknovo — Immersive, Motion & 3D
+# Roadmap Evolusi Portal SMK Teknovo — PRD V2.1 Alignment
 
-**Versi:** 1.0.0  
+**Versi:** 2.1.0  
 **Tanggal:** 20 Juni 2026  
-**Branch:** `feature/design-layer-evolution`  
-**Intent Orchestrator:** `landing-page`  
-**Chain:** Brand DNA → Creative Director → Product Designer → Motion Review → 3D Review → UX Architecture → Design System → UI UX → Implementation → AI-ish Review → Testing
+**PRD Baseline:** V2.1 (Approved)  
+**Branch evaluasi:** `feature/phase-4-subpage-migration`  
+**Scope dokumen:** penyelarasan roadmap terhadap PRD V2.1 untuk **SMK Teknovo Immersive Landing Experience**
+
+> Dokumen task per fase: [`smk-teknovo-portal-phases.md`](./smk-teknovo-portal-phases.md)  
+> Deliverable audit 3D: [`docs/artifacts/smk-teknovo/assets-report.json`](../artifacts/smk-teknovo/assets-report.json)
 
 ---
 
-## Daftar Isi
+## 1. Ringkasan Eksekutif
 
-1. [Executive Summary](#1-executive-summary)
-2. [Orchestrator Execution Chain](#2-orchestrator-execution-chain)
-3. [Page Inventory](#3-page-inventory)
-4. [Story Structure](#4-story-structure)
-5. [Technology Stack & Migration Path](#5-technology-stack--migration-path)
-6. [Phase Breakdown](#6-phase-breakdown)
-7. [Motion & 3D Scene Specs](#7-motion--3d-scene-specs)
-8. [Performance Budget](#8-performance-budget)
-9. [Risk & Mitigation](#9-risk--mitigation)
-10. [Success Criteria](#10-success-criteria)
-11. [Status Implementasi Sesi Ini](#11-status-implementasi-sesi-ini)
+PRD V2.1 **dapat dieksekusi**, dengan constraint tooling dan asset yang terdokumentasi di Phase 1 audit. Implementasi publik saat ini memiliki fondasi berguna (`Vite + React 19 + R3F + GSAP + Lenis`), tetapi narasi, urutan chapter, pipeline asset, dan target deploy perlu diselaraskan ke V2.1 sebelum rebuild lanjutan.
 
-> Detail task per fase: [`smk-teknovo-portal-phases.md`](./smk-teknovo-portal-phases.md)
+### Keputusan inti V2.1
 
----
+1. **Pesan utama:** **Belajar. Berkarya. Siap Industri.**
+2. **Urutan desain:** Story First → Motion Second → 3D Third → Technology Last.
+3. **Phase 1 (PRD) = 3D Asset Audit** — deliverable `assets-report.json` ✅ selesai.
+4. **Phase 2 (PRD) = 3D Optimization** — output ke `/public/models` via `tools/teknovo-3d-pipeline`.
+5. **Phase 3+ = Creative refresh, chapter rebuild, migration, launch.**
+6. **Deploy target:** Cloudflare Pages + `/public/models` — **R2 tidak diperlukan** untuk landing experience.
+7. **Stack transisi:** Vite interim; **Next.js 15 + Tailwind** tetap target jangka menengah.
+8. **Program utama:** `Teknik Mesin + Usaha Layanan Wisata (ULW)`.
 
-## 1. Executive Summary
+### Status kelayakan
 
-### State Saat Ini (Baseline)
-
-Portal SMK Teknovo saat ini adalah **static HTML multi-page** di `public/`:
-
-| Aspek | Kondisi |
-|-------|---------|
-| Stack | HTML/CSS/vanilla JS, Phosphor Icons CDN, Cloudflare Workers static assets |
-| Homepage | Single-page scroll dengan **Hero banner + statistik KPI + grid keunggulan + carousel testimonial** |
-| Motion | CSS transitions, IntersectionObserver fade-in — **tidak ada scroll narrative** |
-| 3D | Tidak ada — logo PNG statis di hero |
-| Struktur naratif | **Hero → Features → Testimonials → CTA** (pattern deprecated) |
-| Halaman anak | PPDB, Berita, Program (TKJ/RPL/DKV), Portal (Siswa/Guru/Orang Tua) — static HTML terpisah |
-| Build | `node scripts/validate.js` — validasi file wajib, bukan compile |
-
-**Gap terhadap filosofi Teknovo:**
-
-- ❌ Background-image / flat hero dengan headline + CTA
-- ❌ KPI stat blocks (`stats` section) sebagai pola marketing utama
-- ❌ Feature grid 3×N (Keunggulan, Fasilitas)
-- ❌ Testimonial carousel 3-kolom
-- ❌ Section stack statis tanpa motion continuity
-- ❌ Tidak ada 3D spatial narrative
-- ❌ Tidak ada cinematic scroll chapters
-
-### Target State
-
-Portal SMK Teknovo menjadi **future workforce ecosystem experience**:
-
-| Aspek | Target |
-|-------|--------|
-| Filosofi | Immersive, motion-driven, 3D spatial — Awwwards-level craft |
-| Struktur | **Story → Transformation → Industry Alignment → Student Journey → Career Journey → Proof → Action** |
-| Opening | Interactive 3D/motion scene — bukan hero banner |
-| Motion | GSAP ScrollTrigger + Motion.dev + Lenis smooth scroll — score ≥80 |
-| 3D | R3F + Drei — purposeful objects per chapter — score ≥85 |
-| Visual Originality | AI-ish Review score ≥85 |
-| Performance | 60fps desktop, 45fps mobile, LCP <2.5s |
-| ERP Portal | Tetap PageShell, **tanpa** 3D dekoratif |
+| Area | Status | Catatan |
+|------|--------|---------|
+| PRD V2.1 roadmap alignment | **Executable now** | Roadmap dan phase plan diperbarui sesi ini |
+| Phase 1 Asset Audit | **Complete** | `assets-report.json` — 4/5 primary assets found, 1.67 GB source |
+| Phase 2 Pipeline optimization | **Blocked partially** | Blender/assimp tidak terpasang; 3/4 assets butuh konversi manual |
+| Lanjutan chapter rebuild (Vite) | **Executable with constraints** | Butuh Phase 2 asset + Phase 3 creative refresh |
+| Migrasi Next.js 15 | **Not immediate** | Setelah chapter dan asset strategy stabil |
+| Hotel/Hospitality asset | **Missing** | PRD lists 5 primary; audit menemukan 4 packages |
 
 ---
 
-## 2. Orchestrator Execution Chain
+## 2. Baseline Saat Ini
 
-Setiap gate memetakan deliverable ke artifact di `/docs/artifacts/smk-teknovo/`.
+### Implementasi yang benar-benar ada
 
-### Gate 0: Branch Safety
+| Area | Baseline aktual |
+|------|------------------|
+| Public experience app | `apps/immersive-portal` |
+| Stack | `React 19 + TypeScript + Vite 6 + Three.js + @react-three/fiber + drei + GSAP + Lenis + motion` |
+| Root build | `npm run build` di root menggabungkan build immersive ke `public/` lalu validasi |
+| Deploy saat ini | Berbasis `wrangler` dengan output static ke `public/` |
+| 3D source assets | `/3d` — 4 packages, 166 files, ~1.67 GB (audit 20 Jun 2026) |
+| 3D pipeline tool | `tools/teknovo-3d-pipeline` — analyze/convert/optimize/LOD tersedia |
+| Asset studio (internal) | `tools/teknovo-asset-studio` — opsional; R2 deploy **bukan** jalur landing |
+| Optimized models dir | `/public/models` — **belum ada** (target Phase 2) |
+| Framework target PRD V2.1 | **Belum** `Next.js 15` |
+| Target deploy PRD V2.1 | **Belum** `Cloudflare Pages` (interim: wrangler static) |
 
-| Item | Detail |
-|------|--------|
-| Check | `git branch --show-current` → `feature/*` |
-| Branch aktif | `feature/design-layer-evolution` |
-| Blocks | Write on `main`/`master` |
+### Asset inventory (Phase 1 audit)
 
-### Gate 0.5: Brand DNA → Brand Alignment Note
+| PRD Role | Asset | Format | Size | Status |
+|----------|-------|--------|------|--------|
+| School Building | `6275780-105/105.max` | 3ds Max | 1.47 GB | Inventory; needs export |
+| CNC / Teknik Mesin | Double station lathe | SolidWorks (100 parts) | 71 MB | Inventory; needs export |
+| Gear | Eureka.STEP | STEP CAD | 2.85 MB | Inventory; needs conversion |
+| Tourism | Modern airport terminal | OBJ + 4 PBR textures | 66.8 MB | Pipeline analyzed; 964K tris |
+| Hotel / Hospitality | — | — | — | **Missing** |
 
-| Deliverable | Artifact |
-|-------------|----------|
-| Brand personality mapping | `brand-alignment.md` |
-| Visual language untuk SMK Teknovo | Warna, tipografi, voice Indonesian-first |
-| Forbidden directions | Generic school template, gov portal, AI marketing |
-| Pass criteria | Brand Alignment Note complete |
-
-**Artifacts needed:**
-- Brand personality: Modern Vocational, Industry-Oriented, Technology-Driven
-- Color philosophy: Deep Space canvas + Electric accent (public immersive)
-- Voice: Profesional namun human — bukan "Selamat datang" generik
-
-### Gate 0.6: Creative Director → Art Direction Brief
-
-| Deliverable | Artifact |
-|-------------|----------|
-| Creative Direction Review | `creative-direction.md` |
-| Verdict | **APPROVE** required |
-| Opening scene spec | 3D ecosystem network — "Mengapa membangun masa depan di sini?" |
-| Blocks | All UI code until APPROVE |
-
-**Artifacts needed:**
-- Inspiration principles (Apple, Framer, Linear — extract only)
-- Opening scene rejection of flat hero
-- Scroll chapter art direction per beat
-
-### Gate 0.7: Product Designer → Four Goals Per Page
-
-| Deliverable | Artifact |
-|-------------|----------|
-| Product Design Analysis | `product-design.md` |
-| Matrix | Emotional · Visual · Conversion · Storytelling per chapter |
-| Pass criteria | Four goals documented for every page/chapter |
-
-### Gate 0.72: Motion Designer → Motion Design Review
-
-| Deliverable | Artifact |
-|-------------|----------|
-| Motion Design Review | `motion-review.md` |
-| Verdict | **PASS** |
-| Score target | **Motion Quality Score ≥80** |
-| Systems | Page Load · Scroll · Hover · Section Transition |
-
-**Artifacts needed:**
-- Motion narrative map per chapter
-- Scroll narrative strategy (Lenis + GSAP)
-- Transition language between scenes
-- Reduced-motion fallback plan
-
-### Gate 0.74: 3D Experience Architect → 3D Experience Review
-
-| Deliverable | Artifact |
-|-------------|----------|
-| 3D Experience Review | `3d-review.md` |
-| Verdict | **PASS** |
-| Score target | **3D Experience Score ≥85** |
-| Per scene | Purpose · spatial hierarchy · camera flow |
-
-**Artifacts needed:**
-- Scene purpose per chapter (no decorative-only geometry)
-- Camera flow diagram
-- Mobile fallback (2D motion composition)
-- R3F stack confirmation
-
-### Gate 0.76: UX Architecture → Pre-code Artifacts
-
-| Deliverable | Artifact |
-|-------------|----------|
-| Scroll IA map | `ux-architecture.md` |
-| Chapter navigation | Scroll progress indicator + anchor nav |
-| Mobile IA | Drawer nav, chapter jump |
-| ERP pages | N/A for public rebuild — portal pages stay functional |
-
-### Gate 0.765: Design System → Tokens & Stack
-
-| Deliverable | Artifact |
-|-------------|----------|
-| Token alignment | `design-system-notes.md` |
-| Public tokens | Deep Space `#0A0A0F`, Electric `#6366F1`, Cyan `#22D3EE` |
-| Typography | Geist display + Inter body |
-| 3D stack | Three.js · R3F · Drei · GSAP · Motion.dev · Lenis |
-
-### Gate 0.77: UI UX Review → Layout Contract
-
-| Deliverable | Artifact |
-|-------------|----------|
-| Layout contract check | `ui-ux-review.md` |
-| Verdict | **PASS** |
-| Public | SceneStack — bukan PageShell |
-| ERP portal | PageShell — no 3D |
-
-### Gate 1–3: Taste · Assurance · Security Pre-impl
-
-| Gate | Artifact | Status Phase 1 |
-|------|----------|----------------|
-| Taste | Documented/waived | Waived — static→immersive rebuild scoped |
-| Assurance | Sign-off in roadmap | APPROVE via this document |
-| Security pre-impl | Static public site — no auth/API | APPROVE — no new endpoints |
-
-### Gate 4: Implementation
-
-| Deliverable | Location |
-|-------------|----------|
-| Immersive app scaffold | `apps/immersive-portal/` |
-| Build output | `public/` (merged) |
-| Gate artifacts | `/docs/artifacts/smk-teknovo/` |
-
-### Gate 4.5: AI-ish Review
-
-| Deliverable | Artifact |
-|-------------|----------|
-| Visual Originality Score | `ai-ish-review.md` |
-| Target | **≥85** |
-| Auto-reject check | No hero banner, no KPI grid, no feature grid |
-
-### Gate 5: Testing
-
-| Deliverable | Checklist |
-|-------------|-----------|
-| Build | `npm run build` |
-| Lint | `tsc --noEmit` |
-| Five page states | Loading, Empty, Error, Success, Permission (public: Loading + Success primary) |
-| Performance | Lighthouse / FPS sampling |
-| Browser | Chrome, Safari mobile |
+Detail lengkap: [`assets-report.json`](../artifacts/smk-teknovo/assets-report.json)
 
 ---
 
-## 3. Page Inventory
+## 3. Evaluasi Executability PRD V2.1
 
-### Homepage (Immersive SPA — `public/index.html` dari Vite build)
+### Verdict
 
-| Chapter / Route | Purpose | Gate Artifacts |
-|-----------------|---------|----------------|
-| `#story` | Opening 3D ecosystem — positioning workforce | brand, creative, product, motion, 3d, ux |
-| `#transformation` | Learner → professional arc | product, motion, 3d |
-| `#industry` | TKJ · RPL · DKV industry alignment | product, motion, 3d |
-| `#student-journey` | Day-in-life learning path | product, motion |
-| `#career-journey` | Alumni outcomes, employability | product, motion |
-| `#proof` | Editorial proof — accreditation, achievements | product, ux |
-| `#action` | PPDB conversion | product, ux |
-| `#faq` | Accordion answers | ux |
-| `#kontak` | Contact form + map | ux |
+PRD V2.1 **feasible**, dengan constraint berikut:
 
-### Static Subpages (Phase 2–4 migration)
+1. **Constraint tooling:** Blender, FBX2glTF, dan assimp tidak terpasang — `.max`, `.STEP`, dan SolidWorks tidak bisa dikonversi otomatis tanpa export manual atau instalasi tool.
+2. **Constraint asset:** Hotel/Hospitality belum ada di `/3d`; School Building (1.5 GB) melebihi semua budget tier tanpa decimation agresif.
+3. **Constraint platform:** implementasi publik belum di `Next.js 15 + Tailwind + Cloudflare Pages`.
+4. **Constraint narrative:** chapter implementasi saat ini masih berporos struktur lama (`TKJ/RPL/DKV`).
+5. **Constraint triangle budget:** Airport terminal (964K tris) jauh di atas target visible triangles (<40K desktop).
 
-| Route | Purpose | Phase | Gate Artifacts |
-|-------|---------|-------|----------------|
-| `/ppdb/` | PPDB registration funnel | Phase 3 | product (conversion), ux |
-| `/berita/` | News index | Phase 4 | ux (integrate into scroll or editorial) |
-| `/berita/pembukaan-ppdb-2026.html` | News detail | Phase 4 | ux |
-| `/program/tkj.html` | TKJ program detail | Phase 3 | product, 3d (industry object) |
-| `/program/rpl.html` | RPL program detail | Phase 3 | product, 3d |
-| `/program/dkv.html` | DKV program detail | Phase 3 | product, 3d |
-| `/portal/siswa.html` | Student portal entry | Phase 5 | ui-ux (ERP PageShell) |
-| `/portal/guru.html` | Teacher portal entry | Phase 5 | ui-ux (ERP PageShell) |
-| `/portal/orang-tua.html` | Parent portal entry | Phase 5 | ui-ux (ERP PageShell) |
+### Yang bisa dieksekusi sekarang
+
+- ✅ Phase 1 audit → `assets-report.json`
+- Penyelarasan roadmap V2.1 (sesi ini)
+- Phase 2 optimization untuk asset yang sudah convertible (OBJ → GLB)
+- Instalasi Blender/assimp untuk unblock konversi sisa asset
+
+### Yang belum boleh dianggap selesai
+
+- Claim landing sudah align PRD V2.1
+- Deploy asset via R2 (PRD V2.1: **no R2** for landing)
+- Full chapter rebuild sebelum creative refresh Phase 3
 
 ---
 
-## 4. Story Structure
+## 4. Struktur Cerita PRD V2.1
 
-### Deprecated (Current Site)
+### Pesan dan filosofi desain
 
-```text
-Hero → Stats/KPI → Programs Grid → Advantages Grid → Facilities Grid
-     → About → Achievements → News Tabs → Testimonials Carousel
-     → Gallery → PPDB Banner → FAQ → Contact
-```
-
-### Mandatory (Target)
-
-```text
-Navbar (persistent wayfinding)
-  ↓
-1. STORY          — "Ekosistem tenaga kerja masa depan dimulai di Rancasari"
-  ↓ [scroll transition — camera pull-back, depth parallax]
-2. TRANSFORMATION — "Dari calon siswa menjadi profesional siap industri"
-  ↓
-3. INDUSTRY       — TKJ · RPL · DKV sebagai objek 3D narratif
-  ↓
-4. STUDENT        — Perjalanan belajar: lab, project, sertifikasi
-  ↓
-5. CAREER         — Alumni paths, mitra industri, employability data motion
-  ↓
-6. PROOF          — Akreditasi, prestasi — editorial layout
-  ↓
-7. ACTION         — PPDB 2026/2027 — single dominant CTA
-  ↓
-8. FAQ            — Accordion purposeful
-  ↓
-9. Footer/Kontak  — Contact, legal, portal links
-```
-
-### Copy Direction (Indonesian-first)
-
-- **Story headline:** "Karier di Industri Teknologi Dimulai dari Sini" → evolve to spatial narrative headline with scroll reveal
-- **Avoid:** "Selamat datang di SMK Teknovo", generic welcome
-- **Emphasize:** 25+ mitra industri, lab standar kerja, TKJ/RPL/DKV outcomes
-
----
-
-## 5. Technology Stack & Migration Path
-
-### Current → Target
-
-| Layer | Current | Target |
-|-------|---------|--------|
-| Markup | Static HTML | React 19 + TypeScript |
-| Bundler | None | Vite 6 |
-| 3D | None | Three.js + @react-three/fiber + @react-three/drei |
-| Motion DOM | CSS only | Motion.dev (motion/react) |
-| Scroll motion | Native scroll | Lenis smooth scroll + GSAP ScrollTrigger |
-| CSS | Custom properties in styles.css | CSS modules / tokens from design system |
-| Deploy | Wrangler static `./public` | Same — Vite build merges into `public/` |
-| Subpages | Static HTML | Progressive: keep static Phase 1–2, migrate Phase 3–4 |
-
-### Migration Strategy (Recommended)
-
-```text
-Phase 1 (Sesi ini):
-  apps/immersive-portal/  →  Vite + React + R3F + GSAP + Lenis
-  Build → dist/ → copy merge to public/index.html + public/assets/immersive/
-  Keep static subpages untouched
-
-Phase 2:
-  Complete all 7 scroll chapters on homepage
-  Update validate.js for new section anchors
-
-Phase 3:
-  Migrate /program/* to React routes or enhanced static with shared nav
-
-Phase 4:
-  Migrate /ppdb/ and /berita/ with conversion-optimized flows
-
-Phase 5:
-  Portal pages → ERP PageShell (authenticated app — separate repo/app)
-```
-
-### Integration Architecture
-
-```text
-┌─────────────────────────────────────────────────┐
-│  Lenis (smooth scroll root)                      │
-│  ├── GSAP ScrollTrigger (scrub timelines)        │
-│  ├── Motion.dev (DOM enter/exit, stagger)        │
-│  └── R3F Canvas (fixed/sticky 3D layer)          │
-│       ├── StoryScene3D (network ecosystem)       │
-│       ├── IndustryObjects (TKJ/RPL/DKV)          │
-│       └── Camera rig (scroll-linked via GSAP)    │
-└─────────────────────────────────────────────────┘
-```
-
-### Dependency List
-
-```json
-{
-  "react": "^19",
-  "react-dom": "^19",
-  "three": "^0.17x",
-  "@react-three/fiber": "^9",
-  "@react-three/drei": "^10",
-  "gsap": "^3.12",
-  "@gsap/react": "^2",
-  "lenis": "^1.1",
-  "motion": "^12",
-  "@phosphor-icons/react": "^2"
-}
-```
-
----
-
-## 6. Phase Breakdown
-
-| Phase | Scope | Effort | Dependencies | Acceptance Criteria |
-|-------|-------|--------|--------------|---------------------|
-| **1** | Scaffold + Story + Transformation chapters | 3–5 h | Gates PASS | Vite build, 3D hero, 2 chapters scroll, `npm run build` ✓ |
-| **2** | Industry + Student + Career chapters | 5–8 h | Phase 1 | 5 chapters, motion score ≥80 |
-| **3** | Proof + Action + FAQ + subpage nav unification | 4–6 h | Phase 2 | Full 7-beat sequence, PPDB CTA |
-| **4** | Program + PPDB + Berita migration | 8–12 h | Phase 3 | All routes immersive or editorial-consistent |
-| **5** | Portal ERP integration, AI-ish ≥85, perf hardening | 6–10 h | Phase 4 | Lighthouse perf ≥90, originality ≥85 |
-| **6** | Cloudflare deploy, SEO, analytics | 2–4 h | Phase 5 | Production live, sitemap updated |
-
-> Task-level breakdown: [`smk-teknovo-portal-phases.md`](./smk-teknovo-portal-phases.md)
-
-### Phase 1 Acceptance Criteria (Sesi Ini)
-
-- [x] Roadmap documents in `/docs/roadmap/`
-- [x] Gate artifacts in `/docs/artifacts/smk-teknovo/`
-- [ ] `apps/immersive-portal/` scaffold with TypeScript strict
-- [ ] Lenis + GSAP ScrollTrigger wired
-- [ ] R3F Story scene with purposeful 3D objects
-- [ ] Story + Transformation DOM chapters with motion
-- [ ] Build copies to `public/`, `npm run build` passes
-- [ ] Static subpages still accessible
-
----
-
-## 7. Motion & 3D Scene Specs
-
-### Chapter 0: Navbar
-
-| Motion | Spec |
+| Elemen | V2.1 |
 |--------|------|
-| Scroll shrink | Height 80px → 64px after 100px scroll |
-| Backdrop | blur + opacity fade |
-| Hover | Subtle underline slide — Motion.dev |
+| Primary message | **Belajar. Berkarya. Siap Industri.** |
+| Design order | Story First → Motion Second → 3D Third → Technology Last |
+| Positioning | Future Workforce Academy / Digital Experience Platform |
+| Program pillars | Teknik Mesin + Usaha Layanan Wisata |
 
-### Chapter 1: Story (Opening)
+### Urutan 8 chapter
 
-| 3D | Motion |
-|----|--------|
-| **Purpose:** Visualize "workforce ecosystem network" — nodes = skills, edges = career paths | Page load: stagger reveal headline (GSAP) |
-| Objects: Icosahedron (core school), TorusKnot (industry orbit), small spheres (students) | Scroll 0–30%: camera dolly out, nodes connect |
-| Camera: Start close on core, pull back on scroll | Parallax: foreground copy, midground 3D, background gradient |
-| Mobile fallback: CSS animated network SVG, no WebGL | Reduced motion: static composition + fade |
+```text
+1. Future Starts Here
+2. Industry Challenge
+3. Teknik Mesin
+4. Usaha Layanan Wisata
+5. Industry Alignment
+6. Student Transformation
+7. Achievements
+8. PPDB
+```
 
-### Chapter 2: Transformation
+### Perubahan nama chapter vs V2.0
 
-| 3D | Motion |
-|----|--------|
-| Morph/transitions between "student" and "professional" state objects | Scroll-triggered text reveal left-to-right |
-| Split scene: left dim "before", right bright "after" | Section enter: clip-path wipe transition |
-| Optional: simple GLTF graduation cap → toolbox morph | Timeline scrub 30–50% scroll |
+| V2.0 | V2.1 |
+|------|------|
+| Why Industry Needs Skilled Workers | **Industry Challenge** |
+| Industry Ecosystem | **Industry Alignment** |
 
-### Chapter 3: Industry Alignment
+### Makna produk per chapter
 
-| 3D | Motion |
-|----|--------|
-| Three labeled objects: Server rack (TKJ), Code brackets (RPL), Pen tool (DKV) | Objects rotate into view on scroll |
-| Click/hover: expand to program detail link | Stagger 0.15s between objects |
-
-### Chapter 4–5: Student & Career Journey
-
-| 3D | Motion |
-|----|--------|
-| Timeline path in 3D space (curve) | Scroll-linked timeline progress bar |
-| Milestone markers light up | Horizontal scroll section optional (desktop) |
-
-### Chapter 6: Proof
-
-| 3D | Motion |
-|----|--------|
-| N/A — editorial layout | Viewport-triggered fade-up stagger |
-| Accordion-style achievement reveal | No card grid |
-
-### Chapter 7: Action (PPDB)
-
-| 3D | Motion |
-|----|--------|
-| N/A | CTA pulse subtle (not bounce) |
-| Urgency via copy + countdown optional | Background subtle gradient shift |
+| # | Chapter | Fungsi naratif | 3D asset mapping (audit) |
+|---|---------|----------------|--------------------------|
+| 1 | **Future Starts Here** | Membuka positioning SMK Teknovo | School Building (hero) |
+| 2 | **Industry Challenge** | Urgency skill gap dari sisi industri | Motion/editorial-first; 3D minimal |
+| 3 | **Teknik Mesin** | Program pillar engineering | CNC lathe + Eureka gear |
+| 4 | **Usaha Layanan Wisata** | Program pillar hospitality/tourism | Airport terminal + Hotel (missing) |
+| 5 | **Industry Alignment** | Sekolah-industri-partner-outcome | Network/editorial; 3D supporting |
+| 6 | **Student Transformation** | Belajar → siap kerja | Reuse Transformation lama |
+| 7 | **Achievements** | Bukti kredibilitas | Editorial-first |
+| 8 | **PPDB** | Konversi utama | DOM-first |
 
 ---
 
-## 8. Performance Budget
+## 5. Keputusan Stack dan Deploy
 
-| Metric | Desktop | Mobile |
-|--------|---------|--------|
-| FPS (3D scenes) | ≥60 | ≥45 |
-| LCP | <2.5s | <2.5s |
-| FID / INP | <100ms | <200ms |
-| CLS | <0.1 | <0.1 |
-| JS bundle (initial) | <250KB gzip | <200KB gzip |
-| 3D polygon budget | <50K triangles visible | <20K triangles |
-| Texture max | 2048×2048 | 1024×1024 |
+### Stack: Vite interim → Next.js 15 target
 
-### Optimization Tactics
+| Tahap | Stack | Status |
+|-------|-------|--------|
+| Transisi (sekarang) | Vite + React 19 + CSS + R3F + GSAP + Lenis | **Active** — chapter rebuild aman di sini |
+| Target PRD V2.1 | Next.js 15 + Tailwind + R3F + GSAP + Lenis | **Planned** — setelah chapter + asset stabil |
 
-- Lazy-load 3D Canvas below fold chapters
-- `dpr={[1, 1.5]}` on mobile R3F Canvas
-- `prefers-reduced-motion`: disable Lenis, static scenes
-- Code-split per chapter with React.lazy
-- Preload only Story scene assets
+**Aturan:** Jangan migrasi Next.js 15 sebelum chapter V2.1 final dan `/public/models` terisi.
 
----
+### Deploy: Cloudflare Pages + `/public/models`, NO R2
 
-## 9. Risk & Mitigation
+| Surface | Asset delivery | R2? |
+|---------|----------------|-----|
+| Landing experience (PRD V2.1) | Static files in `/public/models` via Cloudflare Pages | **No** |
+| `teknovo-asset-studio` (internal) | Optional R2 deploy for asset management workflow | Optional — **not required for landing** |
 
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| WebGL unsupported | No 3D on old devices | CSS/SVG fallback per chapter |
-| Bundle size bloat | Slow LCP | Code splitting, tree-shake Three.js |
-| SEO regression | Lower discoverability | SSR/prerender Phase 5; retain JSON-LD |
-| Static subpage nav drift | Broken links | Shared nav component Phase 3 |
-| Motion sickness | User discomfort | Reduced-motion media query |
-| Build complexity | CI failures | Single `npm run build` orchestrates Vite + validate |
-| Content stale | Wrong PPDB year | Centralize content in `content/` JSON |
+**Reconciliation:** `tools/teknovo-asset-studio` tetap berguna sebagai internal asset management UI, tetapi **bukan dependency deploy** untuk immersive landing. Pipeline output langsung ke `/public/models`; Cloudflare Pages serves static assets without R2.
+
+Deploy berbasis `wrangler`/static sekarang = **interim delivery mechanism**.
 
 ---
 
-## 10. Success Criteria
+## 6. Pipeline Asset 3D
 
-### Scoring Gates
+### Phase plan PRD V2.1
 
-| Gate | Metric | Threshold | Phase Target |
-|------|--------|-----------|--------------|
-| Motion Design Review | Motion Quality Score | ≥80 | Phase 2 |
-| 3D Experience Review | 3D Experience Score | ≥85 | Phase 2 |
-| AI-ish Review | Visual Originality | ≥85 | Phase 5 |
-| Build | npm run build | Pass | Phase 1 |
-| Performance | Lighthouse Performance | ≥85 | Phase 5 |
+| Phase | Fokus | Deliverable |
+|-------|-------|-------------|
+| **Phase 1** | 3D Asset Audit | `assets-report.json` ✅ |
+| **Phase 2** | 3D Optimization | Optimized GLB + LOD + manifest → `/public/models` |
+| **Phase 3** | Creative refresh | Brand, motion, 3D, UX artifacts V2.1 |
+| **Phase 4–5** | Chapter rebuild 1–8 | Immersive portal on Vite |
+| **Phase 6** | Legacy route remapping | TKJ/RPL/DKV decision |
+| **Phase 7–8** | Next.js 15 migration | Cloudflare Pages launch |
+| **Phase 9** | Hardening and launch | Quality gates + production release |
 
-### Definition of Done (Full Project)
+### Tooling
 
-1. All 7 narrative chapters implemented with motion continuity
-2. No auto-reject patterns (hero banner, KPI grid, feature grid, testimonial carousel)
-3. All gate artifacts approved in `/docs/artifacts/smk-teknovo/`
-4. Static subpages migrated or editorially consistent
-5. `npm run build` + tests pass
-6. Visual Originality ≥85, Motion ≥80, 3D ≥85
-7. Deployed to Cloudflare with updated sitemap
+| Tool | Role | Landing deploy path |
+|------|------|---------------------|
+| `tools/teknovo-3d-pipeline` | Analyze, convert, optimize, LOD, validate | **Primary** → `/public/models` |
+| `tools/teknovo-asset-studio` | Internal upload, preview, optional R2 | **Optional** — not on landing critical path |
+| Blender / assimp | Convert `.max`, `.STEP`, SolidWorks | **Required** to unblock Phase 2 for 3/4 assets |
 
----
+### Budget performa PRD V2.1
 
-## 11. Status Implementasi Sesi Ini
-
-**Stopping point setelah Phase 1 roadmap execution:**
-
-| Item | Status |
+| Tier | Budget |
 |------|--------|
-| Roadmap | ✅ Complete |
-| Gate artifacts | ✅ Complete (`/docs/artifacts/smk-teknovo/`) |
-| Vite + React scaffold | ✅ `apps/immersive-portal/` |
-| Lenis + GSAP ScrollTrigger | ✅ Wired |
-| Story 3D scene (R3F) | ✅ Ecosystem network |
-| Transformation chapter | ✅ Split panel + scroll motion |
-| Build pipeline | ✅ `npm run build` passes |
-| Static subpages preserved | ✅ ppdb, berita, program, portal |
-| Chapters 3–7 | ✅ Phase 3: Proof + Action + FAQ + Kontak complete |
-| AI-ish formal review ≥85 | ⏳ Preliminary 84 — Phase 5 |
-| Subpage migration | ⏳ Phase 4 |
+| Hero scene | **15 MB** |
+| Standard scene | **8 MB** |
+| Mobile scene | **5 MB** |
+| Total initial load | **25 MB** |
 
-**Branch:** `main`  
-**Next session:** PPDB funnel + Berita + Program migration (Phase 4)
+| Metrik tambahan | Target |
+|-----------------|--------|
+| Desktop FPS | ≥60 |
+| Mobile FPS | ≥45 |
+| LCP | <2.5s |
+| Visible triangles | <40K desktop / <18K mobile |
+| Visual Originality (AI-ish) | **≥85** |
+| Brand Consistency | **≥90** |
+
+### Audit findings (Phase 1)
+
+- **Total source:** 1.67 GB across 4 packages
+- **Estimated post-optimization:** ~115 MB (pre-decimation)
+- **Airport terminal:** 964K triangles — needs mesh decimation, not just compression
+- **School building:** 1.47 GB `.max` — critical blocker for hero budget
+- **Missing:** Hotel/Hospitality asset
+
+---
+
+## 7. Gate Kualitas
+
+| Gate | Threshold |
+|------|-----------|
+| Motion Quality | ≥80 |
+| 3D Experience | ≥85 |
+| Visual Originality (AI-ish) | **≥85** |
+| Brand Consistency | **≥90** |
+
+Design order enforcement: Story and motion gates must pass before 3D scene approval. Technology choices (framework, deploy) evaluated last.
+
+---
+
+## 8. Risiko dan Dependency Gate
+
+| Risk / constraint | Dampak | Penanganan |
+|-------------------|--------|------------|
+| Blender not installed | 3/4 assets cannot auto-convert | Install Blender CLI or manual CAD export before Phase 2 |
+| School Building 1.5 GB | Exceeds all budgets | Aggressive decimation + scene splitting in Phase 2 |
+| Hotel asset missing | ULW chapter incomplete | Procure or substitute before chapter 4 build |
+| R2 vs static confusion | Wrong deploy architecture | Document: landing = `/public/models`, no R2 |
+| Vite vs Next.js drift | Premature migration | Vite for chapter rebuild; Next.js after parity plan |
+| Asset-studio scope creep | Landing blocked on internal tool | Asset-studio = optional internal workflow only |
+
+### Dependency gate sebelum Phase 4 (chapter rebuild)
+
+1. Phase 2 optimization complete for at least hero + Teknik Mesin + ULW assets
+2. Creative refresh artifacts updated for V2.1 chapter names and primary message
+3. Hotel/Hospitality asset decision (procure, substitute, or defer)
+4. `/public/models` populated with manifest-backed GLB packs
+
+---
+
+## 9. Definition of Done PRD V2.1
+
+1. All 8 chapters follow V2.1 order and naming.
+2. Primary message **Belajar. Berkarya. Siap Industri.** consistent across copy and CTA.
+3. Design order respected: story → motion → 3D → technology.
+4. 3D assets served from `/public/models` on Cloudflare Pages — no R2.
+5. Performance budgets met (hero 15MB, standard 8MB, mobile 5MB, total initial 25MB).
+6. `Visual Originality ≥85` and `Brand Consistency ≥90`.
+7. Programs shown: Teknik Mesin + ULW, not TKJ/RPL/DKV as hero story.
+
+---
+
+## 10. Rekomendasi Langkah Berikutnya
+
+1. **Unblock Phase 2:** Install Blender CLI (or manual export `.max`/SolidWorks/STEP → GLB).
+2. **Run pipeline optimize** on all convertible assets → output to `/public/models`.
+3. **Procure Hotel/Hospitality** 3D asset or approve airport-only ULW scene with editorial hospitality layer.
+4. **Phase 3 creative refresh:** Update artifacts for V2.1 primary message and chapter names.
+5. **Then** begin chapter rebuild on Vite interim stack.

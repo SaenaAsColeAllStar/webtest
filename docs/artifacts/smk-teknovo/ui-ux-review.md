@@ -1,35 +1,70 @@
-# UI UX Layout Contract Review — SMK Teknovo Portal
+# UI UX Layout Contract Review — SMK Teknovo Immersive Experience Platform
 
 **Date:** 2026-06-20  
 **Gate:** UI UX Review  
-**Verdict:** PASS (Phase 1 scope)
+**PRD Baseline:** V2  
+**Verdict:** PASS WITH REBUILD REQUIREMENTS
 
-## Public Surface — ImmersivePage Contract
+## Public Surface Contract
+
+The public homepage must now be reviewed against the PRD V2 chapter contract, not the legacy chapter implementation.
 
 ```text
-ImmersivePage
-├── SceneNavigation — minimal header, portal dropdown
-├── ScrollProgress — top indicator
-├── SceneStack
-│   ├── StoryScene (3D + copy)
-│   └── TransformationScene (motion split)
-└── InteractiveLayer — R3F Canvas sticky
+Immersive Homepage
+├── Minimal Navigation
+├── Chapter Progress / Orientation
+├── Eight-Chapter Narrative Spine
+│   ├── Future Starts Here
+│   ├── Why Industry Needs Skilled Workers
+│   ├── Teknik Mesin
+│   ├── Usaha Layanan Wisata
+│   ├── Industry Ecosystem
+│   ├── Student Transformation
+│   ├── Achievements
+│   └── PPDB
+└── Optional support layer below the core spine
 ```
 
-## Checklist
+## Review Result
 
-- [x] No PageShell on public homepage
-- [x] No hero banner pattern
-- [x] No KPI stat block on immersive homepage (removed from Phase 1 build)
-- [x] No feature grid 3×N on immersive homepage
-- [x] Scene-based chapters, not section stack
-- [x] RBAC N/A — public unauthenticated
-- [x] Five states: Loading ✓, Success ✓ (Phase 1); Error/Empty/Permission Phase 3+
+The contract itself is now aligned, but the current implementation still contains legacy chapter mapping. That means the **review framework passes**, while the **implemented homepage remains interim** until rebuilt.
 
-## ERP Portal Pages (Static — unchanged Phase 1)
+## Pass Conditions for Future Implementation
 
-- Portal pages remain static HTML
-- No 3D on portal entry pages
-- Future: PageShell when ERP app integrated
+- No hero-banner fallback.
+- No KPI-led homepage proof pattern.
+- No feature grid as the core narrative structure.
+- No dashboard-style layout on public surfaces.
+- Clear chapter sequencing that matches PRD V2 exactly.
+- `Teknik Mesin` and `ULW` appear as the central middle-act chapters.
+- PPDB remains the dominant conversion destination.
 
-**Verdict: PASS** — proceed to implementation.
+## Current Interim / Legacy Status
+
+| Existing Implemented Area | Status |
+|---------------------------|--------|
+| `Story` / `Transformation` / `Proof` structure | Interim and remappable |
+| `Industry` chapter built around `TKJ / RPL / DKV` | Legacy and misaligned |
+| Legacy program-detail pages for `TKJ / RPL / DKV` | Secondary support only |
+| Existing support-route framing | Potentially reusable if relabeled and re-sequenced |
+
+## Support Route Guidance
+
+- `PPDB` can remain an immersive conversion route.
+- `Berita` can remain editorial support.
+- Legacy program routes may continue temporarily, but they should not dictate the homepage story.
+- Portal routes remain operational and separate from the public narrative contract.
+
+## Five-State Guidance
+
+For future chapter rebuilds, public surfaces should still account for:
+
+- Loading,
+- Success,
+- Error,
+- Empty where relevant,
+- Reduced-motion or limited-device fallback as the closest equivalent to a capability state.
+
+## Verdict
+
+The UI/UX contract is now suitable for PRD V2 implementation, but it explicitly marks the current homepage chapter system as **interim**. Phase 2 should rebuild against this updated contract rather than polish the legacy chapter structure further.

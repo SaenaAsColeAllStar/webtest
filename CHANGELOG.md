@@ -2,6 +2,20 @@
 
 All notable changes to the SMK Teknovo public portal are documented here.
 
+## [2.2.0] — 2026-06-21
+
+### Phase 4 — Rebuild Chapters 1–4 (V2.1 interim)
+
+- **Future Starts Here** (`#future-starts-here`) — chapter 1 with manifest-driven 3D
+- **Industry Challenge** (`#industry-challenge`) — chapter 2 narrative + scene
+- **Teknik Mesin** (`#teknik-mesin`) — chapter 3 program spotlight
+- **ULW** (`#ulw`) — chapter 4 Usaha Layanan Wisata with real GLB assets
+- **Industry Alignment** (`#industry-alignment`) — chapter 5 (V2.1 spine continuation)
+- V2.1 nav spine via `lib/chapters.ts`; subpages migrated under `apps/immersive-portal/{ppdb,berita,program}/`
+- Multi-page Vite build + merge pipeline; `validate.js` aligned to V2.1 section IDs
+- Public `/models/` LOD GLBs for tourism/airport and hotel hospitality scenes
+
+
 ## [2.1.0] — 2026-06-20
 
 ### Phase 3 — Conversion & Proof

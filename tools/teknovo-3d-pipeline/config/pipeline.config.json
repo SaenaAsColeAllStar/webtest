@@ -1,0 +1,67 @@
+{
+  "budgets": {
+    "heroMb": 15,
+    "standardMb": 8,
+    "mobileMb": 5
+  },
+  "lodRules": [
+    {
+      "name": "lod0",
+      "ratio": 1
+    },
+    {
+      "name": "lod1",
+      "ratio": 0.6
+    },
+    {
+      "name": "lod2",
+      "ratio": 0.3
+    },
+    {
+      "name": "lod3",
+      "ratio": 0.1
+    }
+  ],
+  "textures": {
+    "maxDimension": 2048,
+    "preferredFormat": "webp",
+    "quality": 82,
+    "generateAvif": true,
+    "generateKtx2WhenAvailable": true
+  },
+  "compression": {
+    "draco": {
+      "enabled": true,
+      "quantizePosition": 14,
+      "quantizeNormal": 10,
+      "quantizeTexcoord": 12,
+      "quantizeColor": 8,
+      "quantizeGeneric": 12
+    },
+    "meshopt": {
+      "enabled": true,
+      "level": "medium"
+    }
+  },
+  "reports": {
+    "directory": "reports",
+    "latestJson": "latest.json",
+    "latestHtml": "latest.html"
+  },
+  "output": {
+    "optimizedDirectory": "assets/optimized",
+    "manifestName": "model-manifest.json",
+    "cloudflareReady": true
+  },
+  "conversion": {
+    "preferGlb": true,
+    "supportedInputExtensions": [
+      ".glb",
+      ".gltf",
+      ".obj",
+      ".fbx",
+      ".blend",
+      ".stl"
+    ]
+  }
+}

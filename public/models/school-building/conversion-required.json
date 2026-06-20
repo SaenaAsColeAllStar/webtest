@@ -1,0 +1,36 @@
+{
+  "id": " ",
+  "status": "blocked",
+  "reason": "3ds Max native format (.max) — tidak dapat diimpor oleh Blender CLI atau pipeline tanpa ekspor CAD",
+  "sourcePath": "3d/uploads-files-6275780-105/105.max",
+  "sourceSizeBytes": 1578753940,
+  "targetBudgetTier": "hero",
+  "toolingVerified": {
+    "blender": "4.0.2 (/usr/bin/blender)",
+    "fbx2gltf": "0.13.1 (~/.local/bin/FBX2glTF)",
+    "assimp": "5.3 (/usr/bin/assimp)"
+  },
+  "conversionAttempts": [
+    {
+      "tool": "teknovo-3d-pipeline convert",
+      "date": "2026-06-21",
+      "result": "fail",
+      "error": "Unsupported input format \".max\". Supported inputs: .glb, .gltf, .obj, .fbx, .blend, .stl."
+    },
+    {
+      "tool": "blender --background bpy.ops.import_scene.max",
+      "date": "2026-06-21",
+      "result": "fail",
+      "error": "AttributeError: operator bpy.ops.import_scene.max not found — Blender 4.0.2 tidak punya importer .max bawaan"
+    }
+  ],
+  "conversionInstructions": [
+    "Ekspor dari 3ds Max (jalur tercepat): File → Export → glTF 2.0 (.glb) dengan texture embedded, atau OBJ + folder maps/.",
+    "Alternatif: install add-on MAX import di Blender (bukan bawaan apt), import .max, lalu export GLB.",
+    "Setelah ekspor, letakkan GLB di public/models/school-building/.work/school-building-export.glb lalu jalankan:",
+    "  cd tools/teknovo-3d-pipeline",
+    "  node dist/cli/index.js optimize ../../public/models/school-building/.work/school-building-export.glb --budget hero --output ../../public/models/school-building/school-building-lod0.glb",
+    "Sumber 1.47 GB — wajib decimation agresif; target hero budget 15 MB."
+  ],
+  "pipelineAdapter": "tools/teknovo-3d-pipeline/adapters/cad-formats.json#3dsmax"
+}

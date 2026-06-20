@@ -1,0 +1,44 @@
+{
+  "id": "sample-triangle",
+  "source": "/www/wwwroot/webtest/tools/teknovo-3d-pipeline/assets/raw/sample-triangle.gltf",
+  "optimized": "assets/optimized/sample-triangle/sample-triangle-lod0.glb",
+  "format": "glb",
+  "cloudflareReady": true,
+  "draco": true,
+  "meshopt": true,
+  "generatedAt": "2026-06-20T15:43:40.140Z",
+  "lods": [
+    {
+      "name": "lod0",
+      "ratio": 1,
+      "path": "assets/optimized/sample-triangle/sample-triangle-lod0.glb",
+      "bytes": 688
+    },
+    {
+      "name": "lod1",
+      "ratio": 0.6,
+      "path": "assets/optimized/sample-triangle/sample-triangle-lod1.glb",
+      "bytes": 688
+    },
+    {
+      "name": "lod2",
+      "ratio": 0.3,
+      "path": "assets/optimized/sample-triangle/sample-triangle-lod2.glb",
+      "bytes": 688
+    },
+    {
+      "name": "lod3",
+      "ratio": 0.1,
+      "path": "assets/optimized/sample-triangle/sample-triangle-lod3.glb",
+      "bytes": 688
+    }
+  ],
+  "textures": [],
+  "r3f": {
+    "useGLTF": {
+      "path": "assets/optimized/sample-triangle/sample-triangle-lod0.glb",
+      "draco": true,
+      "meshopt": true
+    }
+  }
+}

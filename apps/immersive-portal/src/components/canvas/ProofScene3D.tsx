@@ -27,7 +27,7 @@ export function ProofScene3D() {
 
   useGSAP(() => {
     ScrollTrigger.create({
-      trigger: '#proof',
+      trigger: '#achievements',
       start: 'top bottom',
       end: 'bottom top',
       scrub: 1,

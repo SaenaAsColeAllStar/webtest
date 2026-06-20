@@ -1,0 +1,44 @@
+{
+  "id": "hotel-hospitality",
+  "source": "/www/wwwroot/webtest/public/models/hotel-hospitality/.work/hotel-hospitality.glb",
+  "optimized": "assets/optimized/hotel-hospitality/hotel-hospitality-optimized.glb",
+  "format": "glb",
+  "cloudflareReady": true,
+  "draco": true,
+  "meshopt": true,
+  "generatedAt": "2026-06-20T16:44:16.219Z",
+  "lods": [
+    {
+      "name": "lod0",
+      "ratio": 1,
+      "path": "assets/optimized/hotel-hospitality/hotel-hospitality-lod0.glb",
+      "bytes": 7287248
+    },
+    {
+      "name": "lod1",
+      "ratio": 0.6,
+      "path": "assets/optimized/hotel-hospitality/hotel-hospitality-lod1.glb",
+      "bytes": 5166008
+    },
+    {
+      "name": "lod2",
+      "ratio": 0.3,
+      "path": "assets/optimized/hotel-hospitality/hotel-hospitality-lod2.glb",
+      "bytes": 3708556
+    },
+    {
+      "name": "lod3",
+      "ratio": 0.1,
+      "path": "assets/optimized/hotel-hospitality/hotel-hospitality-lod3.glb",
+      "bytes": 3444836
+    }
+  ],
+  "textures": [],
+  "r3f": {
+    "useGLTF": {
+      "path": "assets/optimized/hotel-hospitality/hotel-hospitality-optimized.glb",
+      "draco": true,
+      "meshopt": true
+    }
+  }
+}

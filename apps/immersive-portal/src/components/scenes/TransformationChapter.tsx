@@ -39,7 +39,7 @@ export function TransformationChapter() {
   return (
     <section
       className="chapter chapter--transformation"
-      id="transformation"
+      id="student-transformation"
       ref={sectionRef}
       aria-labelledby="transformation-title"
     >
@@ -51,7 +51,7 @@ export function TransformationChapter() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="chapter__badge">Bab 2 · Transformasi</span>
+          <span className="chapter__badge">Bab 6 · Student Transformation</span>
           <h2 className="chapter__title" id="transformation-title">
             Dari Calon Siswa Menjadi{' '}
             <span className="chapter__title-accent">Profesional Siap Industri</span>

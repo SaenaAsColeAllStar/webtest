@@ -1,16 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import { CaretDown, Student, ChalkboardTeacher, UsersThree } from '@phosphor-icons/react';
+import { CHAPTERS_V21 } from '@/lib/chapters';
 
-const NAV_LINKS = [
-  { href: '#story', label: 'Cerita' },
-  { href: '#industry', label: 'Industri' },
-  { href: '#career-journey', label: 'Karier' },
-  { href: '#proof', label: 'Prestasi' },
-  { href: '#action', label: 'PPDB' },
+const SUPPORT_LINKS = [
   { href: '#faq', label: 'FAQ' },
   { href: '#kontak', label: 'Kontak' },
   { href: 'berita/', label: 'Berita', external: true },
-];
+] as const;
 
 const PORTAL_LINKS = [
   { href: 'portal/siswa.html', label: 'Portal Siswa', icon: Student },
@@ -22,7 +18,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [portalOpen, setPortalOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('story');
+  const [activeSection, setActiveSection] = useState<string>(CHAPTERS_V21[0].id);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -55,7 +51,7 @@ export function Header() {
     <>
       <header className={`header ${scrolled ? 'is-scrolled' : ''}`} role="banner">
         <div className="header__inner">
-          <a href="#story" className="header__logo" onClick={closeMenu}>
+          <a href="#future-starts-here" className="header__logo" onClick={closeMenu}>
             <img src="assets/logo-teknovo.png" alt="Logo SMK TEKNOVO" width={40} height={40} />
             <div>
               <span className="header__logo-name">SMK TEKNOVO</span>
@@ -65,13 +61,23 @@ export function Header() {
 
           <nav className={`nav ${menuOpen ? 'is-open' : ''}`} id="nav" aria-label="Navigasi utama">
             <ul className="nav__list">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
+              {CHAPTERS_V21.map((chapter) => (
+                <li key={chapter.id}>
+                  <a
+                    href={`#${chapter.id}`}
+                    className={`nav__link ${activeSection === chapter.id ? 'is-active' : ''}`}
+                    onClick={closeMenu}
+                  >
+                    {chapter.navLabel}
+                  </a>
+                </li>
+              ))}
+              {SUPPORT_LINKS.map((link) => (
+                <li key={link.href} className="nav__item--support">
                   <a
                     href={link.href}
-                    className={`nav__link ${!link.external && activeSection === link.href.replace('#', '') ? 'is-active' : ''}`}
+                    className={`nav__link ${'external' in link ? '' : activeSection === link.href.replace('#', '') ? 'is-active' : ''}`}
                     onClick={closeMenu}
-                    {...(link.external ? {} : {})}
                   >
                     {link.label}
                   </a>
@@ -100,7 +106,7 @@ export function Header() {
                   </ul>
                 )}
               </div>
-              <a href="#action" className="btn btn--primary btn--sm" onClick={closeMenu}>
+              <a href="#ppdb" className="btn btn--primary btn--sm" onClick={closeMenu}>
                 Daftar PPDB
               </a>
             </div>

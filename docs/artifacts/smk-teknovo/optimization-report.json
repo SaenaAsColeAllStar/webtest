@@ -1,0 +1,162 @@
+{
+  "reportVersion": "1.0.0",
+  "prdBaseline": "V2.1",
+  "phase": 2,
+  "phaseStatus": "partial",
+  "generatedAt": "2026-06-21T12:00:00.000Z",
+  "outputDirectory": "public/models",
+  "pipelineTool": "tools/teknovo-3d-pipeline",
+  "pipelineBuild": "pass",
+  "tooling": {
+    "gltfTransform": true,
+    "obj2gltf": true,
+    "blender": true,
+    "blenderPath": "/usr/bin/blender",
+    "blenderVersion": "4.0.2",
+    "fbx2gltf": true,
+    "fbx2gltfPath": "~/.local/bin/FBX2glTF",
+    "fbx2gltfVersion": "0.13.1",
+    "assimp": true,
+    "assimpPath": "/usr/bin/assimp",
+    "assimpVersion": "5.3",
+    "toktx": false,
+    "blenderInstallAttempted": true,
+    "blenderInstallBlocked": null,
+    "assimpInstallAttempted": true,
+    "verifiedAt": "2026-06-21T12:00:00.000Z"
+  },
+  "performanceBudgets": {
+    "heroMb": 15,
+    "standardMb": 8,
+    "mobileMb": 5,
+    "totalInitialLoadMb": 25
+  },
+  "summary": {
+    "primaryAssetsTotal": 5,
+    "optimizedReady": 2,
+    "blockedConversion": 3,
+    "missingSource": 0,
+    "totalOptimizedBytes": 35626648,
+    "totalOptimizedHuman": "34.0 MB (all LODs for tourism-airport + hotel-hospitality)",
+    "recommendedInitialLoadBytes": 5110816,
+    "recommendedInitialLoadHuman": "4.9 MB (tourism-airport lod3 1.6 MB + hotel-hospitality lod3 3.3 MB for mobile)",
+    "withinTotalInitialLoadBudget": true
+  },
+  "assets": [
+    {
+      "id": "tourism-airport",
+      "status": "optimized",
+      "outputPath": "public/models/tourism-airport/",
+      "manifestPath": "public/models/tourism-airport/model-manifest.json",
+      "sourceBytes": 67505744,
+      "sourceHuman": "64.4 MB (OBJ)",
+      "convertedGlbBytes": 24848724,
+      "convertedGlbHuman": "23.7 MB",
+      "optimizedLod0Bytes": 6693320,
+      "optimizedLod0Human": "6.4 MB",
+      "optimizedLod3Bytes": 1665980,
+      "optimizedLod3Human": "1.6 MB",
+      "compressionRatioFromSource": 0.901,
+      "compressionRatioFromConverted": 0.731,
+      "triangleCount": 964028,
+      "draco": true,
+      "meshopt": true,
+      "textureOptimization": true,
+      "lodChain": ["lod0", "lod1", "lod2", "lod3"],
+      "budgetValidation": {
+        "lod0": { "hero": "pass", "standard": "pass", "mobile": "fail", "note": "6.4 MB exceeds 5 MB mobile budget" },
+        "lod1": { "hero": "pass", "standard": "pass", "mobile": "pass" },
+        "lod2": { "hero": "pass", "standard": "pass", "mobile": "pass" },
+        "lod3": { "hero": "pass", "standard": "pass", "mobile": "pass" }
+      },
+      "notes": "Production-ready pack. Serve lod3 on mobile, lod0 on desktop. Triangle count still high — further mesh decimation recommended before Phase 4 hero scene."
+    },
+    {
+      "id": "school-building",
+      "status": "blocked",
+      "outputPath": "public/models/school-building/conversion-required.json",
+      "sourceBytes": 1578753940,
+      "sourceHuman": "1.47 GB (.max)",
+      "error": "Unsupported input format \".max\"; Blender 4.0.2 has no native .max importer",
+      "conversionAttempts": [
+        { "tool": "teknovo-3d-pipeline convert", "result": "fail" },
+        { "tool": "blender import_scene.max", "result": "fail", "note": "operator not found" }
+      ],
+      "budgetValidation": null,
+      "unblockAction": "Export from 3ds Max to GLB (File → Export → glTF 2.0); Blender MAX add-on is fallback only"
+    },
+    {
+      "id": "cnc-lathe",
+      "status": "blocked",
+      "outputPath": "public/models/cnc-lathe/conversion-required.json",
+      "sourceBytes": 74511880,
+      "sourceHuman": "71.0 MB package (.SLDASM + 100 parts)",
+      "error": "Unsupported input format \".sldasm\"; assimp: No suitable reader found",
+      "conversionAttempts": [
+        { "tool": "teknovo-3d-pipeline convert", "result": "fail" },
+        { "tool": "assimp export", "result": "fail" }
+      ],
+      "budgetValidation": null,
+      "unblockAction": "Export simplified assembly from SolidWorks to GLB/OBJ/FBX, then run pipeline optimize"
+    },
+    {
+      "id": "gear-eureka",
+      "status": "blocked",
+      "outputPath": "public/models/gear-eureka/conversion-required.json",
+      "sourceBytes": 2990189,
+      "sourceHuman": "2.85 MB (.STEP)",
+      "error": "Unsupported input format \".step\"; assimp: Unrecognized file schema AUTOMOTIVE_DESIGN",
+      "conversionAttempts": [
+        { "tool": "teknovo-3d-pipeline convert", "result": "fail" },
+        { "tool": "assimp export", "result": "fail" },
+        { "tool": "blender STEP import", "result": "fail", "note": "no native STEP importer in Blender 4.0.2" }
+      ],
+      "budgetValidation": null,
+      "unblockAction": "Open STEP in FreeCAD or SolidWorks; export glTF/OBJ, then run pipeline optimize --budget mobile"
+    },
+    {
+      "id": "hotel-hospitality",
+      "status": "optimized",
+      "outputPath": "public/models/hotel-hospitality/",
+      "manifestPath": "public/models/hotel-hospitality/model-manifest.json",
+      "sourcePath": "3d/uploads_files_5431567_hallway_hotel/hallway_hotel.fbx",
+      "sourceBytes": 61685437,
+      "sourceHuman": "58.8 MB package (FBX + C4D + 16 textures)",
+      "convertedGlbBytes": 28423668,
+      "convertedGlbHuman": "27.1 MB",
+      "optimizedLod0Bytes": 7287248,
+      "optimizedLod0Human": "7.0 MB",
+      "optimizedLod3Bytes": 3444836,
+      "optimizedLod3Human": "3.3 MB",
+      "compressionRatioFromSource": 0.882,
+      "compressionRatioFromConverted": 0.746,
+      "triangleCount": 769751,
+      "draco": true,
+      "meshopt": true,
+      "textureOptimization": true,
+      "lodChain": ["lod0", "lod1", "lod2", "lod3"],
+      "budgetValidation": {
+        "lod0": { "hero": "pass", "standard": "pass", "mobile": "fail", "note": "7.0 MB exceeds 5 MB mobile budget" },
+        "lod1": { "hero": "pass", "standard": "pass", "mobile": "fail" },
+        "lod2": { "hero": "pass", "standard": "pass", "mobile": "pass" },
+        "lod3": { "hero": "pass", "standard": "pass", "mobile": "pass" }
+      },
+      "notes": "Production-ready pack via FBX2glTF 0.13.1. Serve lod3 on mobile, lod0 on desktop. Textures may need re-embed in Phase 4; triangle count high — decimation recommended."
+    }
+  ],
+  "phase2Readiness": {
+    "productionReadyAssetPacks": 2,
+    "manifestsGenerated": 2,
+    "budgetValidationRun": true,
+    "toolingComplete": true,
+    "cadExportRequired": true,
+    "readyForPhase3": true,
+    "readyForPhase4Partial": true,
+    "phase4Blockers": [
+      "school-building hero asset requires 3ds Max → GLB export (1.47 GB source)",
+      "cnc-lathe requires SolidWorks simplified assembly export",
+      "gear-eureka STEP uses AUTOMOTIVE_DESIGN schema — FreeCAD/SolidWorks export required",
+      "tourism-airport and hotel-hospitality lod0 triangle counts exceed 40K desktop guidance"
+    ]
+  }
+}

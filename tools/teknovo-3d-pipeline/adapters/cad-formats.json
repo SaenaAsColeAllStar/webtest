@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "description": "CAD and proprietary format adapter stubs — actionable conversion paths when native pipeline support is unavailable",
+  "formats": {
+    "3dsmax": {
+      "extensions": [".max"],
+      "status": "stub",
+      "requiredTools": ["3ds Max export", "blender"],
+      "blenderInstall": "sudo apt install blender",
+      "exportSteps": [
+        "3ds Max: File → Export → glTF 2.0 (.glb)",
+        "Or Blender with MAX import plugin → Export GLB"
+      ],
+      "pipelineCommand": "node dist/cli/index.js optimize <exported.glb> --budget hero"
+    },
+    "step": {
+      "extensions": [".step", ".stp"],
+      "status": "stub",
+      "requiredTools": ["freecad", "blender", "assimp"],
+      "assimpInstall": "sudo apt install assimp-utils",
+      "exportSteps": [
+        "FreeCAD: open STEP → Export glTF",
+        "assimp export input.STEP output.glb"
+      ],
+      "pipelineCommand": "node dist/cli/index.js optimize <exported.glb> --budget mobile"
+    },
+    "solidworks": {
+      "extensions": [".sldasm", ".sldprt"],
+      "status": "stub",
+      "requiredTools": ["solidworks"],
+      "exportSteps": [
+        "SolidWorks: Save As → STEP or simplified OBJ/GLB",
+        "Recommend simplified hero mesh for web (hide internal parts)"
+      ],
+      "pipelineCommand": "node dist/cli/index.js optimize <exported.glb> --budget standard"
+    }
+  }
+}

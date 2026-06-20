@@ -1,0 +1,42 @@
+{
+  "id": "gear-eureka",
+  "status": "blocked",
+  "reason": "STEP schema AUTOMOTIVE_DESIGN — assimp/Blender tidak dapat mem-parse; perlu ekspor CAD manual",
+  "sourcePath": "3d/uploads-files-328120-Eureka/Eureka.STEP",
+  "sourceSizeBytes": 2990189,
+  "targetBudgetTier": "mobile",
+  "toolingVerified": {
+    "blender": "4.0.2 (/usr/bin/blender)",
+    "fbx2gltf": "0.13.1 (~/.local/bin/FBX2glTF)",
+    "assimp": "5.3 (/usr/bin/assimp)"
+  },
+  "conversionAttempts": [
+    {
+      "tool": "teknovo-3d-pipeline convert",
+      "date": "2026-06-21",
+      "result": "fail",
+      "error": "Unsupported input format \".step\". Supported inputs: .glb, .gltf, .obj, .fbx, .blend, .stl."
+    },
+    {
+      "tool": "assimp export",
+      "date": "2026-06-21",
+      "result": "fail",
+      "error": "IFC: Unrecognized file schema: AUTOMOTIVE_DESIGN"
+    },
+    {
+      "tool": "blender --background (no STEP importer)",
+      "date": "2026-06-21",
+      "result": "fail",
+      "error": "Blender 4.0.2 tidak punya operator import STEP; obj_import pada file STEP gagal parse"
+    }
+  ],
+  "conversionInstructions": [
+    "Buka Eureka.STEP di FreeCAD atau SolidWorks/Fusion 360.",
+    "Ekspor ke glTF 2.0 (.glb) atau OBJ — pastikan mesh triangulated.",
+    "Letakkan hasil di public/models/gear-eureka/.work/gear-eureka-export.glb lalu jalankan:",
+    "  cd tools/teknovo-3d-pipeline",
+    "  node dist/cli/index.js optimize ../../public/models/gear-eureka/.work/gear-eureka-export.glb --budget mobile --output ../../public/models/gear-eureka/gear-eureka-lod0.glb",
+    "Deploy LOD chain + model-manifest.json ke public/models/gear-eureka/"
+  ],
+  "pipelineAdapter": "tools/teknovo-3d-pipeline/adapters/cad-formats.json#step"
+}

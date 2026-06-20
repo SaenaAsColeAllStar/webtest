@@ -1,0 +1,66 @@
+{
+  "id": "airport-test",
+  "source": "/tmp/airport-test.glb",
+  "optimized": "assets/optimized/airport-verify",
+  "format": "",
+  "cloudflareReady": true,
+  "draco": true,
+  "meshopt": true,
+  "generatedAt": "2026-06-20T16:15:19.622Z",
+  "lods": [
+    {
+      "name": "lod0",
+      "ratio": 1,
+      "path": "assets/optimized/airport-test/airport-test-lod0.glb",
+      "bytes": 6693320
+    },
+    {
+      "name": "lod1",
+      "ratio": 0.6,
+      "path": "assets/optimized/airport-test/airport-test-lod1.glb",
+      "bytes": 4684708
+    },
+    {
+      "name": "lod2",
+      "ratio": 0.3,
+      "path": "assets/optimized/airport-test/airport-test-lod2.glb",
+      "bytes": 2962708
+    },
+    {
+      "name": "lod3",
+      "ratio": 0.1,
+      "path": "assets/optimized/airport-test/airport-test-lod3.glb",
+      "bytes": 1665980
+    }
+  ],
+  "textures": [
+    {
+      "name": "modernairportterminal3dmodel_basecolor",
+      "mimeType": "image/webp",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 592782
+    },
+    {
+      "name": "modernairportterminal3dmodel_roughness",
+      "mimeType": "image/webp",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 124804
+    },
+    {
+      "name": "modernairportterminal3dmodel_normal",
+      "mimeType": "image/webp",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 24006
+    }
+  ],
+  "r3f": {
+    "useGLTF": {
+      "path": "assets/optimized/airport-verify",
+      "draco": true,
+      "meshopt": true
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "teknovo-3d-pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Production-ready 3D asset analysis and optimization pipeline for Teknovo products.",
+  "bin": {
+    "teknovo-3d-pipeline": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "analyze": "node dist/cli/index.js analyze",
+    "convert": "node dist/cli/index.js convert",
+    "draco": "node dist/cli/index.js compress --mode draco",
+    "meshopt": "node dist/cli/index.js compress --mode meshopt",
+    "textures": "node dist/cli/index.js compress --mode textures",
+    "lod": "node dist/cli/index.js generate-lod",
+    "validate": "node dist/cli/index.js validate",
+    "optimize": "node dist/cli/index.js optimize"
+  },
+  "dependencies": {
+    "@gltf-transform/core": "^4.4.0",
+    "@gltf-transform/extensions": "^4.4.0",
+    "@gltf-transform/functions": "^4.4.0",
+    "draco3dgltf": "^1.5.7",
+    "meshoptimizer": "^1.1.1",
+    "obj2gltf": "^3.2.0",
+    "sharp": "^0.35.2",
+    "yargs": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "@types/yargs": "^17.0.35",
+    "typescript": "^6.0.3"
+  }
+}

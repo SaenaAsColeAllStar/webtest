@@ -1,50 +1,66 @@
-# AI-ish Review — SMK Teknovo Portal (Phase 3 Preliminary)
+# AI-ish Review — SMK Teknovo Immersive Experience Platform
 
 **Date:** 2026-06-20  
 **Gate:** AI-ish Review  
-**Status:** PRELIMINARY — formal ≥85 target Phase 5
+**PRD Baseline:** V2  
+**Verdict:** REVISE  
+**Visual Originality Readiness:** Direction passes, current implementation remains interim
 
-## Auto-Reject Check (Phase 3 Build)
+## Executive Status
 
-| Signal | Present? |
-|--------|----------|
-| Generic feature grid | ❌ No |
-| KPI stat blocks | ❌ No |
-| Template hero banner | ❌ No — 3D scene |
-| Testimonial carousel | ❌ No — editorial proof timeline |
-| Background image hero | ❌ No |
-| Static section stack | ❌ No — scroll narrative |
-| Flat PPDB banner CTA | ❌ No — immersive Action panel |
+The refreshed PRD V2 artifact set is distinctive enough in direction to target **Visual Originality >= 85**, but the **currently implemented homepage story cannot be treated as fully passed** because its middle chapters still rely on legacy `TKJ / RPL / DKV` logic.
 
-**Auto-reject:** CLEAR
+## Auto-Reject Check
 
-## Preliminary Visual Originality Score (Phase 3)
+| Signal | Current Status |
+|--------|----------------|
+| Generic feature grid | Not required by refreshed direction |
+| KPI blocks as primary story pattern | Rejected by updated artifacts |
+| Template hero | Rejected by updated artifacts |
+| Background image hero | Rejected by updated artifacts |
+| Static section stack | Rejected by updated artifacts |
+| Dashboard-style public layout | Rejected by updated artifacts |
 
-| Dimension | Weight | Score (/10) |
-|-----------|--------|-------------|
-| Narrative originality | 15% | 9 |
-| Spatial / 3D design | 15% | 8 |
-| Motion design | 15% | 9 |
-| Visual hierarchy | 10% | 8 |
-| Layout distinctiveness | 10% | 8 |
-| Typography & craft | 10% | 8 |
-| Color & depth | 10% | 8 |
-| Content authenticity | 10% | 9 |
-| Anti-template signals | 5% | 9 |
+## Current Scoring Assessment
 
-**Preliminary Score: ~84** — improved from Phase 2 (~81); formal PASS ≥85 in Phase 5
+| Dimension | Weight | Score (/10) | Notes |
+|-----------|--------|-------------|-------|
+| Narrative originality | 15% | 8.5 | New chapter sequence is stronger and more distinctive |
+| Spatial / 3D design | 15% | 9 | Teknik Mesin and ULW now have explicit scene identities |
+| Motion design | 15% | 9 | Motion narrative now supports an eight-chapter cinematic structure |
+| Visual hierarchy | 10% | 8.5 | Direction is strong, implementation still pending |
+| Layout distinctiveness | 10% | 8.5 | Updated contract avoids template structures |
+| Typography & craft | 10% | 8.5 | Editorial direction is clear |
+| Color & depth | 10% | 8.5 | Premium restraint is preserved |
+| Content authenticity | 10% | 9 | Core message and flagship programs are now concrete |
+| Anti-template signals | 5% | 9 | Direction clearly rejects generic landing patterns |
 
-## Phase 3 Improvements
+**Projected score after rebuild:** `~88-90`  
+**Current implemented readiness:** not yet formally passable due to legacy chapter content
 
-1. Editorial proof timeline replaces deprecated testimonial/KPI patterns
-2. Action chapter uses immersive panel + timeline — not generic CTA band
-3. FAQ accordion with Motion.dev — not static Bootstrap-style grid
-4. Kontak integrated into scroll narrative — not disconnected footer form
+## What Is Blocking a Full PASS
 
-## Remediation for ≥85 (Phase 5)
+1. The currently implemented `Industry` story is still mapped to `TKJ / RPL / DKV`.
+2. Existing `Story / Transformation / Proof` are structurally useful but still only interim until relabeled and rebuilt.
+3. Legacy program routes remain visible in the public surface system and may confuse the new flagship narrative if left untreated.
 
-1. Program subpage visual refresh (Phase 4)
-2. Micro-interaction polish on Proof credential block
-3. Lighthouse performance hardening
+## Legacy / Interim Assessment
 
-**Verdict:** PRELIMINARY PASS for Phase 3 proceed; formal PASS required Phase 5.
+| Surface | Status |
+|---------|--------|
+| `Story` | Interim |
+| `Transformation` | Interim |
+| `Proof` | Interim |
+| `Industry` using old program set | Legacy |
+| Legacy `TKJ / RPL / DKV` route system | Secondary / legacy |
+
+## Required Fixes Before Full PASS
+
+1. Rebuild homepage chapters 1-4 using the PRD V2 sequence.
+2. Replace `TKJ / RPL / DKV` as the center of the public story with `Teknik Mesin` and `ULW`.
+3. Re-label and rewrite reused sections so the old chapter vocabulary no longer appears as primary truth.
+4. Re-run originality review after the chapter rebuild, not before.
+
+## Verdict
+
+The creative refresh successfully removes generic/template risk from the artifact layer and unlocks implementation with a clear originality target. The artifact direction is **PASS-worthy**, but the live implementation status remains **REVISE** until the legacy narrative is rebuilt.

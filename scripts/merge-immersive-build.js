@@ -33,14 +33,7 @@ if (!fs.existsSync(indexSrc)) {
   process.exit(1);
 }
 
-fs.copyFileSync(indexSrc, path.join(PUBLIC, 'index.html'));
-console.log('  ✓ Merged index.html → public/');
-
-const assetsSrc = path.join(DIST, 'assets/immersive');
-const assetsDest = path.join(PUBLIC, 'assets/immersive');
-if (fs.existsSync(assetsSrc)) {
-  copyRecursive(assetsSrc, assetsDest);
-  console.log('  ✓ Merged assets/immersive/ → public/');
-}
+copyRecursive(DIST, PUBLIC);
+console.log('  ✓ Merged immersive multi-page build → public/');
 
 console.log('Immersive build merge complete.');

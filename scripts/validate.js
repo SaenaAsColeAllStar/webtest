@@ -25,39 +25,44 @@ const requiredFiles = [
 ];
 
 const immersiveSectionIds = [
-  'story',
-  'transformation',
-  'industry',
-  'student-journey',
-  'career-journey',
-  'proof',
-  'action',
+  'future-starts-here',
+  'industry-challenge',
+  'teknik-mesin',
+  'ulw',
+  'industry-alignment',
+  'student-transformation',
+  'achievements',
+  'ppdb',
   'faq',
   'kontak',
 ];
 
 const immersiveSourceFiles = [
-  'components/scenes/StoryChapter.tsx',
+  'components/scenes/FutureStartsHereChapter.tsx',
+  'components/scenes/IndustryChallengeChapter.tsx',
+  'components/scenes/TeknikMesinChapter.tsx',
+  'components/scenes/UsahaLayananWisataChapter.tsx',
+  'components/scenes/IndustryAlignmentChapter.tsx',
   'components/scenes/TransformationChapter.tsx',
-  'components/scenes/IndustryChapter.tsx',
-  'components/scenes/StudentJourneyChapter.tsx',
-  'components/scenes/CareerJourneyChapter.tsx',
   'components/scenes/ProofChapter.tsx',
   'components/scenes/ActionChapter.tsx',
   'components/scenes/FaqChapter.tsx',
   'components/scenes/KontakChapter.tsx',
   'components/layout/Header.tsx',
   'App.tsx',
+  'subpages/main.tsx',
+  'subpages/content.ts',
+  'lib/chapters.ts',
+  'lib/model-manifest.ts',
 ];
 
 const requiredNavLinks = [
-  { link: 'ppdb/', files: ['components/scenes/ActionChapter.tsx', 'App.tsx'] },
-  { link: '#proof', files: ['components/layout/Header.tsx'] },
-  { link: '#action', files: ['components/layout/Header.tsx'] },
+  { link: "id: 'ppdb'", files: ['lib/chapters.ts', 'components/layout/Header.tsx'] },
+  { link: "id: 'achievements'", files: ['lib/chapters.ts'] },
   { link: '#faq', files: ['components/layout/Header.tsx'] },
   { link: '#kontak', files: ['components/layout/Header.tsx'] },
   { link: 'portal/siswa.html', files: ['components/layout/Header.tsx'] },
-  { link: 'program/tkj.html', files: ['components/scenes/StoryChapter.tsx', 'App.tsx'] },
+  { link: 'ppdb/', files: ['App.tsx'] },
 ];
 
 const forbiddenPatterns = [
@@ -163,7 +168,7 @@ if (errors.length > 0) {
 console.log('Build validation passed.');
 console.log('  ✓ All required files present');
 console.log('  ✓ Immersive SPA shell verified');
-console.log('  ✓ Story through Kontak chapters in source');
+console.log('  ✓ V2.1 chapters through Kontak in source');
 console.log('  ✓ Multi-page structure verified');
 console.log('  ✓ Immersive assets present');
 console.log('  ✓ Design system compliance checks passed');

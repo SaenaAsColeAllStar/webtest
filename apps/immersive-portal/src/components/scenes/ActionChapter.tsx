@@ -43,7 +43,7 @@ export function ActionChapter() {
   return (
     <section
       className="chapter chapter--action"
-      id="action"
+      id="ppdb"
       ref={sectionRef}
       aria-labelledby="action-title"
     >
@@ -57,14 +57,14 @@ export function ActionChapter() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="action-panel__badge">Gelombang 1 Dibuka</span>
-          <span className="chapter__badge">Bab 7 · Langkah Berikutnya</span>
+          <span className="chapter__badge">Bab 8 · PPDB</span>
           <h2 className="chapter__title" id="action-title">
             Daftar PPDB{' '}
             <span className="chapter__title-accent">2026/2027</span>
           </h2>
           <p className="chapter__lead action-panel__lead">
-            Kuota terbatas per jurusan TKJ, RPL, dan DKV. Gelombang 1 berlangsung
-            15 April – 30 Juni 2026 — pengumuman 5 Juli 2026.
+            Kuota terbatas untuk program unggulan Teknik Mesin dan ULW. Gelombang 1
+            berlangsung 15 April – 30 Juni 2026 — pengumuman 5 Juli 2026.
           </p>
 
           <div className="action-timeline" aria-label="Alur pendaftaran PPDB">

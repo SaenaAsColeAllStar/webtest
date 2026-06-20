@@ -1,0 +1,272 @@
+{
+  "asset": {
+    "generator": "glTF-Transform v4.4.0",
+    "version": "2.0"
+  },
+  "accessors": [
+    {
+      "type": "SCALAR",
+      "componentType": 5125,
+      "count": 2892084,
+      "normalized": false,
+      "byteOffset": 0,
+      "bufferView": 1
+    },
+    {
+      "name": "tripo_node_b72852f2-7e75-46c5-9221-3372c963a947-Mesh_0_positions",
+      "type": "VEC3",
+      "componentType": 5122,
+      "count": 509599,
+      "max": [
+        30943,
+        15709,
+        32767
+      ],
+      "min": [
+        -30943,
+        -15709,
+        -32767
+      ],
+      "normalized": true,
+      "byteOffset": 0,
+      "bufferView": 2
+    },
+    {
+      "name": "tripo_node_b72852f2-7e75-46c5-9221-3372c963a947-Mesh_0_texcoords",
+      "type": "VEC2",
+      "componentType": 5123,
+      "count": 509599,
+      "normalized": true,
+      "byteOffset": 0,
+      "bufferView": 3
+    },
+    {
+      "type": "SCALAR",
+      "componentType": 5125,
+      "count": 2892066
+    },
+    {
+      "name": "tripo_node_b72852f2-7e75-46c5-9221-3372c963a947-Mesh_0_positions",
+      "type": "VEC3",
+      "componentType": 5122,
+      "count": 509599,
+      "max": [
+        30943,
+        15709,
+        32767
+      ],
+      "min": [
+        -30943,
+        -15709,
+        -32767
+      ],
+      "normalized": true
+    },
+    {
+      "name": "tripo_node_b72852f2-7e75-46c5-9221-3372c963a947-Mesh_0_texcoords",
+      "type": "VEC2",
+      "componentType": 5123,
+      "count": 509599,
+      "normalized": true
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 1802625
+    },
+    {
+      "buffer": 1,
+      "byteOffset": 0,
+      "byteLength": 11568336,
+      "target": 34963,
+      "extensions": {
+        "EXT_meshopt_compression": {
+          "buffer": 0,
+          "byteOffset": 1802625,
+          "byteLength": 1126254,
+          "mode": "TRIANGLES",
+          "byteStride": 4,
+          "count": 2892084
+        }
+      }
+    },
+    {
+      "buffer": 1,
+      "byteOffset": 11568336,
+      "byteLength": 4076792,
+      "target": 34962,
+      "byteStride": 8,
+      "extensions": {
+        "EXT_meshopt_compression": {
+          "buffer": 0,
+          "byteOffset": 2928881,
+          "byteLength": 1724702,
+          "mode": "ATTRIBUTES",
+          "byteStride": 8,
+          "count": 509599
+        }
+      }
+    },
+    {
+      "buffer": 1,
+      "byteOffset": 15645128,
+      "byteLength": 2038396,
+      "target": 34962,
+      "byteStride": 4,
+      "extensions": {
+        "EXT_meshopt_compression": {
+          "buffer": 0,
+          "byteOffset": 4653585,
+          "byteLength": 1294540,
+          "mode": "ATTRIBUTES",
+          "byteStride": 4,
+          "count": 509599
+        }
+      }
+    }
+  ],
+  "samplers": [
+    {
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "extensions": {
+        "EXT_texture_webp": {
+          "source": 0
+        }
+      }
+    },
+    {
+      "sampler": 0,
+      "extensions": {
+        "EXT_texture_webp": {
+          "source": 2
+        }
+      }
+    },
+    {
+      "sampler": 0,
+      "extensions": {
+        "EXT_texture_webp": {
+          "source": 1
+        }
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "modernairportterminal3dmodel_basecolor",
+      "mimeType": "image/webp",
+      "uri": "baseColor_1.webp"
+    },
+    {
+      "name": "modernairportterminal3dmodel_roughness",
+      "mimeType": "image/webp",
+      "uri": "metallicRoughness_1.webp"
+    },
+    {
+      "name": "modernairportterminal3dmodel_normal",
+      "mimeType": "image/webp",
+      "uri": "normal_1.webp"
+    }
+  ],
+  "buffers": [
+    {
+      "name": "tripo_convert_b72852f2-7e75-46c5-9221-3372c963a947",
+      "uri": "buffer.bin",
+      "byteLength": 5948125
+    },
+    {
+      "byteLength": 17683524,
+      "extensions": {
+        "EXT_meshopt_compression": {
+          "fallback": true
+        }
+      }
+    }
+  ],
+  "materials": [
+    {
+      "name": "tripo_mat_b72852f2-7e75-46c5-9221-3372c963a947",
+      "pbrMetallicRoughness": {
+        "metallicFactor": 0,
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 2
+        }
+      },
+      "normalTexture": {
+        "index": 1
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "tripo_node_b72852f2-7e75-46c5-9221-3372c963a947-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 4,
+            "TEXCOORD_0": 5
+          },
+          "mode": 4,
+          "material": 0,
+          "indices": 3,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 0,
+              "attributes": {
+                "POSITION": 0,
+                "TEXCOORD_0": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "tripo_node_b72852f2-7e75-46c5-9221-3372c963a947",
+      "translation": [
+        -0.009856998920440674,
+        -0.0015484988689422607,
+        -0.0001979917287826538
+      ],
+      "scale": [
+        0.4987639933824539,
+        0.4987639933824539,
+        0.4987639933824539
+      ],
+      "mesh": 0
+    }
+  ],
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "scene": 0,
+  "extensionsUsed": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_draco_mesh_compression",
+    "KHR_mesh_quantization"
+  ],
+  "extensionsRequired": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_draco_mesh_compression",
+    "KHR_mesh_quantization"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "cnc-lathe",
+  "status": "blocked",
+  "reason": "SolidWorks assembly (.SLDASM) — tidak didukung assimp/Blender; ekspor dari SolidWorks diperlukan",
+  "sourcePath": "3d/uploads-files-4351282-Double+station+lathe+loading+and+unloading/Double station lathe loading and unloading.SLDASM",
+  "packageSizeBytes": 74511880,
+  "partCount": 100,
+  "targetBudgetTier": "standard",
+  "toolingVerified": {
+    "blender": "4.0.2 (/usr/bin/blender)",
+    "fbx2gltf": "0.13.1 (~/.local/bin/FBX2glTF)",
+    "assimp": "5.3 (/usr/bin/assimp)"
+  },
+  "conversionAttempts": [
+    {
+      "tool": "teknovo-3d-pipeline convert",
+      "date": "2026-06-21",
+      "result": "fail",
+      "error": "Unsupported input format \".sldasm\". Supported inputs: .glb, .gltf, .obj, .fbx, .blend, .stl."
+    },
+    {
+      "tool": "assimp export",
+      "date": "2026-06-21",
+      "result": "fail",
+      "error": "No suitable reader found for the file format of file .SLDASM"
+    }
+  ],
+  "conversionInstructions": [
+    "Buka assembly di SolidWorks. Sembunyikan part internal; simpan versi simplified hero mesh.",
+    "Ekspor: File → Save As → glTF/GLB (jika add-in tersedia), atau STEP/OBJ lalu konversi ke GLB.",
+    "Alternatif: export single simplified body sebagai FBX/OBJ, lalu:",
+    "  cd tools/teknovo-3d-pipeline",
+    "  node dist/cli/index.js convert <exported.fbx> --output ../../public/models/cnc-lathe/.work/cnc-lathe.glb",
+    "  node dist/cli/index.js optimize ../../public/models/cnc-lathe/.work/cnc-lathe.glb --budget standard --output ../../public/models/cnc-lathe/cnc-lathe-lod0.glb",
+    "Deploy LOD chain + model-manifest.json ke public/models/cnc-lathe/"
+  ],
+  "pipelineAdapter": "tools/teknovo-3d-pipeline/adapters/cad-formats.json#solidworks"
+}

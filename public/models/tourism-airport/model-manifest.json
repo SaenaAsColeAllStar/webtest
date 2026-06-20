@@ -1,0 +1,96 @@
+{
+  "id": "tourism-airport",
+  "displayName": "Modern Airport Terminal",
+  "prdRole": "Usaha Layanan Wisata / Tourism",
+  "source": "3d/uploads-files-6830356-modern+airport+terminal+3d+model/tripo_convert_b72852f2-7e75-46c5-9221-3372c963a947.obj",
+  "format": "glb",
+  "cloudflareReady": true,
+  "draco": true,
+  "meshopt": true,
+  "generatedAt": "2026-06-20T23:20:00.000Z",
+  "pipeline": "tools/teknovo-3d-pipeline optimize",
+  "targetBudgetTier": "standard",
+  "lods": [
+    {
+      "name": "lod0",
+      "ratio": 1,
+      "path": "/models/tourism-airport/tourism-airport-lod0.glb",
+      "bytes": 6693320,
+      "budgetValidation": {
+        "hero": "pass",
+        "standard": "pass",
+        "mobile": "fail"
+      }
+    },
+    {
+      "name": "lod1",
+      "ratio": 0.6,
+      "path": "/models/tourism-airport/tourism-airport-lod1.glb",
+      "bytes": 4684708,
+      "budgetValidation": {
+        "hero": "pass",
+        "standard": "pass",
+        "mobile": "pass"
+      }
+    },
+    {
+      "name": "lod2",
+      "ratio": 0.3,
+      "path": "/models/tourism-airport/tourism-airport-lod2.glb",
+      "bytes": 2962708,
+      "budgetValidation": {
+        "hero": "pass",
+        "standard": "pass",
+        "mobile": "pass"
+      }
+    },
+    {
+      "name": "lod3",
+      "ratio": 0.1,
+      "path": "/models/tourism-airport/tourism-airport-lod3.glb",
+      "bytes": 1665980,
+      "budgetValidation": {
+        "hero": "pass",
+        "standard": "pass",
+        "mobile": "pass"
+      }
+    }
+  ],
+  "textures": [
+    {
+      "name": "modernairportterminal3dmodel_basecolor",
+      "mimeType": "image/webp",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 592782
+    },
+    {
+      "name": "modernairportterminal3dmodel_roughness",
+      "mimeType": "image/webp",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 124804
+    },
+    {
+      "name": "modernairportterminal3dmodel_normal",
+      "mimeType": "image/webp",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 24006
+    }
+  ],
+  "geometry": {
+    "triangleCount": 964028,
+    "vertexCount": 509599,
+    "meshCount": 1,
+    "note": "Triangle count exceeds 40K desktop guidance; serve lod1+ on mobile, consider further decimation for lod0 in Phase 4."
+  },
+  "r3f": {
+    "useGLTF": {
+      "desktop": "/models/tourism-airport/tourism-airport-lod0.glb",
+      "mobile": "/models/tourism-airport/tourism-airport-lod3.glb",
+      "draco": true,
+      "meshopt": true
+    }
+  }
+}

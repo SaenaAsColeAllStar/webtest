@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Teknovo 3D Pipeline Report</title>
+    <style>
+      body { font-family: Inter, Arial, sans-serif; background: #030712; color: #e5e7eb; margin: 0; padding: 32px; }
+      h1, h2 { color: #f9fafb; }
+      section { background: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+      .metric { background: #111827; border-radius: 10px; padding: 16px; }
+      table { width: 100%; border-collapse: collapse; }
+      td, th { text-align: left; padding: 10px; border-bottom: 1px solid #1f2937; }
+      code { color: #93c5fd; }
+    </style>
+  </head>
+  <body>
+    <h1>Teknovo 3D Pipeline Report</h1>
+    <section>
+      <p><strong>Input:</strong> /www/wwwroot/webtest/public/models/hotel-hospitality/.work/hotel-hospitality.glb</p>
+      <p><strong>Output:</strong> /www/wwwroot/webtest/tools/teknovo-3d-pipeline/assets/optimized/hotel-hospitality/hotel-hospitality-optimized.glb</p>
+      <p><strong>Generated:</strong> 2026-06-20T16:44:09.452Z</p>
+    </section>
+    <section>
+      <h2>Asset Summary</h2>
+      <div class="grid">
+        <div class="metric"><strong>Size</strong><br />6.89 MB</div>
+        <div class="metric"><strong>Triangles</strong><br />769751</div>
+        <div class="metric"><strong>Vertices</strong><br />686877</div>
+        <div class="metric"><strong>Draw Calls</strong><br />124</div>
+        <div class="metric"><strong>Meshes</strong><br />65</div>
+        <div class="metric"><strong>Textures</strong><br />0</div>
+      </div>
+    </section>
+    <section>
+      <h2>Validation</h2>
+      <p><strong>Passed:</strong> Yes (standard)</p>
+      <ul><li style="border-left:4px solid #f59e0b;padding:12px 16px;margin:0 0 12px;background:#111827;border-radius:8px;">
+          <strong>draw-calls.high</strong><br />
+          <span>Draw calls are high (124).</span><br />
+          <em>Merge primitives or materials where practical.</em>
+        </li></ul>
+    </section>
+    <section>
+      <h2>Textures</h2>
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Format</th><th>Resolution</th><th>Size</th></tr>
+        </thead>
+        <tbody><tr><td colspan="4">No textures</td></tr></tbody>
+      </table>
+    </section>
+    
+    <section>
+      <h2>Manifest</h2>
+      <p><strong>Optimized asset:</strong> assets/optimized/hotel-hospitality/hotel-hospitality-optimized.glb</p>
+      <p><strong>R3F / useGLTF path:</strong> assets/optimized/hotel-hospitality/hotel-hospitality-optimized.glb</p>
+      <ul><li><strong>lod0</strong> (100%) - assets/optimized/hotel-hospitality/hotel-hospitality-lod0.glb - 6.95 MB</li><li><strong>lod1</strong> (60%) - assets/optimized/hotel-hospitality/hotel-hospitality-lod1.glb - 4.93 MB</li><li><strong>lod2</strong> (30%) - assets/optimized/hotel-hospitality/hotel-hospitality-lod2.glb - 3.54 MB</li><li><strong>lod3</strong> (10%) - assets/optimized/hotel-hospitality/hotel-hospitality-lod3.glb - 3.29 MB</li></ul>
+    </section>
+  
+  </body>
+</html>

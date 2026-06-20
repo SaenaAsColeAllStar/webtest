@@ -1,0 +1,22 @@
+{
+  "name": "@teknovo-asset-studio/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@teknovo-asset-studio/preview": "file:../preview",
+    "better-sqlite3": "^11.10.0",
+    "mime-types": "^2.1.35",
+    "uuid": "^11.1.0",
+    "zod": "^3.25.67"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/mime-types": "^2.1.4"
+  }
+}

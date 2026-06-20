@@ -1,0 +1,66 @@
+{
+  "id": "tourism-airport-converted",
+  "source": "/www/wwwroot/webtest/public/models/.work/tourism-airport-converted.glb",
+  "optimized": "../../public/models/.work/tourism-airport-optimized.glb",
+  "format": "glb",
+  "cloudflareReady": true,
+  "draco": true,
+  "meshopt": true,
+  "generatedAt": "2026-06-20T16:19:21.442Z",
+  "lods": [
+    {
+      "name": "lod0",
+      "ratio": 1,
+      "path": "assets/optimized/tourism-airport-converted/tourism-airport-converted-lod0.glb",
+      "bytes": 6693320
+    },
+    {
+      "name": "lod1",
+      "ratio": 0.6,
+      "path": "assets/optimized/tourism-airport-converted/tourism-airport-converted-lod1.glb",
+      "bytes": 4684708
+    },
+    {
+      "name": "lod2",
+      "ratio": 0.3,
+      "path": "assets/optimized/tourism-airport-converted/tourism-airport-converted-lod2.glb",
+      "bytes": 2962708
+    },
+    {
+      "name": "lod3",
+      "ratio": 0.1,
+      "path": "assets/optimized/tourism-airport-converted/tourism-airport-converted-lod3.glb",
+      "bytes": 1665980
+    }
+  ],
+  "textures": [
+    {
+      "name": "modernairportterminal3dmodel_basecolor",
+      "mimeType": "image/webp",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 592782
+    },
+    {
+      "name": "modernairportterminal3dmodel_roughness",
+      "mimeType": "image/webp",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 124804
+    },
+    {
+      "name": "modernairportterminal3dmodel_normal",
+      "mimeType": "image/webp",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 24006
+    }
+  ],
+  "r3f": {
+    "useGLTF": {
+      "path": "../../public/models/.work/tourism-airport-optimized.glb",
+      "draco": true,
+      "meshopt": true
+    }
+  }
+}

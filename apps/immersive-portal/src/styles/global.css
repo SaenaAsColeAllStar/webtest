@@ -52,11 +52,334 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  width: 100%;
   height: 2px;
   background: linear-gradient(90deg, var(--color-accent-electric), var(--color-accent-cyan));
   z-index: 9998;
   transform-origin: left;
   transform: scaleX(0);
+}
+
+.scroll-progress-chapters {
+  position: fixed;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9997;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.scroll-progress-chapters__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(148, 163, 184, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background var(--motion-duration-fast), transform var(--motion-duration-fast);
+}
+
+.scroll-progress-chapters__dot.is-active {
+  background: var(--color-accent-cyan);
+  transform: scale(1.25);
+  box-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
+}
+
+.hero-message {
+  font-family: 'Geist Sans', Inter, sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-accent-cyan);
+  margin-bottom: 1rem;
+  text-transform: none;
+}
+
+.chapter--future-starts-here {
+  min-height: 110vh;
+}
+
+.chapter--industry-challenge {
+  min-height: 115vh;
+}
+
+.chapter--teknik-mesin {
+  min-height: 120vh;
+}
+
+.chapter--ulw {
+  min-height: 140vh;
+}
+
+.chapter--industry-alignment {
+  min-height: 100vh;
+}
+
+.chapter--stub .chapter-stub__icon {
+  margin: 2rem auto 1rem;
+  color: var(--color-accent-electric);
+  opacity: 0.7;
+}
+
+.chapter-stub__note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.challenge-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 2rem 0 1.5rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  background: rgba(251, 191, 36, 0.06);
+  color: #fbbf24;
+  font-size: 14px;
+  max-width: 640px;
+}
+
+.challenge-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.challenge-stat {
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: var(--color-surface-1);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 2px solid var(--stat-accent, var(--color-accent-cyan));
+}
+
+.challenge-stat__icon {
+  color: var(--stat-accent, var(--color-accent-cyan));
+  margin-bottom: 0.75rem;
+}
+
+.challenge-stat__value {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+}
+
+.challenge-stat__label {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.teknik-mesin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.teknik-mesin-card {
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: var(--color-surface-1);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.teknik-mesin-card svg {
+  color: var(--color-accent-electric);
+  margin-bottom: 0.75rem;
+}
+
+.teknik-mesin-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.teknik-mesin-card p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+}
+
+.asset-placeholder-note {
+  margin-top: 1.5rem;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.ulw-progress {
+  --ulw-progress: 0;
+  position: relative;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  margin: 2rem 0;
+  max-width: 480px;
+  overflow: hidden;
+}
+
+.ulw-progress__track {
+  display: block;
+  height: 100%;
+  width: calc(var(--ulw-progress) * 100%);
+  background: linear-gradient(90deg, #94a3b8, #fbbf24);
+  border-radius: 999px;
+  transition: width 0.1s linear;
+}
+
+.ulw-beats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.ulw-beat {
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: var(--color-surface-1);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: opacity var(--motion-duration-base);
+}
+
+.ulw-beat--airport {
+  opacity: 1;
+}
+
+.ulw-beat--hotel {
+  opacity: 0.45;
+}
+
+.ulw-beat__icon {
+  color: var(--color-accent-cyan);
+  margin-bottom: 0.5rem;
+}
+
+.ulw-beat__phase {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.ulw-beat h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.ulw-beat p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+}
+
+.ulw-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  max-width: 640px;
+}
+
+.ulw-highlight svg {
+  color: var(--color-accent-electric);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.mobile-scene-fallback {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: var(--color-surface-1);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  text-align: center;
+}
+
+.mobile-scene-fallback__building {
+  width: 120px;
+  height: 80px;
+  margin: 0 auto 0.75rem;
+  background: linear-gradient(180deg, #2d2d44 60%, #1e1e2e 60%);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+}
+
+.mobile-scene-fallback__building::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-bottom: 24px solid #334155;
+}
+
+.mobile-scene-fallback__lathe {
+  width: 140px;
+  height: 40px;
+  margin: 0 auto 0.75rem;
+  background: linear-gradient(90deg, #475569, #64748b, #475569);
+  border-radius: 4px;
+}
+
+.mobile-scene-fallback__caption,
+.mobile-scene-fallback p {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.mobile-scene-fallback--ulw {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .scroll-progress-chapters {
+    display: none;
+  }
+
+  .scene-canvas {
+    opacity: 0.35;
+  }
+
+  .chapter--ulw {
+    min-height: 120vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ulw-beat--airport,
+  .ulw-beat--hotel {
+    opacity: 1 !important;
+  }
+
+  .ulw-progress__track {
+    width: 50% !important;
+  }
 }
 
 .header {

@@ -1,13 +1,14 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useLenisScroll } from '@/hooks/useLenisScroll';
 import { Header } from '@/components/layout/Header';
 import { ScrollProgress } from '@/components/layout/ScrollProgress';
 import { SceneCanvas } from '@/components/canvas/SceneCanvas';
-import { StoryChapter } from '@/components/scenes/StoryChapter';
+import { FutureStartsHereChapter } from '@/components/scenes/FutureStartsHereChapter';
+import { IndustryChallengeChapter } from '@/components/scenes/IndustryChallengeChapter';
+import { TeknikMesinChapter } from '@/components/scenes/TeknikMesinChapter';
+import { UsahaLayananWisataChapter } from '@/components/scenes/UsahaLayananWisataChapter';
+import { IndustryAlignmentChapter } from '@/components/scenes/IndustryAlignmentChapter';
 import { TransformationChapter } from '@/components/scenes/TransformationChapter';
-import { IndustryChapter } from '@/components/scenes/IndustryChapter';
-import { StudentJourneyChapter } from '@/components/scenes/StudentJourneyChapter';
-import { CareerJourneyChapter } from '@/components/scenes/CareerJourneyChapter';
 import { ProofChapter } from '@/components/scenes/ProofChapter';
 import { ActionChapter } from '@/components/scenes/ActionChapter';
 import { FaqChapter } from '@/components/scenes/FaqChapter';
@@ -28,11 +29,9 @@ function PageLoading({ visible }: { visible: boolean }) {
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const scrollProgressRef = useRef(0);
 
   const handleScroll = useCallback((progress: number) => {
     setScrollProgress(progress);
-    scrollProgressRef.current = progress;
   }, []);
 
   useLenisScroll({ onScroll: handleScroll });
@@ -45,18 +44,19 @@ export default function App() {
   return (
     <>
       <PageLoading visible={loading} />
-      <a href="#story" className="skip-link">
+      <a href="#future-starts-here" className="skip-link">
         Lewati ke konten utama
       </a>
       <ScrollProgress progress={scrollProgress} />
       <Header />
-      <SceneCanvas scrollProgress={scrollProgressRef} />
+      <SceneCanvas />
       <main>
-        <StoryChapter />
+        <FutureStartsHereChapter />
+        <IndustryChallengeChapter />
+        <TeknikMesinChapter />
+        <UsahaLayananWisataChapter />
+        <IndustryAlignmentChapter />
         <TransformationChapter />
-        <IndustryChapter />
-        <StudentJourneyChapter />
-        <CareerJourneyChapter />
         <ProofChapter />
         <ActionChapter />
         <FaqChapter />
@@ -65,16 +65,15 @@ export default function App() {
       <footer className="footer-mini">
         <p>
           © {new Date().getFullYear()} SMK TEKNOVO ·{' '}
-          <a href="#story">Beranda</a> ·{' '}
-          <a href="#proof">Prestasi</a> ·{' '}
-          <a href="#action">PPDB</a> ·{' '}
+          <a href="#future-starts-here">Beranda</a> ·{' '}
+          <a href="#achievements">Prestasi</a> ·{' '}
+          <a href="#ppdb">PPDB</a> ·{' '}
           <a href="#faq">FAQ</a> ·{' '}
           <a href="#kontak">Kontak</a>
         </p>
         <p style={{ marginTop: '0.5rem', fontSize: '12px', opacity: 0.7 }}>
           <a href="ppdb/">Daftar PPDB</a> ·{' '}
           <a href="berita/">Berita</a> ·{' '}
-          <a href="program/tkj.html">Program</a> ·{' '}
           <a href="portal/siswa.html">Portal Siswa</a>
         </p>
       </footer>

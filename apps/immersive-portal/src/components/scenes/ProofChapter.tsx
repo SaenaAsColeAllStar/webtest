@@ -65,7 +65,7 @@ export function ProofChapter() {
   return (
     <section
       className="chapter chapter--proof"
-      id="proof"
+      id="achievements"
       ref={sectionRef}
       aria-labelledby="proof-title"
     >
@@ -77,7 +77,7 @@ export function ProofChapter() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="chapter__badge">Bab 6 · Bukti Nyata</span>
+          <span className="chapter__badge">Bab 7 · Achievements</span>
           <h2 className="chapter__title" id="proof-title">
             Prestasi yang{' '}
             <span className="chapter__title-accent">Bisa Diverifikasi</span>

@@ -1,0 +1,75 @@
+{
+  "id": "hotel-hospitality",
+  "displayName": "Hotel Hallway (Hospitality)",
+  "prdRole": "Usaha Layanan Wisata / Hospitality",
+  "source": "3d/uploads_files_5431567_hallway_hotel/hallway_hotel.fbx",
+  "format": "glb",
+  "cloudflareReady": true,
+  "draco": true,
+  "meshopt": true,
+  "generatedAt": "2026-06-21T00:00:00.000Z",
+  "pipeline": "tools/teknovo-3d-pipeline optimize (FBX2glTF convert)",
+  "targetBudgetTier": "standard",
+  "lods": [
+    {
+      "name": "lod0",
+      "ratio": 1,
+      "path": "/models/hotel-hospitality/hotel-hospitality-lod0.glb",
+      "bytes": 7287248,
+      "budgetValidation": {
+        "hero": "pass",
+        "standard": "pass",
+        "mobile": "fail"
+      }
+    },
+    {
+      "name": "lod1",
+      "ratio": 0.6,
+      "path": "/models/hotel-hospitality/hotel-hospitality-lod1.glb",
+      "bytes": 5166008,
+      "budgetValidation": {
+        "hero": "pass",
+        "standard": "pass",
+        "mobile": "fail"
+      }
+    },
+    {
+      "name": "lod2",
+      "ratio": 0.3,
+      "path": "/models/hotel-hospitality/hotel-hospitality-lod2.glb",
+      "bytes": 3708556,
+      "budgetValidation": {
+        "hero": "pass",
+        "standard": "pass",
+        "mobile": "pass"
+      }
+    },
+    {
+      "name": "lod3",
+      "ratio": 0.1,
+      "path": "/models/hotel-hospitality/hotel-hospitality-lod3.glb",
+      "bytes": 3444836,
+      "budgetValidation": {
+        "hero": "pass",
+        "standard": "pass",
+        "mobile": "pass"
+      }
+    }
+  ],
+  "textures": [],
+  "geometry": {
+    "triangleCount": 769751,
+    "vertexCount": 686877,
+    "meshCount": 65,
+    "materialCount": 12,
+    "note": "Triangle count exceeds 40K desktop guidance; serve lod2/lod3 on mobile. Textures embedded in FBX but stripped during optimize — may need texture re-embed in Phase 4."
+  },
+  "r3f": {
+    "useGLTF": {
+      "desktop": "/models/hotel-hospitality/hotel-hospitality-lod0.glb",
+      "mobile": "/models/hotel-hospitality/hotel-hospitality-lod3.glb",
+      "draco": true,
+      "meshopt": true
+    }
+  }
+}

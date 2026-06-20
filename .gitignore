@@ -10,6 +10,9 @@ credentials.json
 # Dependencies
 node_modules/
 
+# Wrangler local state
+.wrangler/
+
 # OS and editor
 .DS_Store
 Thumbs.db

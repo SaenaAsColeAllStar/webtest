@@ -6,6 +6,11 @@
   "scripts": {
     "build": "node scripts/validate.js",
     "lint": "node scripts/validate.js",
-    "serve": "python3 -m http.server 8080 --directory public"
+    "serve": "python3 -m http.server 8080 --directory public",
+    "preview": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.22.0"
   }
 }

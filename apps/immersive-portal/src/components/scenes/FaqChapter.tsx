@@ -16,7 +16,7 @@ const FAQ_ITEMS = [
   {
     question: 'Apa saja program keahlian yang tersedia?',
     answer:
-      'SMK TEKNOVO menyediakan tiga program: Teknik Komputer dan Jaringan (TKJ), Rekayasa Perangkat Lunak (RPL), dan Desain Komunikasi Visual (DKV).',
+      'Program unggulan SMK Teknovo: Teknik Mesin (manufaktur, fabrikasi, CNC) dan Usaha Layanan Wisata (perhotelan, pariwisata, hospitality). Keduanya dirancang untuk kesiapan industri langsung.',
   },
   {
     question: 'Apakah ada program magang dan penempatan kerja?',
@@ -41,7 +41,7 @@ export function FaqChapter() {
 
   return (
     <section
-      className="chapter chapter--faq"
+      className="chapter chapter--faq chapter--support"
       id="faq"
       ref={sectionRef}
       aria-labelledby="faq-title"

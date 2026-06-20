@@ -191,9 +191,9 @@ public/models/
 | Semver | **2.2.0** (`package.json`, `CHANGELOG.md`, tag `v2.2.0`) |
 | Folder `3d/` | **Tidak di-commit** (~1.8 GB source assets lokal) |
 | CI (`ci.yml`) | ✅ pass ([run](https://github.com/SaenaAsColeAllStar/webtest/actions)) |
-| Deploy (`deploy.yml` → Wrangler `webtest`) | ❌ gagal — `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` belum di GitHub Secrets |
-| Production URL | Belum terverifikasi live — deploy otomatis belum sukses |
-| **Deploy-ready untuk Phase 5** | **Tidak** — selesaikan secrets Cloudflare lalu re-run workflow **Build and Deploy** |
+| Deploy (`deploy.yml` → Wrangler `webtest`) | ❌ gagal — API token auth error [10000]; butuh Workers Scripts Edit permission |
+| Production URL | Belum terverifikasi live |
+| **Deploy-ready untuk Phase 5** | **Tidak** — perbaiki permission token Cloudflare |
 
 **Aksi DevOps:** Settings → Secrets → `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`; opsional perbaiki `release.yml` (hapus `npm ci --prefix apps/immersive-portal`, gunakan workspaces saja).
 
@@ -226,23 +226,47 @@ public/models/
 
 **Goal:** Menyelesaikan chapter inti tersisa dan mengunci funnel V2.1.
 
-| # | Task | Owner Skill | Deps | Est. |
-|---|------|-------------|------|------|
-| 5.1 | Build `Industry Alignment` chapter | landing-page | Phase 4 | 0.75d |
-| 5.2 | Remap `Transformation` → `Student Transformation` | landing-page | 5.1 | 0.75d |
-| 5.3 | Reframe `Proof` → `Achievements` | content + landing-page | 5.2 | 0.5d |
-| 5.4 | Finalize `PPDB` chapter | landing-page + PPDB | 5.3 | 0.5d |
-| 5.5 | FAQ/Kontak sebagai support layer | UX | 5.4 | 0.25d |
-| 5.6 | Review gates: Motion, 3D, Originality ≥85, Brand ≥90 | review gates | 5.4 | 0.5d |
+**Status:** ✅ **COMPLETE** (21 Jun 2026) — `apps/immersive-portal`, build pass
+
+| # | Task | Owner Skill | Deps | Est. | Status |
+|---|------|-------------|------|------|--------|
+| 5.1 | Build `Industry Alignment` chapter | landing-page | Phase 4 | 0.75d | ✅ |
+| 5.2 | Remap `Transformation` → `Student Transformation` | landing-page | 5.1 | 0.75d | ✅ |
+| 5.3 | Reframe `Proof` → `Achievements` | content + landing-page | 5.2 | 0.5d | ✅ |
+| 5.4 | Finalize `PPDB` chapter | landing-page + PPDB | 5.3 | 0.5d | ✅ |
+| 5.5 | FAQ/Kontak sebagai support layer | UX | 5.4 | 0.25d | ✅ |
+| 5.6 | Review gates: Motion, 3D, Originality ≥85, Brand ≥90 | review gates | 5.4 | 0.5d | 🟡 prep (formal scoring Phase 9) |
+
+### Phase 5 notes
+
+- Chapters 5–8: full V2.1 implementation (Industry Alignment network map, Student Transformation phases, Achievements editorial, PPDB conversion)
+- FAQ updated to Teknik Mesin + ULW; support layer `<aside>` below chapter 8
+- Removed legacy `TransformationChapter`, `ProofChapter`, `ActionChapter` component files
 
 ### Acceptance Criteria
 
-- 8 chapter V2.1 selesai
-- Visual Originality ≥85, Brand Consistency ≥90
+- 8 chapter V2.1 selesai ✅
+- Visual Originality ≥85, Brand Consistency ≥90 — formal gate scoring deferred to Phase 9
 
 ---
 
-## Phase 6: Remapping Halaman Legacy
+**Release & deploy (21 Jun 2026 — updated):**
+
+| Item | Status |
+|------|--------|
+| Git `main` | Phase 5 commit pending push |
+| Semver | **2.3.0** (`package.json`, `CHANGELOG.md`) |
+| Folder `3d/` | **Tidak di-commit** (~1.8 GB source assets lokal) |
+| CI (`ci.yml`) | Pending post-push |
+| Deploy (`deploy.yml` → Wrangler `webtest`) | ❌ gagal — `Authentication error [code: 10000]` — token perlu permission **Workers Scripts: Edit** + **Account Settings: Read** |
+| Production URL | Belum terverifikasi live — expected `https://webtest.<account-subdomain>.workers.dev` setelah deploy sukses |
+| **Deploy-ready untuk Phase 6** | **Tidak** — perbaiki permission API token Cloudflare lalu re-run workflow |
+
+**Aksi DevOps:** Pastikan `CLOUDFLARE_API_TOKEN` punya permission: Account → Workers Scripts → Edit; User → User Details → Read. Verifikasi `CLOUDFLARE_ACCOUNT_ID` cocok dengan akun yang memiliki worker `webtest`.
+
+---
+
+## Phase 4: Rebuild Chapters 1–4 (Vite interim)
 
 **Goal:** Menentukan nasib route lama (`TKJ/RPL/DKV`, berita, PPDB detail).
 
@@ -367,7 +391,7 @@ graph TD
 | 2 | 2–4 hari |
 | 3 | 2–3 hari ✅ |
 | 4 | 3–4 hari ✅ |
-| 5 | 2–3 hari |
+| 5 | 2–3 hari ✅ |
 | 6 | 2–3 hari |
 | 7 | 2–3 hari |
 | 8 | 4–6 hari |

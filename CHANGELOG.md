@@ -2,6 +2,17 @@
 
 All notable changes to the SMK Teknovo public portal are documented here.
 
+## [2.3.0] — 2026-06-21
+
+### Phase 5 — Rebuild Chapters 5–8 (V2.1 completion)
+
+- **Industry Alignment** (`#industry-alignment`) — networked partner map, pathway cards (PKL, sertifikasi, penempatan kerja)
+- **Student Transformation** (`#student-transformation`) — before/after panels + four-phase journey timeline
+- **Achievements** (`#achievements`) — editorial proof reframed for Teknik Mesin & ULW (no TKJ/RPL/DKV narrative)
+- **PPDB** (`#ppdb`) — finalized conversion chapter with primary message and reduced-motion support
+- FAQ/Kontak moved to support layer below the eight-chapter spine
+- Mobile + `prefers-reduced-motion` fallbacks for chapters 5–8
+
 ## [2.2.0] — 2026-06-21
 
 ### Phase 4 — Rebuild Chapters 1–4 (V2.1 interim)

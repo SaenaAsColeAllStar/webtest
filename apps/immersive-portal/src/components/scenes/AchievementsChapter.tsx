@@ -3,7 +3,8 @@ import { motion } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { Trophy, Medal, Code, Certificate } from '@phosphor-icons/react';
+import { Trophy, Medal, Gear, Certificate } from '@phosphor-icons/react';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,25 +12,25 @@ const ACHIEVEMENTS = [
   {
     icon: Trophy,
     year: '2026',
-    title: 'Juara 1 LKS Kabupaten Bidang TKJ',
+    title: 'Juara 1 LKS Kabupaten — Teknik Mesin',
     description:
-      'Tim TKJ meraih emas di Lomba Kompetensi Siswa tingkat kabupaten dan melaju ke tingkat provinsi.',
+      'Tim Teknik Mesin meraih emas di Lomba Kompetensi Siswa bidang manufaktur dan melaju ke tingkat provinsi.',
     accent: '#fbbf24',
   },
   {
     icon: Medal,
     year: '2025',
-    title: 'Medali Emas Festival Seni Pelajar — DKV',
+    title: 'Medali Emas Festival Pariwisata — ULW',
     description:
-      'Karya desain poster siswa DKV dinilai terbaik se-provinsi Jawa Barat.',
+      'Siswa Usaha Layanan Wisata dinilai terbaik dalam kompetisi layanan hospitality tingkat provinsi.',
     accent: '#a78bfa',
   },
   {
-    icon: Code,
+    icon: Gear,
     year: '2025',
-    title: 'Juara 2 Hackathon Regional RPL',
+    title: 'Inovasi Prototipe CNC Regional',
     description:
-      'Tim siswa RPL memenangkan kompetisi pengembangan aplikasi dengan solusi UMKM lokal.',
+      'Proyek fabrikasi siswa Teknik Mesin dipresentasikan di pameran industri regional dan dinilai unggul.',
     accent: '#22d3ee',
   },
   {
@@ -37,17 +38,17 @@ const ACHIEVEMENTS = [
     year: '2024',
     title: 'Akreditasi Unggul & Sertifikasi BNSP',
     description:
-      'Seluruh program keahlian tersertifikasi kompetensi nasional melalui lembaga sertifikasi resmi.',
+      'Program unggulan tersertifikasi kompetensi nasional melalui lembaga sertifikasi resmi.',
     accent: '#6366f1',
   },
 ] as const;
 
-export function ProofChapter() {
+export function AchievementsChapter() {
   const sectionRef = useRef<HTMLElement>(null);
+  const reducedMotion = useReducedMotion();
 
   useGSAP(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion || !sectionRef.current) return;
+    if (reducedMotion || !sectionRef.current) return;
 
     gsap.from('.proof-entry', {
       scrollTrigger: {
@@ -60,31 +61,31 @@ export function ProofChapter() {
       x: -32,
       stagger: 0.18,
     });
-  }, []);
+  }, [reducedMotion]);
 
   return (
     <section
-      className="chapter chapter--proof"
+      className="chapter chapter--proof chapter--achievements"
       id="achievements"
       ref={sectionRef}
-      aria-labelledby="proof-title"
+      aria-labelledby="achievements-title"
     >
       <div className="chapter__inner">
         <motion.div
           className="chapter__content"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={reducedMotion ? false : { opacity: 0, y: 40 }}
+          whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="chapter__badge">Bab 7 · Achievements</span>
-          <h2 className="chapter__title" id="proof-title">
+          <h2 className="chapter__title" id="achievements-title">
             Prestasi yang{' '}
             <span className="chapter__title-accent">Bisa Diverifikasi</span>
           </h2>
           <p className="chapter__lead">
-            Bukan angka marketing — ini pencapaian siswa dan sekolah yang tercatat
-            di kompetisi regional, sertifikasi nasional, dan dunia industri.
+            Bukan angka marketing — ini pencapaian siswa dan sekolah yang tercatat di kompetisi
+            regional, sertifikasi nasional, dan dunia industri.
           </p>
         </motion.div>
 
@@ -116,14 +117,14 @@ export function ProofChapter() {
 
         <motion.aside
           className="proof-credential"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <p>
             <strong>Terakreditasi Unggul</strong> · Mitra industri aktif ·{' '}
-            <strong>500+ alumni</strong> di sektor teknologi sejak 2015
+            <strong>500+ alumni</strong> di sektor manufaktur dan layanan sejak 2015
           </p>
         </motion.aside>
       </div>

@@ -8,9 +8,9 @@ import { IndustryChallengeChapter } from '@/components/scenes/IndustryChallengeC
 import { TeknikMesinChapter } from '@/components/scenes/TeknikMesinChapter';
 import { UsahaLayananWisataChapter } from '@/components/scenes/UsahaLayananWisataChapter';
 import { IndustryAlignmentChapter } from '@/components/scenes/IndustryAlignmentChapter';
-import { TransformationChapter } from '@/components/scenes/TransformationChapter';
-import { ProofChapter } from '@/components/scenes/ProofChapter';
-import { ActionChapter } from '@/components/scenes/ActionChapter';
+import { StudentTransformationChapter } from '@/components/scenes/StudentTransformationChapter';
+import { AchievementsChapter } from '@/components/scenes/AchievementsChapter';
+import { PpdbChapter } from '@/components/scenes/PpdbChapter';
 import { FaqChapter } from '@/components/scenes/FaqChapter';
 import { KontakChapter } from '@/components/scenes/KontakChapter';
 
@@ -56,11 +56,13 @@ export default function App() {
         <TeknikMesinChapter />
         <UsahaLayananWisataChapter />
         <IndustryAlignmentChapter />
-        <TransformationChapter />
-        <ProofChapter />
-        <ActionChapter />
-        <FaqChapter />
-        <KontakChapter />
+        <StudentTransformationChapter />
+        <AchievementsChapter />
+        <PpdbChapter />
+        <aside className="support-layer" aria-label="Dukungan calon siswa">
+          <FaqChapter />
+          <KontakChapter />
+        </aside>
       </main>
       <footer className="footer-mini">
         <p>

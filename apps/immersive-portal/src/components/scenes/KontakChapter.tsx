@@ -69,7 +69,7 @@ export function KontakChapter() {
 
   return (
     <section
-      className="chapter chapter--kontak"
+      className="chapter chapter--kontak chapter--support"
       id="kontak"
       ref={sectionRef}
       aria-labelledby="kontak-title"

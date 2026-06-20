@@ -4,13 +4,15 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { ArrowRight, CalendarBlank, Megaphone, CheckCircle } from '@phosphor-icons/react';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { PRIMARY_MESSAGE } from '@/lib/chapters';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PPDB_STEPS = [
-  { num: '1', title: 'Registrasi Online', detail: 'Isi formulir & unggah dokumen' },
-  { num: '2', title: 'Verifikasi Berkas', detail: 'Tim sekolah memverifikasi kelengkapan' },
-  { num: '3', title: 'Pengumuman', detail: 'Hasil seleksi diumumkan di portal' },
+  { num: '1', title: 'Registrasi Online', detail: 'Isi formulir & unggah dokumen persyaratan' },
+  { num: '2', title: 'Verifikasi Berkas', detail: 'Tim sekolah memverifikasi kelengkapan dokumen' },
+  { num: '3', title: 'Pengumuman', detail: 'Hasil seleksi diumumkan di portal resmi PPDB' },
 ] as const;
 
 const REQUIREMENTS = [
@@ -20,13 +22,13 @@ const REQUIREMENTS = [
   'Rapor semester 1–5',
 ] as const;
 
-export function ActionChapter() {
+export function PpdbChapter() {
   const sectionRef = useRef<HTMLElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
 
   useGSAP(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion || !sectionRef.current || !glowRef.current) return;
+    if (reducedMotion || !sectionRef.current || !glowRef.current) return;
 
     gsap.to(glowRef.current, {
       scrollTrigger: {
@@ -38,33 +40,33 @@ export function ActionChapter() {
       opacity: 0.85,
       scale: 1.05,
     });
-  }, []);
+  }, [reducedMotion]);
 
   return (
     <section
-      className="chapter chapter--action"
+      className="chapter chapter--action chapter--ppdb"
       id="ppdb"
       ref={sectionRef}
-      aria-labelledby="action-title"
+      aria-labelledby="ppdb-title"
     >
       <div className="action-glow" ref={glowRef} aria-hidden="true" />
       <div className="chapter__inner action-panel">
         <motion.div
           className="action-panel__content"
-          initial={{ opacity: 0, y: 48 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={reducedMotion ? false : { opacity: 0, y: 48 }}
+          whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="action-panel__badge">Gelombang 1 Dibuka</span>
           <span className="chapter__badge">Bab 8 · PPDB</span>
-          <h2 className="chapter__title" id="action-title">
-            Daftar PPDB{' '}
-            <span className="chapter__title-accent">2026/2027</span>
+          <h2 className="chapter__title" id="ppdb-title">
+            Mulai Perjalanan{' '}
+            <span className="chapter__title-accent">Profesional Anda</span>
           </h2>
           <p className="chapter__lead action-panel__lead">
-            Kuota terbatas untuk program unggulan Teknik Mesin dan ULW. Gelombang 1
-            berlangsung 15 April – 30 Juni 2026 — pengumuman 5 Juli 2026.
+            Daftar PPDB 2026/2027 untuk program unggulan Teknik Mesin dan Usaha Layanan Wisata.
+            {PRIMARY_MESSAGE} — kuota terbatas, gelombang 1 berlangsung 15 April – 30 Juni 2026.
           </p>
 
           <div className="action-timeline" aria-label="Alur pendaftaran PPDB">

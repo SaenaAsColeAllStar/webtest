@@ -1,123 +1,199 @@
 ---
 name: teknovo-landing-page
 description: >-
-  Design, implement, and review Teknovo public school landing pages — section
-  wireframe, PPDB conversion funnel, Geist/Inter typography, performance budgets,
-  SEO, and mobile sticky CTA. Use for marketing sites, PPDB season pages,
-  school homepages, or public-facing conversion surfaces.
+  Design, implement, and review Teknovo public immersive surfaces — cinematic
+  scroll narrative, 3D hero scenes, motion storytelling, PPDB conversion funnel,
+  performance budgets, SEO, and mobile experience. Use for marketing sites,
+  workforce ecosystem portals, PPDB season pages, or public conversion surfaces.
 ---
 
 # Teknovo Landing Page
 
-**Scope**: Public marketing surfaces only — not authenticated ERP dashboards. Strategic narrative review → **teknovo-ux-architecture**. Tokens → **teknovo-design-system**.
+**Scope**: Public immersive marketing surfaces — **not** authenticated ERP dashboards.
+
+**Philosophy**: Teknovo = **future workforce ecosystem**. Visitors should feel: Innovation · Technology · Engineering · Professionalism · Future Careers.
+
+**Not**: school brochure site · gov portal · WordPress theme · LMS landing · admin dashboard with marketing skin.
+
+Strategic narrative → **teknovo-ux-architecture**. Tokens/motion/3D → **teknovo-design-system**. Visual gate → **teknovo-ai-ish-review** (Visual Originality ≥85).
+
+Load **teknovo-brand-dna** and **teknovo-creative-director** before scene planning.
+
+---
 
 ## Narrative Layer
 
-Setiap landing page harus memiliki:
+Every landing page is a **story**, not a section list.
 
-- Storytelling
-- School identity
-- Human-centered copywriting
+### Require
 
-Bukan hanya:
+- Cinematic scroll experience · motion storytelling · school/workforce identity woven into chapters
+- Human-centered copywriting tied to career outcomes
+- Progressive discovery — user learns by scrolling, not scanning cards
 
-- Hero
-- Features
-- CTA
+### Forbidden wireframe
 
-Load **teknovo-brand-dna** and **teknovo-creative-director** before section planning.
+```text
+Hero → Features → Testimonials → CTA   ❌ DEPRECATED
+```
 
-## Hero Requirements
+### Mandatory structure
 
-Harus menjawab:
+```text
+Story → Transformation → Industry Alignment → Student Journey → Career Journey → Proof → Action
+```
 
-**Mengapa siswa memilih Teknovo?**
+Each beat is a **scroll chapter** with motion continuity — not a disconnected static block.
 
-Bukan:
+---
 
-"Selamat datang"
+## Opening Scene (Replaces "Hero")
 
-Reject generic headlines: "Welcome to the Future of Education", "Selamat Datang di Website Kami".
+### Forbidden
 
-## Brand Personality
+- Background image hero · hero banner · hero with headline + CTA only
+- 50/50 text/image split with stock photo
+- "Selamat datang" / "Welcome to the Future of Education" generic headlines
+- Lottie autoplay wallpaper
 
-**Professional, Modern, Educational, Trustworthy, Technology-Oriented.**
+### Require
 
-**Reject**: Corporate cold · crypto/web3 · over-hyped startup templates · AI-generated faces · glassmorphism overload.
+- **Interactive scene** — R3F/Three.js or motion-composed layered hierarchy
+- **3D visual narrative** opening beat — answers "Why build your future here?"
+- **Motion storytelling** — scroll or interaction reveals first story layer
+- **Layered visual hierarchy** — Apple-level focal point, not competing elements
 
-## Section Sequence (Mandatory Order)
+Document opening scene in Creative Direction Review before implementation.
 
-1. **Navbar** — sticky 80px; logo; Beranda, Profil, Akademik, Kesiswaan, Fasilitas, Berita, PPDB, Kontak; Portal dropdown; PPDB CTA; mobile drawer
-2. **Hero** — 90vh; desktop 50/50 text/image; CTA above fold; mobile stack text-first; no Lottie; hero image ≤300KB
-3. **School Overview** — stats grid (4/2/1 cols)
-4. **Programs** — TKJ, RPL, TBSM, TKRO cards with bottom CTA (4/2/1)
-5. **Advantages** — value props (3×2 / 2×3 / vertical)
-6. **Facilities** — masonry / 2 col / horizontal scroll
-7. **Achievements** — alternating timeline / vertical mobile
-8. **News** — title max 2 lines, desc max 3 lines (3/2/1)
-9. **Testimonials** — carousel, quote max 4 lines (3/2/1 visible)
-10. **PPDB CTA** — 500px banner; blue bg; timeline; requirements; Register Now
-11. **FAQ** — accordion, single open, 200ms (2 col desktop / 1 mobile)
-12. **Footer** — 4 cols; Neutral 900 bg; Neutral 100 text
+---
 
-Background rhythm: White ↔ Neutral 50 alternating.
+## Chapter Sequence (Mandatory Order)
+
+| # | Chapter | Purpose | Motion/3D |
+|---|---------|---------|-------------|
+| 0 | **Navbar** | Minimal wayfinding; Portal dropdown; PPDB path visible; mobile drawer | Subtle scroll shrink |
+| 1 | **Story** | Future workforce ecosystem positioning — why Teknovo exists | Interactive 3D scene or layered motion composition |
+| 2 | **Transformation** | From learner to industry-ready professional | Scroll-linked reveal, parallax depth |
+| 3 | **Industry Alignment** | Partnerships, tools, engineering domains (TKJ, RPL, etc.) | 3D objects representing industries — each object narrates |
+| 4 | **Student Journey** | Day-in-life, learning path, skills acquisition | Timeline motion, progressive disclosure |
+| 5 | **Career Journey** | Outcomes, alumni paths, employability | Data motion (not KPI grid blocks) |
+| 6 | **Proof** | Testimonials, achievements, accreditations — earned, not card-spam | Editorial layout, not 3-col testimonial grid |
+| 7 | **Action** | PPDB / enrollment conversion | Single dominant CTA, urgency without banner cliché |
+| 8 | **FAQ** | Accordion, purposeful answers | Viewport-triggered reveal |
+| 9 | **Footer** | Contact, links, legal | Static anchor |
+
+Optional inserts (creative-director approved only): News · Facilities — must integrate into scroll narrative, not break motion continuity.
+
+---
+
+## Scroll Experience
+
+### Require
+
+- Story chapters · progressive discovery · scene transitions · motion continuity
+- Scroll progress indicator or chapter nav
+- Parallax depth between layers (foreground/midground/background)
+- Section transitions via Motion.dev or GSAP ScrollTrigger
+
+### Avoid
+
+- Disconnected static section stacking
+- White ↔ gray alternation as sole visual rhythm
+- Independent sections with no shared easing/timing language
+
+---
 
 ## Typography & Tokens
 
-See **teknovo-design-system** for landing color scale. Headings: Geist 600–800. Body: Inter 400–600.
+See **teknovo-design-system** — public immersive palette, Geist display, volumetric depth.
+
+---
+
+## Technology Stack (Mandatory for Public)
+
+| Layer | Library |
+|-------|---------|
+| 3D scenes | Three.js, React Three Fiber, @react-three/drei |
+| UI motion | Motion.dev (motion/react) |
+| Scroll narrative | GSAP + ScrollTrigger; Lenis optional |
+| Base components | Custom scene components — not template hero blocks |
+| Icons | Phosphor with tree-shaking |
+
+---
 
 ## Buttons & Forms
 
-- Button height 48px, radius 12px
-- **One primary CTA per section** — no competing click targets
-- Form inputs 48px height; labels always visible (placeholders ≠ labels)
-- Real-time inline validation
+- Primary actions: motion-enhanced hover states · one dominant CTA per chapter
+- Form inputs: accessible labels · inline validation
+- PPDB conversion: friction-minimized path from Action chapter
+
+---
 
 ## Mobile UX
 
-- **Sticky bottom PPDB CTA** — "Daftar PPDB", min 56px height
+- Sticky bottom PPDB CTA when conversion season active (min 56px)
 - Tap targets ≥44px
-- Desktop menu hidden; navigation drawer required
+- 3D scenes degrade gracefully — simplified geometry or static narrative fallback
+- `prefers-reduced-motion`: provide non-animated story path
+- Story must remain coherent at 375px width
+
+---
 
 ## Performance Budgets
 
 | Metric | Target |
 |--------|--------|
-| Lighthouse | >95 mobile + desktop |
-| LCP | <2s |
+| Lighthouse | >90 mobile (3D surfaces); >95 static fallback path |
+| LCP | <2.5s with 3D lazy-load strategy |
 | CLS | <0.1 |
 | INP | <200ms |
 
-Images: WebP/AVIF; lazy load except hero. Icons: Phosphor with tree-shaking — no Lucide.
+3D: lazy-load canvases · code-split R3F · Draco-compressed models · no blocking hero WebGL before first paint without skeleton.
+
+---
 
 ## SEO & Analytics
 
-Open Graph meta · JSON-LD schema · sitemap · robots.txt. Track: PPDB buttons, Portal links, contact CTAs, program views.
+Open Graph · JSON-LD · sitemap · robots.txt. Track: PPDB CTAs, Portal links, chapter scroll depth, program engagement.
+
+---
 
 ## Accessibility (WCAG AA)
 
-Contrast ≥4.5:1 · keyboard focus visible · `aria-label` / `aria-describedby` on controls.
+Contrast ≥4.5:1 · keyboard focus · `aria-label` on interactive 3D controls · reduced-motion path · no seizure-inducing motion.
+
+---
 
 ## Strategic Review (Before Build)
 
-Run **teknovo-ux-architecture** landing review:
+Via **teknovo-ux-architecture** + orchestrator chain:
 
-- School-specific hero — not "Welcome to the Future of Education"
-- Real stats/testimonials — not placeholder numbers
-- Single CTA per section
-- AI-ish score ≤30 (via **teknovo-ai-ish-review**)
+- [ ] Four goal artifacts per chapter (product-designer)
+- [ ] Creative Direction APPROVE
+- [ ] Motion Design Review PASS
+- [ ] 3D Experience Review PASS (≥85)
+- [ ] No forbidden hero/grid/KPI patterns
+- [ ] Visual Originality Score ≥85 (**teknovo-ai-ish-review**)
+- [ ] Real proof content — not placeholder stats
+
+---
 
 ## Implementation Checklist
 
-- [ ] Section sequence matches wireframe
-- [ ] White/Neutral 50 alternation
-- [ ] One primary CTA per section
-- [ ] Mobile sticky PPDB banner
+- [ ] Chapter sequence matches Story → … → Action structure
+- [ ] Opening scene is interactive — not background image hero
+- [ ] Motion continuity between chapters documented and implemented
+- [ ] 3D objects mapped to story beats
+- [ ] Mobile fallback + reduced-motion path
 - [ ] Performance budgets met
 - [ ] Phosphor icons only
 - [ ] SEO meta + schema present
+- [ ] Visual Originality ≥85
+
+---
 
 ## References
 
 - `docs/prd/ui-ux/landing-page-prd.md` (if exists)
-- `docs/standards/design-system/design-system-contract.md`
+- **teknovo-design-system** · **teknovo-creative-director** · **teknovo-auto-orchestrator**
+- `.cursor/gates/taste/design-principles.md`

@@ -1,0 +1,65 @@
+# Build and deploy to Cloudflare Workers (static assets via wrangler) on push to main.
+# Required GitHub repository secrets (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN — API token with Workers/Pages edit permission
+#   CLOUDFLARE_ACCOUNT_ID — Cloudflare account ID
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            apps/immersive-portal/package-lock.json
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install immersive-portal dependencies
+        run: npm ci --prefix apps/immersive-portal
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install immersive-portal dependencies
+        run: npm ci --prefix apps/immersive-portal
+
+      - name: Build for deploy
+        run: npm run build
+
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

@@ -80,16 +80,67 @@ gates:
     artifacts:
       - docs/plans/*-product-design.md
     blocks: [ui design, frontend build, landing page build]
-    pass_criteria: Product Design Analysis complete
+    pass_criteria: Product Design Analysis complete with four goals per page
 
-  ai_ish_review:
+  motion_design_review:
+    order: 0.72
+    skill: teknovo-motion-designer
+    skills: [teknovo-motion-designer, teknovo-design-system]
+    bundle: pre-ui
+    artifacts:
+      - docs/plans/*-motion-review.md
+    blocks: [three_d_experience_review, ui implementation, landing page build]
+    pass_criteria: Motion Design Review verdict PASS with Motion Quality Score ≥80
+
+  three_d_experience_review:
+    order: 0.74
+    skill: teknovo-3d-experience-architect
+    skills: [teknovo-3d-experience-architect, teknovo-design-system]
+    bundle: pre-ui
+    artifacts:
+      - docs/plans/*-3d-review.md
+    blocks: [ux_architecture, ui implementation, landing page build]
+    pass_criteria: 3D Experience Review verdict PASS with 3D Experience Score ≥85 (or N/A documented for ERP-only)
+
+  ux_architecture:
+    order: 0.76
+    skill: teknovo-ux-architecture
+    bundle: pre-ui
+    blocks: [ui implementation, landing page build]
+    pass_criteria: UX Architecture pre-code artifacts complete (scroll IA, chapter map)
+
+  design_system:
+    order: 0.765
+    skill: teknovo-design-system
+    bundle: pre-ui
+    blocks: [ui implementation, landing page build]
+    pass_criteria: Design system tokens and R3F stack aligned to spatial plan
+
+  ui_ux_review:
+    order: 0.77
+    skills: [teknovo-ui-ux]
+    bundle: pre-ui
+    blocks: [ui implementation, landing page build]
+    pass_criteria: UI UX layout contract review PASS
+
+  visual_originality_review:
     order: 4.5
     skills: [teknovo-ai-ish-review]
-    bundle: pre-ship
+    bundle: pre-creative-review
     artifacts:
       - docs/plans/*-ai-ish-review.md
     blocks: [ui ship claim, done claim for UI work]
-    pass_criteria: AI-ish score ≤30
+    pass_criteria: Visual Originality score ≥85
+
+  ai_ish_review:
+    order: 4.5
+    alias: visual_originality_review
+    skills: [teknovo-ai-ish-review]
+    bundle: pre-creative-review
+    artifacts:
+      - docs/plans/*-ai-ish-review.md
+    blocks: [ui ship claim, done claim for UI work]
+    pass_criteria: Visual Originality score ≥85
 
   quality:
     order: 5
@@ -119,11 +170,16 @@ workflow_sequence:
   - brand_dna
   - creative_director
   - product_designer
+  - motion_design_review
+  - three_d_experience_review
+  - ux_architecture
+  - design_system
+  - ui_ux_review
   - taste
   - assurance
   - security_pre_impl
   - implementation
-  - ai_ish_review
+  - visual_originality_review
   - verification_chain
   - quality
   - security_pre_deploy
@@ -201,11 +257,48 @@ block_conditions:
     action: block_implementation_and_deploy
     remediation: "Address security-reviewer findings; re-run teknovo-security-review"
 
-  - id: ai_ish_score_exceeded
-    check: AI-ish score > 30
+  - id: visual_originality_below_threshold
+    check: Visual Originality score < 85
     action: block_ui_implementation
     applies_to: [landing-page, ui-only, generic-feature with UI]
-    remediation: "Re-run teknovo-creative-director and teknovo-product-designer; redesign until score ≤30"
+    remediation: "Re-run teknovo-creative-director and teknovo-product-designer; redesign until Visual Originality ≥85"
+
+  - id: ai_ish_score_exceeded
+    alias: visual_originality_below_threshold
+    check: Visual Originality score < 85
+    action: block_ui_implementation
+    applies_to: [landing-page, ui-only, generic-feature with UI]
+    remediation: "Re-run teknovo-creative-director and teknovo-product-designer; redesign until Visual Originality ≥85"
+
+  - id: skipped_motion_review
+    check: UI work without Motion Design Review PASS
+    action: block_ui_implementation
+    applies_to: [landing-page, ui-only]
+    remediation: "Complete motion design review artifact"
+
+  - id: skipped_3d_review
+    check: Public UI work without 3D Experience Review PASS or N/A
+    action: block_ui_implementation
+    applies_to: [landing-page, ui-only]
+    remediation: "Complete 3D experience review artifact (teknovo-3d-experience-architect) or document N/A"
+
+  - id: skipped_motion_before_3d
+    check: 3D review attempted without Motion Design Review PASS
+    action: block_ui_implementation
+    applies_to: [landing-page, ui-only]
+    remediation: "Complete teknovo-motion-designer review first (Motion Quality Score ≥80)"
+
+  - id: skipped_ui_ux_review
+    check: UI work without UI UX Review PASS
+    action: block_ui_implementation
+    applies_to: [landing-page, ui-only]
+    remediation: "Complete UI UX layout contract review"
+
+  - id: direct_implementation_without_chain
+    check: UI code written before creative governance chain complete
+    action: block_ui_implementation
+    applies_to: [landing-page, ui-only]
+    remediation: "Follow mandatory chain: Brand DNA → Creative Director → Product Designer → Motion → 3D Experience → UX Architecture → Design System → UI UX → Implementation"
 
   - id: missing_brand_alignment
     check: UI work without Brand Alignment Note

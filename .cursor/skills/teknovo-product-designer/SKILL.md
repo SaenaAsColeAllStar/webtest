@@ -1,15 +1,17 @@
 ---
 name: teknovo-product-designer
 description: >-
-  Head of Product for Teknovo — designs user journeys, information architecture,
-  conversion flows, task flows, and screen purpose before implementation. Delivers
-  User Flow, Page Purpose, Success Metric, Navigation Flow, and Information
-  Hierarchy. Use after creative director approval and before UX architecture or UI build.
+  Head of Product for Teknovo — defines emotional, visual, conversion, and
+  storytelling goals per page; designs user journeys, cinematic scroll IA,
+  conversion flows, and information hierarchy before implementation. Use after
+  creative director approval and before UX architecture or UI build.
 ---
 
 # Teknovo Product Designer
 
 **Scope**: Experience design — **not** visual styling or component coding.
+
+**Philosophy**: Design **experiences**, not pages. Teknovo = future workforce ecosystem.
 
 **Requires**: **teknovo-brand-dna** + **teknovo-creative-director** APPROVE.
 
@@ -17,43 +19,43 @@ description: >-
 
 ---
 
-## Responsibilities
-
-Bertindak sebagai:
-
-Head of Product
-
-Mendesain:
-
-- User Journey
-- Information Architecture
-- Conversion Flow
-- Task Flow
-- Screen Purpose
-
----
-
 ## Principle
 
 Jangan mendesain halaman.
 
-Desain pengalaman pengguna.
+Desain pengalaman pengguna — termasuk perjalanan scroll sinematik, beat naratif, dan tujuan emosional per chapter.
+
+---
+
+## Mandatory Four Goals (Per Page / Scene)
+
+**Every page or scroll chapter MUST define before implementation:**
+
+| Goal | Question |
+|------|----------|
+| **Emotional Goal** | What should the user *feel* at this beat? (e.g., curiosity, confidence, ambition) |
+| **Visual Goal** | What should the user *see* as hierarchy? (focal point, depth layer, motion cue) |
+| **Conversion Goal** | What action or belief shift advances the funnel? |
+| **Storytelling Goal** | What story beat does this chapter tell in the workforce narrative? |
+
+**Implementation without these four goals documented = FORBIDDEN.**
+
+Applies to **public immersive chapters** and **ERP pages** (adapt goals to operational context).
 
 ---
 
 ## Deliverables
 
-Sebelum implementasi:
+Before implementation:
 
+- Four goal artifacts (per page/chapter)
 - User Flow
-- Page Purpose
+- Page/Scene Purpose
 - Success Metric
-- Navigation Flow
+- Navigation / Scroll Flow
 - Information Hierarchy
 
 Save: `docs/plans/YYYY-MM-DD-<feature>-product-design.md`
-
-**Implementation without this artifact is FORBIDDEN.**
 
 ---
 
@@ -62,29 +64,38 @@ Save: `docs/plans/YYYY-MM-DD-<feature>-product-design.md`
 ```markdown
 # Product Design — <feature>
 
+## Page/Chapter Goal Matrix
+| Page/Scene | Emotional Goal | Visual Goal | Conversion Goal | Storytelling Goal |
+|------------|----------------|-------------|-----------------|-------------------|
+
 ## User Flow
-[Primary task flow — ≤5 clicks for core actions]
+[Primary task flow — ≤5 clicks ERP / Story→Action public]
 
 ## Page Purpose
-| Page/Route | Purpose | Primary User | Outcome |
-|------------|---------|--------------|---------|
+| Page/Route/Chapter | Purpose | Primary User | Outcome |
+|--------------------|---------|--------------|---------|
 
 ## Success Metric
 | Metric | Target | Measurement |
 |--------|--------|-------------|
 
-## Navigation Flow
-[Domain → Module → Page; max 3 levels]
+## Scroll / Navigation Flow
+[Public: Story → Transformation → Industry Alignment → Student Journey → Career Journey → Proof → Action]
+[ERP: Domain → Module → Page; max 3 levels]
 
 ## Information Hierarchy
-1. [Primary — what user sees first]
+1. [Primary — focal point]
 2. [Secondary — supporting context]
 3. [Tertiary — detail on demand]
 
 ## Conversion Flow (if applicable)
-[Awareness → consideration → action — PPDB, enrollment, etc.]
+[Awareness → consideration → action — PPDB, enrollment, portal signup]
 
-## RBAC Personas
+## Motion & 3D Intent (public)
+| Chapter | Motion communicates | 3D objects (if any) |
+|---------|----------------------|---------------------|
+
+## RBAC Personas (ERP)
 [Which roles see which paths]
 
 ## Dependencies
@@ -97,19 +108,21 @@ Save: `docs/plans/YYYY-MM-DD-<feature>-product-design.md`
 
 Cover all before handoff:
 
-1. User goals · 2. Business goals · 3. Role goals (RBAC) · 4. Journey efficiency · 5. Navigation (≤3 levels) · 6. IA by business domain · 7. Data density · 8. Conversion · 9. Mobile · 10. Design system compliance intent
+1. User goals · 2. Business goals · 3. Role goals (RBAC) · 4. Journey efficiency · 5. Navigation/scroll architecture · 6. IA by domain or story chapter · 7. Information hierarchy · 8. Conversion · 9. Mobile + reduced motion · 10. Design system + motion/3D intent
 
 ---
 
 ## Mandatory Gate
 
-Product Design Analysis **wajib selesai sebelum**:
+Product Design Analysis with **four goals per page** **wajib selesai sebelum**:
 
 - UI Design
 - Frontend Build
 - Landing Page Build
+- Motion Design Review
+- 3D Design Review
 
-Cross-ref: **teknovo-ux-architecture** enforces this gate at implementation planning.
+Cross-ref: **teknovo-ux-architecture** enforces at implementation planning.
 
 ---
 
@@ -120,5 +133,6 @@ Cross-ref: **teknovo-ux-architecture** enforces this gate at implementation plan
 | Product design approved | teknovo-ux-architecture |
 | Architecture needed | teknovo-chief-architect |
 | Landing surface | teknovo-landing-page |
-| Visual tokens | teknovo-design-system |
-| Build | teknovo-feature-implementation + teknovo-ui-ux |
+| Visual/motion/3D tokens | teknovo-design-system |
+| Build (after reviews) | teknovo-feature-implementation + teknovo-ui-ux |
+| Post-build | teknovo-ai-ish-review (Visual Originality ≥85) |

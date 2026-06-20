@@ -1,19 +1,31 @@
 ---
 name: teknovo-ui-ux
 description: >-
-  Implement and review Teknovo ERP UI — PageShell layout, five page states,
-  tables, forms, navigation, RBAC-aware UX, and mobile rules. Use when building,
-  modifying, or reviewing dashboard pages, forms, data tables, sidebar nav,
-  or any authenticated portal UI in apps/portal or packages/ui.
+  Implement and review Teknovo UI — ERP PageShell for admin, immersive motion/3D
+  patterns for public surfaces, five page states, tables, forms, navigation,
+  RBAC-aware UX, and mobile rules. Use when building or reviewing dashboard pages,
+  public portal marketing UI, forms, data tables, or components in apps/portal
+  or packages/ui.
 ---
 
 # Teknovo UI/UX Implementation
 
-**Scope**: Code and review of authenticated ERP UI. For pre-code IA/planning → **teknovo-ux-architecture**. For tokens/icons → **teknovo-design-system**. For public landing → **teknovo-landing-page**.
+**Scope split**:
 
-## Layout Contract
+| Surface | This skill covers |
+|---------|-------------------|
+| **ERP admin** (`apps/portal`, authenticated) | PageShell, tables, forms, 5 states, RBAC nav |
+| **Public immersive** (marketing, landing) | Motion, 3D scenes, scroll narrative — pair with **teknovo-landing-page** |
 
-Every ERP page uses this structure:
+For pre-code IA/planning → **teknovo-ux-architecture**. For tokens/motion/3D → **teknovo-design-system**.
+
+**Requires before public UI code**: Motion Design Review + 3D Experience Review gates passed (see **teknovo-auto-orchestrator**).
+
+---
+
+## ERP Admin — Layout Contract
+
+Every ERP page uses:
 
 ```text
 PageShell
@@ -25,26 +37,93 @@ PageShell
 - **Breadcrumb**: `Domain > Module > Page` (max 3 segments).
 - **No** decorative hero bands on admin pages.
 - **No** per-module custom sidebars — global domain-driven sidebar only.
+- **No** 3D scenes, scroll-jacking, or parallax on ERP data screens.
+
+---
+
+## Public Immersive — Layout Contract
+
+Public surfaces **do not** use PageShell. Use **scene-based chapters**:
+
+```text
+ImmersivePage
+├── SceneNavigation — minimal, persistent wayfinding
+├── SceneStack — scroll-linked chapters with motion continuity
+│   ├── Scene (Story | Transformation | Journey | Proof | Action)
+│   └── Transitions — Motion.dev / GSAP between scenes
+└── InteractiveLayer — R3F canvas where narrative requires 3D
+```
+
+### Public UI — DO
+
+- Scroll-linked animation · viewport-triggered reveals · parallax depth layers
+- Interactive 3D scenes with narrative purpose (R3F + Three.js)
+- Hover transformations that communicate affordance
+- Progressive reveal of career/industry story beats
+- Apple-level hierarchy: one focal point per viewport
+
+### Public UI — DON'T
+
+- Background image hero · hero banner · hero with CTA only
+- Feature grid (3×N icon cards) · KPI stat blocks · template section stacking
+- Fake 3D · random floating shapes · bounce animations
+- Dashboard patterns on marketing pages
+- Bleed ERP table/card density into public surfaces
+
+---
+
+## Motion Implementation (Public)
+
+| Pattern | Stack | When |
+|---------|-------|------|
+| Section enter/exit | Motion.dev | Every scene transition |
+| Scroll progress | GSAP ScrollTrigger or Motion scroll | Cinematic chapters |
+| Parallax depth | GSAP + layered z-index | Story, Transformation scenes |
+| Micro-interaction | Motion.dev | Buttons, cards with purpose |
+
+**Rule**: Every animation answers "what information does this communicate?"
+
+ERP: loading skeletons, subtle modal transitions only — no scroll-linked effects.
+
+---
+
+## 3D Implementation (Public)
+
+| Pattern | Stack | When |
+|---------|-------|------|
+| Hero narrative scene | R3F + drei | Opening Story scene — replaces image hero |
+| Industry alignment visual | R3F objects/models | Transformation, Industry Alignment |
+| Career path visualization | R3F + GSAP camera | Student Journey, Career Journey |
+
+**Checklist before 3D code**:
+
+- [ ] Object maps to story beat (documented in Product Design Analysis)
+- [ ] Mobile fallback defined (static image or simplified scene)
+- [ ] Performance budget: LCP impact assessed
+- [ ] Reduced motion / prefers-reduced-motion respected
+
+---
 
 ## Navigation
 
 ```text
-Domain (L1) → Module (L2) → Page (L3)   [max depth: 3]
+Domain (L1) → Module (L2) → Page (L3)   [max depth: 3 — ERP only]
 ```
 
-Approved domains: Dashboard, Academic, Student Affairs, Finance, Administration, Communication, System.
+Approved ERP domains: Dashboard, Academic, Student Affairs, Finance, Administration, Communication, System.
 
-| Rule | Requirement |
-|------|-------------|
-| Sidebar | Global; RBAC Layer 1 menu visibility |
-| Mobile | Drawer or bottom nav; hide desktop sidebar |
-| RBAC UX | Hide inaccessible nav — no locked teasing links |
-| Primary tasks | ≤5 clicks from dashboard |
-| Toolbar | ≤3 primary actions visible; rest in `⋯` |
+| Rule | ERP | Public |
+|------|-----|--------|
+| Nav style | Global sidebar, RBAC Layer 1 | Minimal scene nav, scroll progress indicator |
+| Mobile | Drawer or bottom nav | Full-screen scenes, sticky action when conversion requires |
+| RBAC UX | Hide inaccessible nav | N/A on public marketing |
+| Primary tasks | ≤5 clicks from dashboard | Story → Action without friction |
 
-## Five Page States (Mandatory)
+---
 
-Every content page implements **all five**. Missing any = Major defect, blocks ship.
+## Five Page States (ERP — Mandatory)
+
+Every ERP content page implements **all five**. Missing any = Major defect, blocks ship.
 
 | State | Implementation |
 |-------|------------------|
@@ -54,21 +133,29 @@ Every content page implements **all five**. Missing any = Major defect, blocks s
 | Success | Toast/alert on mutation |
 | Permission | Lock screen or restricted view — not toast-only |
 
-## Tables (Data Grids)
+Public immersive pages: Loading (scene preload) · Error (graceful fallback) · Success (conversion confirmation) — adapt states to narrative context.
 
-Required: search + filters · column visibility toggle · row selection · bulk action bar · pagination (prev/next, page nums, per-page) · PDF/CSV export · sticky header · empty state with CTA · mobile card/list fallback.
+---
+
+## Tables (ERP Data Grids)
+
+Required: search + filters · column visibility · row selection · bulk actions · pagination · PDF/CSV export · sticky header · empty state · mobile card fallback.
 
 Prefer **data tables** over card grids for ERP lists.
 
+---
+
 ## Forms
 
-- **Validation**: Zod at controller; inline errors below fields; error summary at top on submit.
+- **Validation**: Zod at controller; inline errors; error summary on submit.
 - **Grouping**: Mental model — not database column order.
 - **Dirty state**: Prompt before navigate away.
-- **Multi-step**: Progress indicator; if modal scrolls → use dedicated page.
-- **Mobile**: Single column; appropriate input types; sticky **Simpan** footer on long forms.
+- **Multi-step**: Progress indicator; modal scrolls → dedicated page.
+- **Mobile**: Single column; sticky **Simpan** footer on long forms.
 
-## Modals vs Pages
+---
+
+## Modals vs Pages (ERP)
 
 | Use modal | Use page/drawer |
 |-----------|-----------------|
@@ -76,53 +163,72 @@ Prefer **data tables** over card grids for ERP lists.
 | Quick 1–2 field edit | Document preview |
 | — | Sortable/paginated tables |
 
+---
+
 ## Mobile (Mandatory)
 
-- Tap targets ≥44×44px.
-- Test baseline: 375×667 (iPhone SE).
-- Tables → cards or horizontal scroll + sticky first column.
-- Modals → full-screen on mobile.
-- No horizontal overflow at 375px.
+- Tap targets ≥44×44px · test at 375×667.
+- ERP tables → cards or horizontal scroll.
+- Public: 3D may degrade; motion may simplify; story must remain coherent.
+
+---
 
 ## Accessibility (WCAG AA)
 
-Contrast ≥4.5:1 text · visible focus · keyboard tab order · form labels + `aria-describedby` on errors · icon buttons named · skip-to-content on portal · table headers with scope.
+Contrast ≥4.5:1 · visible focus · keyboard order · labels + `aria-describedby` · `prefers-reduced-motion` honored on all motion/3D.
 
-## UX Taste (Apply During Build)
+---
 
-- ≤7 visible decisions per screen; collapse advanced into drawers.
-- Empty dashboard → one CTA ("Tambah siswa pertama"), not 8 empty widgets.
-- Hide action buttons when no permission — not disabled mystery tooltips.
-- WIB timezone; DD/MM/YYYY for Indonesia.
+## Review Gates (Pre-Implementation)
+
+| Gate | Owner skill | Pass |
+|------|-------------|------|
+| Motion Design Review | teknovo-design-system + this skill | All mandatory motion types mapped to story beats |
+| 3D Experience Review | teknovo-3d-experience-architect | Every 3D object has narrative purpose; score ≥85 |
+| UI UX Review | this skill | ERP PageShell or public scene contract satisfied |
+
+Document reviews in `docs/plans/YYYY-MM-DD-<feature>-motion-review.md` and `*-3d-review.md`.
+
+---
 
 ## Implementation Checklist
 
-Before marking UI complete:
+### ERP
 
-- [ ] Phosphor/Tabler only — no Lucide, FA, Bootstrap
-- [ ] shadcn/ui + Radix — no Ant Design, MUI
 - [ ] PageShell → PageHeader → PageContent
-- [ ] Breadcrumb `Domain > Module > Page`
-- [ ] All 5 page states verified in browser
-- [ ] Table: search, filter, pagination, export, bulk, mobile fallback
-- [ ] Form: Zod, dirty state, error summary
-- [ ] Mobile: drawer nav, 44px targets, no horizontal scroll
-- [ ] RBAC on route, menu, action buttons
-- [ ] Components in `packages/ui` — not ad-hoc module dumps
+- [ ] All 5 page states verified
+- [ ] Phosphor/Tabler · shadcn/Radix only
+- [ ] RBAC on route, menu, actions
+- [ ] Components in `packages/ui`
+
+### Public immersive
+
+- [ ] No background image hero · no feature grid · no KPI blocks
+- [ ] Story chapter structure (see **teknovo-landing-page**)
+- [ ] Motion.dev + GSAP scroll narrative implemented
+- [ ] R3F scenes where approved in 3D Experience Review
+- [ ] Visual Originality Score ≥85 (**teknovo-ai-ish-review**)
+
+---
 
 ## Skill Handoff
 
 | Phase | Skill |
 |-------|-------|
+| Brand + creative | teknovo-brand-dna → teknovo-creative-director |
+| Product goals | teknovo-product-designer |
 | Pre-code planning | teknovo-ux-architecture |
-| Strategic product gate | teknovo-ux-architecture (Product Design Analysis) |
-| Tokens/visual compliance | teknovo-design-system |
-| Public landing | teknovo-landing-page |
+| Tokens / motion / 3D | teknovo-design-system |
+| Public structure | teknovo-landing-page |
 | Code implementation | teknovo-feature-implementation |
-| Pre-ship UX audit | gstack-qa, gstack-browser-testing |
+| Post-build gate | teknovo-ai-ish-review |
+| Pre-ship | gstack-qa, gstack-browser-testing |
+
+---
 
 ## References
 
 - `docs/standards/design-system/design-system-contract.md`
 - `docs/standards/rbac/rbac-standard.md`
 - `apps/portal/`, `packages/ui/`
+- **teknovo-auto-orchestrator** — mandatory creative chain

@@ -8,7 +8,7 @@ metadata:
   name: Teknovo Chain Map
   intent_routing: intent-routing.yaml
   execution_policy: execution-policy.yaml
-  workflow_order: "Brand DNA → Creative Director → Product Designer → UX → Design → Build → AI-ish Review → Taste â†’ Assurance â†’ Security â†’ Implementation â†’ Verification â†’ Ship"
+  workflow_order: "Brand DNA → Creative Director → Product Designer → Motion Design Review → 3D Experience Review → UX Architecture → Design System → UI UX Review → Implementation → AI-ish Review (Visual Originality ≥85) → Testing"
 
 chains:
 
@@ -35,12 +35,30 @@ chains:
       - step: product-designer
         skill: teknovo-product-designer
         artifact: Product Design Analysis
+      - step: motion-design-review
+        gate: motion_design_review
+        skill: teknovo-motion-designer
+        skills: [teknovo-motion-designer, teknovo-design-system]
+        artifact: Motion Design Review
+        verdict: PASS
+        pass_criteria: "Motion Quality Score ≥80"
+      - step: three-d-experience-review
+        gate: three_d_experience_review
+        skill: teknovo-3d-experience-architect
+        skills: [teknovo-3d-experience-architect, teknovo-design-system]
+        artifact: 3D Experience Review
+        verdict: PASS
+        pass_criteria: "3D Experience Score ≥85"
       - step: ux-architecture
         skill: teknovo-ux-architecture
         bundle: pre-ui
       - step: design-system
         skill: teknovo-design-system
         bundle: pre-ui
+      - step: ui-ux-review
+        gate: ui_ux_review
+        skill: teknovo-ui-ux
+        verdict: PASS
       - step: security-pre-impl
         gate: security_pre_impl
         skills: [teknovo-security, teknovo-security-review]
@@ -59,9 +77,9 @@ chains:
         parallel_group: ui-build
       - step: ai-ish-review
         skill: teknovo-ai-ish-review
-        gate: ai_ish_review
+        gate: visual_originality_review
         verdict: PASS
-        pass_criteria: "AI-ish score ≤30"
+        pass_criteria: "Visual Originality score ≥85"
       - step: testing
         skill: teknovo-testing-architect
         agents: [gstack-qa]
@@ -199,10 +217,10 @@ chains:
         skills_extra: [teknovo-backend-development, teknovo-ui-ux]
       - step: ai-ish-review
         skill: teknovo-ai-ish-review
-        gate: ai_ish_review
+        gate: visual_originality_review
         optional: true
         note: Required when implementation includes UI surfaces
-        pass_criteria: "AI-ish score ≤30"
+        pass_criteria: "Visual Originality score ≥85"
       - step: testing
         skill: teknovo-testing-architect
         skills_extra: [gstack-qa, gstack-eng-review]
@@ -277,20 +295,38 @@ chains:
       - step: product-designer
         skill: teknovo-product-designer
         artifact: Product Design Analysis
+      - step: motion-design-review
+        gate: motion_design_review
+        skill: teknovo-motion-designer
+        skills: [teknovo-motion-designer, teknovo-design-system]
+        artifact: Motion Design Review
+        verdict: PASS
+        pass_criteria: "Motion Quality Score ≥80"
+      - step: three-d-experience-review
+        gate: three_d_experience_review
+        skill: teknovo-3d-experience-architect
+        skills: [teknovo-3d-experience-architect, teknovo-design-system]
+        artifact: 3D Experience Review
+        verdict: PASS
+        pass_criteria: "3D Experience Score ≥85"
       - step: ux-architecture
         skill: teknovo-ux-architecture
         agent: chief-product-designer
       - step: design-system
         skill: teknovo-design-system
         bundle: pre-ui
+      - step: ui-ux-review
+        gate: ui_ux_review
+        skill: teknovo-ui-ux
+        verdict: PASS
       - step: ui-build
         skills: [teknovo-ui-ux, teknovo-design-system]
         bundle: pre-ui
       - step: ai-ish-review
         skill: teknovo-ai-ish-review
-        gate: ai_ish_review
+        gate: visual_originality_review
         verdict: PASS
-        pass_criteria: "AI-ish score ≤30"
+        pass_criteria: "Visual Originality score ≥85"
       - step: testing
         skills: [gstack-browser-testing, gstack-qa]
 

@@ -168,25 +168,27 @@ bundles:
     - teknovo-chief-product-designer
     - taste-product-principles
   pre-ui:
-    description: Before UI code — creative governance + UX taste + quality + native
-      Cursor skills
+    description: Before UI code — creative governance, motion/3D review gates, UX taste + quality + native Cursor skills
     skills:
     - teknovo-brand-dna
     - teknovo-creative-director
     - teknovo-product-designer
+    - teknovo-motion-designer
+    - teknovo-3d-experience-architect
+    - teknovo-ux-architecture
     - taste-ux-principles
     - taste-design-principles
     - quality-ux-principles
     - quality-design-taste
     - teknovo-design-system
-    - teknovo-ux-architecture
     - teknovo-ui-ux
   pre-creative-review:
-    description: After UI build — AI-ish enforcement before ship
+    description: After UI build — Visual Originality enforcement (≥85) before ship
     skills:
     - teknovo-ai-ish-review
     - teknovo-brand-dna
     - teknovo-creative-director
+    - teknovo-design-system
   pre-implementation:
     description: Before code — architecture + security + context assurance
     skills:
@@ -850,7 +852,31 @@ skills:
     - generic UI
     - template detection
     conflicts: []
-    description: AI-ish score enforcement — blocks when score exceeds 30
+    description: Visual Originality score enforcement — blocks when score below 85
+    autoload: false
+  teknovo-3d-experience-architect:
+    id: teknovo-3d-experience-architect
+    layer: ux
+    priority: critical
+    source: teknovo
+    path: .cursor/skills/teknovo-3d-experience-architect/SKILL.md
+    depends_on:
+    - agents-md
+    - teknovo-brand-dna
+    - teknovo-creative-director
+    - teknovo-motion-designer
+    - teknovo-design-system
+    activate_when:
+    - 3d experience
+    - 3d review
+    - spatial design
+    - react three fiber
+    - landing page
+    - public site
+    - marketing site
+    - before UI implementation
+    conflicts: []
+    description: 3D Experience Architect gate — 3D Experience Score ≥85 required before UX Architecture and implementation
     autoload: false
   teknovo-api-architect:
     id: teknovo-api-architect
@@ -876,7 +902,7 @@ skills:
     activate_when:
     - teknovo auto orchestrator
     conflicts: []
-    description: Skill teknovo-auto-orchestrator
+    description: Autonomous orchestration — Brand DNA → Creative Director → Product Designer → Motion → 3D Experience → UX Architecture → Design System → UI UX → Implementation → Visual Originality Review → Testing
     autoload: true
   teknovo-backend-development:
     id: teknovo-backend-development
@@ -1122,6 +1148,29 @@ skills:
     conflicts: []
     description: Skill teknovo-landing-page
     autoload: true
+  teknovo-motion-designer:
+    id: teknovo-motion-designer
+    layer: ux
+    priority: critical
+    source: teknovo
+    path: .cursor/skills/teknovo-motion-designer/SKILL.md
+    depends_on:
+    - agents-md
+    - teknovo-brand-dna
+    - teknovo-creative-director
+    - teknovo-product-designer
+    - teknovo-design-system
+    activate_when:
+    - motion design
+    - motion review
+    - scroll animation
+    - landing page
+    - public site
+    - marketing site
+    - before UI implementation
+    conflicts: []
+    description: Senior Motion Designer gate — Motion Quality Score ≥80 required before 3D Experience Review
+    autoload: false
   teknovo-mcp-stack:
     id: teknovo-mcp-stack
     layer: engineering

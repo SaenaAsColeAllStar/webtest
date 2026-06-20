@@ -1,56 +1,87 @@
 ---
 name: teknovo-ux-architecture
 description: >-
-  Pre-code UX architecture for Teknovo — PRD alignment, information architecture,
-  navigation planning, user journeys, design reviews, AI-ish detection, and
-  mandatory pre-code artifacts. Use before UI implementation, for UX review,
-  dashboard review, navigation planning, IA restructure, product design analysis,
-  accessibility audit, or when user asks to build UI pages.
+  Pre-code UX architecture for Teknovo — PRD alignment, cinematic scroll IA,
+  navigation planning, user journeys, motion/3D pre-code artifacts, design reviews,
+  and Visual Originality enforcement. Use before UI implementation, for UX review,
+  navigation planning, IA restructure, product design analysis, accessibility audit,
+  or when user asks to build UI pages.
 ---
 
 # Teknovo UX Architecture
 
-**Scope**: Planning, review, and pre-code architecture — **not** component coding. For implementation → **teknovo-ui-ux**. For tokens → **teknovo-design-system**.
+**Scope**: Planning, review, and pre-code architecture — **not** component coding.
 
-**Requires**: **teknovo-brand-dna** → **teknovo-creative-director** APPROVE → **teknovo-product-designer** Product Design Analysis complete.
+**Philosophy**: Teknovo = **future workforce ecosystem**. Plan **immersive scroll experiences**, not flat section stacks.
 
-**Prohibited**: Generate UI code before completing the relevant mode's mandatory artifacts.
+For implementation → **teknovo-ui-ux**. For tokens/motion/3D → **teknovo-design-system**.
+
+**Requires**: **teknovo-brand-dna** → **teknovo-creative-director** APPROVE → **teknovo-product-designer** (four goal artifacts complete).
+
+**Prohibited**: Generate UI code before completing mandatory artifacts and orchestrator chain gates.
+
+---
 
 ## When to Activate
 
 | Intent | Mode |
 |--------|------|
 | New feature, PRD alignment, strategy | **Product Design** |
-| Plan navigation, IA, user flows | **Planning** |
-| Review existing UI, dashboard, form, table | **Design Review** |
+| Plan navigation, IA, cinematic scroll flows | **Planning** |
+| Review existing UI, dashboard, landing | **Design Review** |
 | Audit a11y, mobile, pre-release | **Audit** |
 | User asks to build/create UI | **Implementation Planning** |
+
+---
 
 ## Role Split
 
 | Skill | Phase |
 |-------|-------|
-| **teknovo-brand-dna** | Brand identity — first gate for all UI |
-| **teknovo-creative-director** | Creative/art direction review |
-| **teknovo-product-designer** | Head of Product — journeys, IA, conversion |
-| **This skill** | What exists, why, IA, journeys, reviews, pre-code artifacts |
-| teknovo-ui-ux | How to build — tokens, PageShell, 5 states, tables, forms |
-| teknovo-prd-generator | Draft PRDs (this skill reviews/aligns, does not draft) |
-| teknovo-chief-architect | Pillar 2 — after Product Design Analysis approved |
+| **teknovo-brand-dna** | Brand identity — first gate |
+| **teknovo-creative-director** | Creative/art direction, 3D narrative |
+| **teknovo-product-designer** | Four goal artifacts per page |
+| **This skill** | IA, scroll architecture, journeys, reviews, pre-code artifacts |
+| teknovo-ui-ux | Build — ERP PageShell or public scenes |
+| teknovo-chief-architect | Pillar 2 — after Product Design approved |
+
+---
+
+## Scroll Experience Architecture (Public)
+
+Public surfaces require **cinematic scrolling** — not disconnected static section stacking.
+
+### Require
+
+- Story chapters · progressive discovery · scene transitions · motion continuity across viewport
+- Scroll progress as narrative device (chapter indicators, parallax depth cues)
+- Each chapter maps to landing structure beat (see **teknovo-landing-page**)
+
+### Avoid
+
+- Hero → Features → Testimonials → CTA wireframe
+- Alternating white/gray static blocks with no transition design
+- Independent sections with no shared motion language
+
+Document scroll map in Product Design Analysis: chapter name · scroll trigger · motion handoff · 3D layer (if any).
+
+---
 
 ## Analyze Before Any UI Work
 
 ### Strategic (10 Areas — Product Design)
 
-1. User goals · 2. Business goals · 3. Role goals (RBAC) · 4. User journey (≤5 clicks) · 5. Navigation (≤3 levels) · 6. Information architecture · 7. Data density (scan <5 sec) · 8. Conversion flow · 9. Mobile · 10. Design system compliance
+1. User goals · 2. Business goals · 3. Role goals (RBAC) · 4. Journey (≤5 clicks ERP / story→action public) · 5. Navigation · 6. IA · 7. Information hierarchy · 8. Conversion · 9. Mobile + reduced motion · 10. Design system + motion/3D compliance
 
 ### Tactical (11 Dimensions — UX Review)
 
-User goals · Business goals · RBAC · Navigation · Page hierarchy · Data density · Mobile · Accessibility · Responsiveness · Design consistency · Implementation feasibility (`packages/ui` + PageShell)
+User goals · Business goals · RBAC · Navigation · Page/scene hierarchy · Data density · Mobile · Accessibility · Responsiveness · Motion/3D consistency · Feasibility (`packages/ui` ERP · R3F/Motion public)
+
+---
 
 ## Information Architecture
 
-**Business domains, not technical modules.**
+**Business domains, not technical modules** (ERP):
 
 ```text
 Dashboard
@@ -59,135 +90,152 @@ Finance → Billing | Payments | Cash Book | Reports
 Student Affairs | Administration | Communication | System
 ```
 
-Each leaf: route path + permission + breadcrumb. Run **IA complexity scoring** — High (9+) blocks build. See [reference.md](reference.md).
+**Public narrative IA** (not ERP sidebar):
+
+```text
+Story → Transformation → Industry Alignment → Student Journey → Career Journey → Proof → Action
+```
+
+Each leaf: route/scene anchor + permission (ERP) or scroll chapter (public). IA complexity scoring — High (9+) blocks build. See [reference.md](reference.md).
+
+---
 
 ## Navigation Rules
 
-- Max 3 levels: Domain → Module → Page
-- Breadcrumb: `Domain > Module > Page`
-- Global sidebar — no per-module custom sidebars
-- RBAC Layer 1 gates menu visibility; same nav structure for all roles (conditional render, not duplicate trees)
-- Mobile: drawer or bottom nav
-- Flag redundancy: same feature via sidebar + dashboard card + shortcut with no role distinction
+**ERP**: Max 3 levels · global sidebar · RBAC Layer 1 · mobile drawer.
 
-## Dashboard Philosophy
+**Public**: Minimal persistent nav · scroll progress · chapter jump optional · no ERP domain sidebar.
+
+---
+
+## Dashboard Philosophy (ERP Only)
 
 Dashboards serve **daily operators**, not demos.
 
-- ≤6 cards visible without scroll; reject 8+ equal-weight KPI cards
-- Mandatory elements: Summary Cards, Recent Activity, Quick Actions, Announcements
-- Primary KPI top-left; each metric maps to PRD + real data source
-- Role-specific: Teacher ≠ Finance ≠ Admin dashboards
+- ≤6 cards without scroll; reject 8+ equal-weight KPI cards
+- Role-specific dashboards
+- **Do not** use dashboard KPI patterns on public marketing surfaces
 
-## Form & Table (Strategic)
-
-**Forms**: Justify existence · group by mental model · correct workflow placement · right role owns data entry. Delegate Zod/dirty-state audit to **teknovo-ui-ux**.
-
-**Tables**: Justify list vs dashboard · primary row action clarity · bulk matches PRD workflows · mobile degradation planned · export serves compliance/ops.
+---
 
 ## Mandatory Gate — Product Design Analysis
 
-Product Design Analysis dari **teknovo-product-designer** **wajib selesai sebelum**:
+From **teknovo-product-designer** — **wajib selesai sebelum** UI Design, Frontend Build, Landing Build.
 
-- UI Design
-- Frontend Build
-- Landing Page Build
+Must include per page: **Emotional Goal · Visual Goal · Conversion Goal · Storytelling Goal**.
 
-## AI-Ish Detection (Mandatory Gate)
+---
 
-Score 0–100 (higher = more generic). **Must be ≤30 before UI handoff and ship.**
+## Visual Originality Gate (Mandatory)
 
-Bands: 0–20 Excellent · 21–30 Acceptable · 31–40 Needs Revision · 41–60 Block · 61–100 Reject.
+**Visual Originality Score** 0–100 (higher = more distinctive). **Must be ≥85 before UI handoff and ship.**
 
-Enforcement: score **>30** → BLOCK IMPLEMENTATION — wajib redesign via **teknovo-creative-director**.
+| Score | Band | Action |
+|-------|------|--------|
+| 85–100 | Distinctive | PASS — proceed |
+| 70–84 | Derivative | REVISE — redesign required |
+| 50–69 | Generic | BLOCK |
+| 0–49 | Template | BLOCK — full creative restart |
 
-Full scoring: **teknovo-ai-ish-review**
+**Auto-reject** (score capped at 69): generic cards · feature grids · KPI blocks · dashboard layouts · template heroes · Tailwind demo appearance.
+
+Enforcement: score **<85** → BLOCK IMPLEMENTATION — return to **teknovo-creative-director**.
+
+Full rubric: **teknovo-ai-ish-review**
+
+---
+
+## Pre-Implementation Review Gates
+
+| Gate | When | Artifact |
+|------|------|----------|
+| Motion Design Review | After Product Designer, before 3D Experience Review | `*-motion-review.md` |
+| 3D Experience Review | After Motion Review, before UX Architecture | `*-3d-review.md` |
+| UI UX Review | After Design System, before code | Checklist in implementation plan |
+
+Orchestrator enforces order — see **teknovo-auto-orchestrator**.
+
+---
 
 ## PRD Alignment Checklist
 
-Before architecture handoff:
+1. Module scope bounded · 2. Roles/permissions · 3. FRs trace to journey · 4. Pages/scenes align with IA · 5. Success metrics · 6. Cross-domain dependencies
 
-1. Module scope bounded to domain ownership
-2. Roles/permissions match navigation personas
-3. FRs trace to journey steps
-4. UI pages align with IA — no duplicate paths
-5. Success metrics measurable
-6. Cross-domain dependencies documented
-
-PRD gaps → **teknovo-prd-generator** → re-run alignment.
+---
 
 ## Required Output — Product Design Analysis
 
-**Every product design engagement** produces full analysis before UI code. Delegate template to **teknovo-product-designer**; this skill reviews alignment.
+Delegate template to **teknovo-product-designer**; this skill reviews alignment.
 
 Save: `docs/plans/YYYY-MM-DD-<feature>-product-design.md`
 
 **Implementation without this artifact is FORBIDDEN.**
 
+---
+
 ## Required Output — Design Review
 
-Every review produces UX Score + Priority Matrix + Verdict. UX Score ≥80 to ship; 60–79 conditional with debt.
+UX Score + Priority Matrix + Verdict. UX Score ≥80 to ship ERP; public surfaces also require Visual Originality ≥85.
 
-Frameworks: Dashboard · Form UX Audit · Table UX Audit · Mobile UX Report · Accessibility Report. Full template: [reference.md](reference.md).
+Frameworks: Dashboard · Form UX · Table UX · Scroll/Cinematic UX · Mobile · Accessibility. Template: [reference.md](reference.md).
+
+---
 
 ## Implementation Planning Mode
 
 When asked to **build UI**, produce **all 10 pre-code artifacts** before code:
 
-Folder tree · Component tree · Route tree · Page layout · Responsive layout · State management table · API requirements · RBAC requirements · Acceptance criteria · Frontend implementation plan.
+Folder tree · Component tree · Route/scene tree · Page/scene layout · Responsive layout · State management · API · RBAC · Acceptance criteria · Frontend plan (include motion map + 3D scene list).
 
-Details: [reference.md](reference.md)
+Then invoke **teknovo-feature-implementation** + **teknovo-ui-ux** — only after Motion + 3D reviews PASS.
 
-Then invoke **teknovo-feature-implementation** + **teknovo-ui-ux**.
+---
 
 ## Workflows (Condensed)
 
 | Workflow | Steps |
 |----------|-------|
-| New feature | Read PRD → brand-dna → creative-director → product-designer → 10 areas → journey + IA → AI-ish ≤30 → chief-architect |
-| UX review | Load ui-ux checklist → run frameworks → Design Review output |
-| Navigation restructure | Full domain map → complexity score → RBAC delta → migration path |
-| Pre-release audit | Critical flows in browser → full review → forbidden libs check → E2E pass |
-| UX blocker | Forcing questions (one at a time) — no code during session |
+| New public feature | PRD → brand-dna → creative-director → product-designer (4 goals) → scroll IA → motion review → 3D review → UI UX review → build → Visual Originality ≥85 → chief-architect (if backend) |
+| New ERP feature | PRD → product-designer → IA → build → ai-ish review (ERP anti-patterns) |
+| UX review | Checklist → frameworks → Design Review output |
+| Pre-release | Critical flows · forbidden patterns · E2E |
 
-## UX Verification (Before Ship)
-
-1. All 5 page states in browser at 375, 768, 1280px
-2. Keyboard-only navigation
-3. Evidence table — not claims
+---
 
 ## Anti-Patterns
 
 | Wrong | Right |
 |-------|-------|
-| Code before IA tree | IA + route tree first |
-| Custom sidebar per module | Global domain sidebar |
-| DB column order in forms | Mental model grouping |
-| Skip Permission state | All 5 states always |
-| Duplicate nav per role | RBAC conditional render |
-| Template landing | School-specific narrative |
-| Skip AI-ish score | Mandatory ≤30 gate via teknovo-ai-ish-review |
+| Code before IA/scene tree | IA + scroll map first |
+| Static section stack (public) | Cinematic chapters with motion continuity |
+| Background image hero | Interactive scene / 3D narrative |
+| Skip Motion/3D review | Mandatory pre-code gates |
+| Skip four goal artifacts | Product designer gate |
+| Dashboard patterns on landing | Immersive story structure |
+| Skip Visual Originality score | Mandatory ≥85 via teknovo-ai-ish-review |
+
+---
 
 ## Skill Transitions
 
 | After | Invoke |
 |-------|--------|
 | Brand alignment | teknovo-creative-director |
-| Creative direction APPROVE | teknovo-product-designer |
-| Product design approved | teknovo-ux-architecture (this skill) |
+| Creative APPROVE | teknovo-product-designer |
+| Product design approved | Motion Design Review → 3D Experience Review → teknovo-ux-architecture (this skill) |
+| UX Architecture complete | Design System → UI UX Review |
+| Reviews PASS | teknovo-feature-implementation + teknovo-ui-ux |
+| Post UI build | teknovo-ai-ish-review (Visual Originality ≥85) |
 | Architecture needed | teknovo-chief-architect |
-| Build approved | teknovo-feature-implementation + teknovo-ui-ux |
-| Post UI build | teknovo-ai-ish-review |
-| RBAC gaps | teknovo-rbac-architect |
-| Landing build | teknovo-landing-page |
+| Landing | teknovo-landing-page |
 | Pre-ship | gstack-qa, gstack-browser-testing |
-| Blocker | gstack-office-hours |
+
+---
 
 ## Key Principles
 
-- **Existence over aesthetics** — justify every element before styling
-- **Business domains, not systems** — Academic and Finance, not Module A
-- **Journey efficiency** — ≤5 clicks for primary tasks
-- **Anti-template** — reject generic AI SaaS patterns
-- **RBAC is UX** — permissions shape what users see
-- **Evidence over claims** — screenshots, test output, checklist marks
+- **Story over sections** — public UX is a journey, not a sitemap rendered vertically
+- **Motion communicates** — every animation has information job
+- **3D serves narrative** — no decorative spatial clutter
+- **ERP ≠ public** — PageShell for operators; scenes for visitors
+- **Evidence over claims** — scroll recordings, Lighthouse, checklist marks

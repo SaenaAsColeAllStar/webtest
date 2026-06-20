@@ -37,8 +37,9 @@ Save: `docs/plans/YYYY-MM-DD-<feature>-product-design-analysis.md`
 ## Conversion Flow
 [Primary CTA, funnel, trust signals]
 
-## AI-ish Score
-**Score**: [N]/100 — [Band ≤40 to proceed]
+## Visual Originality Score
+**Score**: [N]/100 — [Band: Distinctive ≥85 / Derivative 70–84 / Generic 50–69 / Template <50]
+**Gate**: ≥85 before UI implementation handoff and ship (see **teknovo-ai-ish-review**)
 
 ## Product Design Score
 | Area | Score | Weight |
@@ -82,21 +83,22 @@ Save plan: `docs/plans/YYYY-MM-DD-<feature>-frontend-plan.md`
 | Orphan pages | +1 each |
 | Duplicate nav per role | +2 each |
 
-## AI-ish Detection Signals
+## Visual Originality Detection Signals
 
-| Signal | Points |
+| Signal | Impact |
 |--------|--------|
-| Generic hero headline | +15 |
-| 3+ identical icon feature cards | +10 |
-| 8+ equal KPI cards | +15 |
-| Purple gradient admin layout | +20 |
-| Forbidden icon libraries | +25 |
-| Placeholder/fake metrics | +10 |
-| Nav without RBAC | +10 |
-| Generic landing template | +20 |
-| Lorem / AI imagery | +15 |
+| Generic hero / background image hero | Auto-reject |
+| 3+ identical icon feature cards | Auto-reject |
+| KPI stat blocks on public surface | Auto-reject |
+| Dashboard layout on marketing page | Auto-reject |
+| Tailwind demo appearance | Auto-reject |
+| Purple gradient admin layout | −15 points |
+| Forbidden icon libraries | −20 points |
+| Placeholder/fake metrics | −10 points |
+| Static section stack (no motion continuity) | −15 points |
+| Decorative 3D without narrative | −15 points |
 
-**Gate**: Score ≤40 before UI implementation handoff.
+**Gate**: Visual Originality ≥85 before UI implementation handoff.
 
 ## Forcing Questions (One at a Time)
 

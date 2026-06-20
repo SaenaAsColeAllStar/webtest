@@ -1,13 +1,50 @@
-# Teknovo AI SuperStack
+# SMK Teknovo Portal
 
-Enterprise-grade autonomous AI development workstation for Teknovo.
+Public marketing portal for SMK Teknovo — static shell in `public/` plus an immersive React/R3F experience built from `apps/immersive-portal`.
 
-**Canonical platform:** [`.cursor/`](.cursor/) — read [`.cursor/INDEX.md`](.cursor/INDEX.md)
+**Repository:** [github.com/SaenaAsColeAllStar/webtest](https://github.com/SaenaAsColeAllStar/webtest)
 
-## Quick Start
+![CI](https://github.com/SaenaAsColeAllStar/webtest/actions/workflows/ci.yml/badge.svg)
 
-1. **Agent contract** → [`.cursor/docs/AGENTS.md`](.cursor/docs/AGENTS.md)
-2. **Skills index** → [`.cursor/skills/INDEX.md`](.cursor/skills/INDEX.md)
-3. **Load skills** → `python .cursor/runtime/load-skills.py --autoload`
+## Requirements
 
-All skills, rules, registries, gates, orchestrator, MCP, and runtime live under `.cursor/`.
+- Node.js 22+
+- npm
+
+## Local development
+
+```bash
+npm ci
+npm ci --prefix apps/immersive-portal
+npm run dev          # Vite dev server (immersive app)
+npm run serve        # Static preview of merged `public/` on :8080
+```
+
+## Build
+
+```bash
+npm run build        # build immersive app, merge into public/, validate
+npm run lint         # typecheck + Vite build (immersive)
+```
+
+## Deploy
+
+Production deploy uses [Cloudflare Wrangler](https://developers.cloudflare.com/workers/wrangler/) with assets from `public/`:
+
+```bash
+npm run build
+npm run deploy       # wrangler deploy (requires Cloudflare credentials locally)
+```
+
+**CI/CD:** Pushes to `main` run [`.github/workflows/ci.yml`](.github/workflows/ci.yml) and [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). Configure GitHub Actions secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` for automated deploy.
+
+In the Cloudflare dashboard, ensure the Workers/Pages project tracks the `main` branch if you use Pages Git integration alongside Wrangler.
+
+## Teknovo AI platform
+
+Enterprise agent workstation lives under [`.cursor/`](.cursor/) — see [`.cursor/INDEX.md`](.cursor/INDEX.md) and [`.cursor/docs/AGENTS.md`](.cursor/docs/AGENTS.md).
+
+## Docs
+
+- Phase roadmap: [`docs/roadmap/smk-teknovo-portal-phases.md`](docs/roadmap/smk-teknovo-portal-phases.md)
+- Changelog: [`CHANGELOG.md`](CHANGELOG.md)

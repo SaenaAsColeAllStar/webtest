@@ -25,6 +25,9 @@ npm-debug.log*
 .cache/
 .cursor/runtime/**/*.cache
 
+# 3D source assets (local only — optimized GLBs live in public/models/)
+3d/
+
 # Build outputs
 dist/
 apps/immersive-portal/dist/

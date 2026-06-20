@@ -21,7 +21,6 @@ jobs:
       - name: Install and build
         run: |
           npm ci
-          npm ci --prefix apps/immersive-portal
           npm run build
 
       - name: Create GitHub Release

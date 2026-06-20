@@ -183,6 +183,20 @@ public/models/
 
 **Status:** ✅ **COMPLETE** (21 Jun 2026) — `apps/immersive-portal`, build pass
 
+**Release & deploy (21 Jun 2026):**
+
+| Item | Status |
+|------|--------|
+| Git `main` | `bed961c` — `feat(portal): Phase 4 chapters 1-4 V2.1 immersive rebuild` |
+| Semver | **2.2.0** (`package.json`, `CHANGELOG.md`, tag `v2.2.0`) |
+| Folder `3d/` | **Tidak di-commit** (~1.8 GB source assets lokal) |
+| CI (`ci.yml`) | ✅ pass ([run](https://github.com/SaenaAsColeAllStar/webtest/actions)) |
+| Deploy (`deploy.yml` → Wrangler `webtest`) | ❌ gagal — `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` belum di GitHub Secrets |
+| Production URL | Belum terverifikasi live — deploy otomatis belum sukses |
+| **Deploy-ready untuk Phase 5** | **Tidak** — selesaikan secrets Cloudflare lalu re-run workflow **Build and Deploy** |
+
+**Aksi DevOps:** Settings → Secrets → `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`; opsional perbaiki `release.yml` (hapus `npm ci --prefix apps/immersive-portal`, gunakan workspaces saja).
+
 | # | Task | Owner Skill | Deps | Est. | Status |
 |---|------|-------------|------|------|--------|
 | 4.1 | Rework opening → `Future Starts Here` + School Building 3D | landing-page | Phase 2, 3 | 1d | ✅ (placeholder 3D — school-building blocked) |

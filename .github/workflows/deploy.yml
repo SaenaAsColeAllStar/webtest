@@ -18,15 +18,10 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          cache-dependency-path: |
-            package-lock.json
-            apps/immersive-portal/package-lock.json
+          cache-dependency-path: package-lock.json
 
-      - name: Install root dependencies
+      - name: Install dependencies (npm workspaces)
         run: npm ci
-
-      - name: Install immersive-portal dependencies
-        run: npm ci --prefix apps/immersive-portal
 
       - name: Build
         run: npm run build
@@ -48,11 +43,8 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
 
-      - name: Install root dependencies
+      - name: Install dependencies (npm workspaces)
         run: npm ci
-
-      - name: Install immersive-portal dependencies
-        run: npm ci --prefix apps/immersive-portal
 
       - name: Build for deploy
         run: npm run build

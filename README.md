@@ -14,8 +14,7 @@ Public marketing portal for SMK Teknovo — static shell in `public/` plus an im
 ## Local development
 
 ```bash
-npm ci
-npm ci --prefix apps/immersive-portal
+npm ci               # installs root + apps/immersive-portal (npm workspaces)
 npm run dev          # Vite dev server (immersive app)
 npm run serve        # Static preview of merged `public/` on :8080
 ```
@@ -37,6 +36,8 @@ npm run deploy       # wrangler deploy (requires Cloudflare credentials locally)
 ```
 
 **CI/CD:** Pushes to `main` run [`.github/workflows/ci.yml`](.github/workflows/ci.yml) and [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). Configure GitHub Actions secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` for automated deploy.
+
+**Cloudflare Git build (dashboard):** use install command `npm ci` and build command `npm run build`. Workspaces hoist `apps/immersive-portal` devDependencies (TypeScript, Vite) on a single root install — do not use a separate `npm ci --prefix apps/immersive-portal`.
 
 In the Cloudflare dashboard, ensure the Workers/Pages project tracks the `main` branch if you use Pages Git integration alongside Wrangler.
 
